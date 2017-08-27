@@ -55,11 +55,11 @@ f.lineplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab,
           legend.text = element_text(size = 14, face = "bold"))
 }
 
-f.segplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols){
+f.segplot = function(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols){
   ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
     geom_line(stat = "identity") +
-    geom_point(color = "white", size = 2) +
-    geom_point(size = 1) +
+    geom_point(color = "white", size = wsize) +
+    geom_point(size = csize) +
     labs(title = tlab,
          subtitle = sublab, 
          x = xlab,

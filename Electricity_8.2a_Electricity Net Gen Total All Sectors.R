@@ -143,6 +143,8 @@ setwd(out.loc)
   xval = dt[, YYYY]
   yval = dt[, Value]/1000000
   fillval = dt[, MSN]
+  wsize = 2
+  csize = 1
   tlab = "1949 - 2014 Electricity Generation By Source"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
@@ -152,7 +154,7 @@ setwd(out.loc)
   leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value)))
   plot.cols = source.cols
   
-  seg_elec_netgen_1949_2014 = f.segplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+  seg_elec_netgen_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
     scale_x_continuous(breaks = seq(1948,2014,10), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,2.5,0.5), expand = c(0,0), limits = c(0, 2.5))
   
