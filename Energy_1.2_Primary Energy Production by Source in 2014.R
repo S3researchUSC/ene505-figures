@@ -80,8 +80,8 @@ bar_PE_prod_2014 = ggplot(dt_long[ ! source %in% c("Total Renewable", "Total Pri
   theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
         plot.subtitle = element_text(size = 14, hjust = 0.5),
         axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
-        axis.text.x = element_text(size = 18, face="bold", color = "black"),
-        axis.text.y = element_text(size = 18, face="bold", color = "black"),
+        axis.text.x = element_text(size = 18, face="bold"),
+        axis.text.y = element_text(size = 18, face="bold"),
         legend.text = element_text(size = 14, face = "bold"))
 
 ggsave(bar_PE_prod_2014, filename = "Energy_1.2_Primary Energy Production by Source in 2014_BP.png", width = 14.5, height = 8.16, dpi = 400)
