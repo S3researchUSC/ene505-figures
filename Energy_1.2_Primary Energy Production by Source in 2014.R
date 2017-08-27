@@ -28,6 +28,7 @@ library(ggplot2)
 library(hrbrthemes)
 
 # import data (skipping the first 10 rows) ------
+setwd(file.loc)
 dt_raw = fread(data.file, skip = 10, header = T)
 
 # rename columns ------
