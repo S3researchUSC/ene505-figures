@@ -26,63 +26,49 @@ out.loc   = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Ch
 # ---------------------------------------------------------------
 
 # load libraries -------
-library(data.table)
-library(ggplot2)
-library(hrbrthemes)
-library(stringr)
-library(plyr)
+  library(data.table)
+  library(ggplot2)
+  library(hrbrthemes)
+  library(stringr)
+  library(plyr)
 
 # load plot functions -----
-setwd(file.loc)
-source("plotfunctions.R")
+  setwd(file.loc)
+  source("plotfunctions.R")
 
 # load data ------
-setwd(data.loc)
-dt_raw = fread(data.file, header = T)
+  setwd(data.loc)
+  dt_raw = fread(data.file, header = T)
 
 # get annual values only (not monthly) ----
-dt_annual = dt_raw[ str_sub(YYYYMM, start = -2) == "13" ] # last two characters of YYYYMM should be "13"
+  dt_annual = dt_raw[ str_sub(YYYYMM, start = -2) == "13" ] # last two characters of YYYYMM should be "13"
 
 # rename MSN factor levels -------
-dt_annual[, MSN := revalue(MSN, c(CLETPUS = "Coal",
-                                  GEETPUS = "Geothermal",
-                                  HPETPUS = "Hydroelectric Pumped Storage",
-                                  HVETPUS = "Conventional Hydroelectric",
-                                  NGETPUS = "Natural Gas",
-                                  NUETPUS = "Nuclear",
-                                  OJETPUS = "Other Gases",
-                                  PAETPUS = "Petroleum",
-                                  SOETPUS = "Solar PV",
-                                  WDETPUS = "Wood",
-                                  WSETPUS = "Waste",
-                                  WYETPUS = "Wind",
-                                  ELETPUS = "Total"))]
+  dt_annual[, MSN := revalue(MSN, c(CLETPUS = "Coal",
+                                    GEETPUS = "Geothermal",
+                                    HPETPUS = "Hydroelectric Pumped Storage",
+                                    HVETPUS = "Conventional Hydroelectric",
+                                    NGETPUS = "Natural Gas",
+                                    NUETPUS = "Nuclear",
+                                    OJETPUS = "Other Gases",
+                                    PAETPUS = "Petroleum",
+                                    SOETPUS = "Solar PV",
+                                    WDETPUS = "Wood",
+                                    WSETPUS = "Waste",
+                                    WYETPUS = "Wind",
+                                    ELETPUS = "Total"))]
 
 # remove pumped storage ------
-dt_annual = dt_annual[ ! MSN == "Hydroelectric Pumped Storage" ]
+  dt_annual = dt_annual[ ! MSN == "Hydroelectric Pumped Storage" ]
 
 # remove rows with data "Not Available" ------
-dt_annual = dt_annual[ ! Value == "Not Available" ]
+  dt_annual = dt_annual[ ! Value == "Not Available" ]
 
 # create column of years -----
-dt_annual[, YYYY := as.numeric(str_sub(YYYYMM, 1, 4)) ] # only keep first four characters
-
-# customize reorder MSN levels (for area chart) ------
-# dt_annual[, MSN := factor(MSN, levels = c("Total",
-#                                           "Wind",
-#                                           "Solar PV",
-#                                           "Geothermal",
-#                                           "Waste",
-#                                           "Wood",
-#                                           "Conventional Hydroelectric",
-#                                           "Nuclear",
-#                                           "Other Gases",
-#                                           "Natural Gas",
-#                                           "Petroleum",
-#                                           "Coal"))]
+  dt_annual[, YYYY := as.numeric(str_sub(YYYYMM, 1, 4)) ] # only keep first four characters
 
 # make Value column numeric -----
-dt_annual[, Value := as.numeric(Value) ]
+  dt_annual[, Value := as.numeric(Value) ]
 
 # ---------------------------------------------------------------
 # FIGURES -------------------------------------------------------
@@ -103,7 +89,7 @@ setwd(out.loc)
                                                  "Other Gases",
                                                  "Natural Gas",
                                                  "Petroleum",
-                                                 "Coal"))][ ! MSN %in% c("Total")] # customize reorder MSN levels
+                                                 "Coal"))][ ! MSN %in% c("Total")] # customize reorder MSN levels for stacked area chart
   xval = dt[, YYYY]
   yval = dt[, Value]/1000000
   fillval = dt[, MSN]
@@ -138,7 +124,7 @@ setwd(out.loc)
   xlab = ""
   ylab = "Kilowatt-hour (Trillions)"
   leglab = ""
-  leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value)))
+  leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
   plot.cols = source.cols
   
   line_elec_netgen_1949_2014 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
