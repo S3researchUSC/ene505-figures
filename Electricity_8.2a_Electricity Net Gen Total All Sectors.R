@@ -7,6 +7,7 @@
 file.loc 	= '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc    = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
 data.file   = 'Electricity_8.2a_Electricity Net Gen Total All Sectors.csv' # data file to be used
+out.loc   = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
 source.cols   = c("Geothermal" = "#880015",
                   "Solar PV" = "#ff7f27",
                   "Waste" = "#c3c3c3",
@@ -19,7 +20,6 @@ source.cols   = c("Geothermal" = "#880015",
                   "Coal" = "#000000",
                   "Natural Gas" = "#ed1c24",
                   "Other Gases" = "#e9d8ff")
-out.loc   = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -103,7 +103,7 @@ setwd(out.loc)
   plot.cols = source.cols
   
   area_elec_netgen_1949_2014 = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1948,2014,10), expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,4.5,0.5), expand = c(0,0))
   
   ggsave(area_elec_netgen_1949_2014, 
@@ -128,7 +128,7 @@ setwd(out.loc)
   plot.cols = source.cols
   
   line_elec_netgen_1949_2014 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1948,2014,10), expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,2.5,0.5), expand = c(0,0), limits = c(0, 2.5))
   
   ggsave(line_elec_netgen_1949_2014, 
@@ -155,7 +155,7 @@ setwd(out.loc)
   plot.cols = source.cols
   
   seg_elec_netgen_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1948,2014,10), expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,2.5,0.5), expand = c(0,0), limits = c(0, 2.5))
   
   ggsave(seg_elec_netgen_1949_2014, 
