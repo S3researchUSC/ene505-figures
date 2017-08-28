@@ -9,14 +9,14 @@ data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 50
 data.file     = 'Energy_Primary Energy Consumption per Capita_1980_2011.csv' # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
 reg.cols      = c("#e41a1c",
-  "#377eb8",
-  "#4daf4a",
-  "#984ea3",
-  "#ff7f00",
-  "#ffff33",
-  "#a65628",
-  "#f781bf",
-  "#999999")
+                  "#377eb8",
+                  "#4daf4a",
+                  "#984ea3",
+                  "#ff7f00",
+                  "#ffff33",
+                  "#a65628",
+                  "#f781bf",
+                  "#999999")
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
