@@ -1,4 +1,4 @@
-# Electricity_8.2a_Electricity Net Gen Total RE Only_Script #
+# Electricity_8.2a_Electricity Net Gen Total RE Only #
 
 # ---------------------------------------------------------------
 # INPUT DATA ----------------------------------------------------
@@ -12,7 +12,7 @@ source.cols   = c("Geothermal" = "#880015",
                   "Waste" = "#c3c3c3",
                   "Wood" = "#b5734e",
                   "Wind" = "#3f48cc",
-                  "Conventional Hydroelectric" = "#00baff",
+                  "Hydroelectric" = "#00baff",
                   "Biomass" = "#b5734e",
                   "Nuclear" = "#22b14c",
                   "Petroleum" = "#fff200",
@@ -47,7 +47,7 @@ out.loc   = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Ch
   dt_annual[, MSN := revalue(MSN, c(CLETPUS = "Coal",
                                     GEETPUS = "Geothermal",
                                     HPETPUS = "Hydroelectric Pumped Storage",
-                                    HVETPUS = "Conventional Hydroelectric",
+                                    HVETPUS = "Hydroelectric",
                                     NGETPUS = "Natural Gas",
                                     NUETPUS = "Nuclear",
                                     OJETPUS = "Other Gases",
@@ -84,7 +84,7 @@ setwd(out.loc)
                                                    "Geothermal",
                                                    "Waste",
                                                    "Wood",
-                                                   "Conventional Hydroelectric",
+                                                   "Hydroelectric",
                                                    "Nuclear",
                                                    "Other Gases",
                                                    "Natural Gas",
