@@ -8,12 +8,12 @@ f.barplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, 
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
+    theme(plot.title = element_text(size = 20, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 14, hjust = 0.5),
           axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
           axis.title.y = element_text(hjust = 0.5, size = 20, face = "bold"),
-          axis.text.x = element_text(size = 18, face="bold"),
-          axis.text.y = element_text(size = 18, face="bold"),
+          axis.text.x = element_text(size = 16, face="bold"),
+          axis.text.y = element_text(size = 16, face="bold"),
           legend.text = element_text(size = 14, face = "bold"))
 }
 
@@ -27,12 +27,12 @@ f.areaplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab,
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
+    theme(plot.title = element_text(size = 20, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 14, hjust = 0.5),
           axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
           axis.title.y = element_text(hjust = 0.5, size = 20, face = "bold"),
-          axis.text.x = element_text(size = 18, face="bold"),
-          axis.text.y = element_text(size = 18, face="bold"),
+          axis.text.x = element_text(size = 16, face="bold"),
+          axis.text.y = element_text(size = 16, face="bold"),
           legend.text = element_text(size = 14, face = "bold"))
 }
 
@@ -46,12 +46,12 @@ f.lineplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab,
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) +
-    theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
+    theme(plot.title = element_text(size = 20, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 14, hjust = 0.5),
           axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
           axis.title.y = element_text(hjust = 0.5, size = 20, face = "bold"),
-          axis.text.x = element_text(size = 18, face="bold"),
-          axis.text.y = element_text(size = 18, face="bold"),
+          axis.text.x = element_text(size = 16, face="bold"),
+          axis.text.y = element_text(size = 16, face="bold"),
           legend.text = element_text(size = 14, face = "bold"))
 }
 
@@ -67,12 +67,12 @@ f.segplot = function(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, 
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) +
-    theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
+    theme(plot.title = element_text(size = 20, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 14, hjust = 0.5),
           axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
           axis.title.y = element_text(hjust = 0.5, size = 20, face = "bold"),
-          axis.text.x = element_text(size = 18, face="bold"),
-          axis.text.y = element_text(size = 18, face="bold"),
+          axis.text.x = element_text(size = 16, face="bold"),
+          axis.text.y = element_text(size = 16, face="bold"),
           legend.text = element_text(size = 14, face = "bold"))
 }
 
