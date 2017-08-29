@@ -8,10 +8,6 @@ file.loc 	  = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
 data.file     = c('U.S._Dry_Natural_Gas_Production.csv', 'U.S._Natural_Gas_Citygate_Price.csv') # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
-sector.cols   = c("Residential" = "#1b9e77", 
-                  "Commerical" = "#d95f02",
-                  "Industrial" = "#7570b3",
-                  "Transportation" = "#e7298a")
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -68,33 +64,3 @@ sector.cols   = c("Residential" = "#1b9e77",
   
   dev.off()
   
-  
-  # INDIVIDUAL PLOTS FOR PRODUCTION AND PRICE ------
-  
-  # p1 = ggplot(dt_all, aes(Date, Production)) + 
-  #   geom_line(colour = "firebrick") + 
-  #   labs(title = "Billion Cubic Feet",
-  #        x = "Date",
-  #        y = "") +
-  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years", expand = c(0, 0)) +
-  #   scale_y_comma(expand = c(0, 0), breaks = seq(0, 2500, 500), limits = c(0,2500)) +
-  #   theme_ipsum_rc(grid = "Y") +
-  #   theme(
-  #     axis.title.y = element_text(colour="firebrick", size = 16),
-  #     axis.text.y = element_text(colour="firebrick", size = 14),
-  #     plot.title = element_text(hjust = -0.05, vjust = 2.12, colour = "firebrick", size = 14)) 
-  # 
-  # p2 = ggplot(dt_all, aes(Date, Price)) + 
-  #   geom_line(colour = "dodgerblue3") + 
-  #   labs(title = "Dollars per Thousand Cubic Feet",
-  #        x = "Date",
-  #        y = "") +
-  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years", expand = c(0, 0)) +
-  #   scale_y_continuous(expand = c(0, 0), breaks = seq(0, 15, 3), limits = c(0,15)) +
-  #   theme_ipsum_rc(grid = "Y") +
-  #   theme(
-  #     axis.title.y = element_text(colour="dodgerblue3", size = 16),
-  #     axis.text.y = element_text(colour="dodgerblue3", size = 14),
-  #     plot.title = element_text(hjust = 1, vjust = 2.12, colour = "dodgerblue3", size = 14)) 
-  # 
-  # 
