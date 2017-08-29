@@ -60,23 +60,23 @@ reg.cols      = c("#e41a1c",
     xval = dt[, Year]
     yval = dt[, Value]
     fillval = dt[, Region]
-    tlab = "1980 - 2011 Primary Energy Consumption per Capita by Region"
+    tlab = "1980 - 2011 Annual U.S. Primary Energy Consumption per Capita by Region"
     sublab = "Data: U.S. Energy Information Administration"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "MMBTU per Person"
     leglab = ""
     leg.ord = levels(factor(fillval))
     plot.cols = reg.cols
     
     area_energy_cons_percapita_region_1980_2011 = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-      scale_x_continuous(breaks = seq(1980,2011,10), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1979,2011,4), expand = c(0,0)) +
       scale_y_comma(breaks = seq(0,1250,250), expand = c(0,0))
     
     ggsave(area_energy_cons_percapita_region_1980_2011, 
-           filename = "Energy_Primary Energy Consumption per Capita by Region_ATS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_Primary Energy Consumption per Capita by Region_1989-2011_ATS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # LINE PLOT -------------
@@ -85,23 +85,23 @@ reg.cols      = c("#e41a1c",
     xval = dt[, Year]
     yval = dt[, Value]
     fillval = dt[, Region]
-    tlab = "1980 - 2011 Primary Energy Consumption per Capita by Region"
+    tlab = "1980 - 2011 Annual U.S. Primary Energy Consumption per Capita by Region"
     sublab = "Data: U.S. Energy Information Administration"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "MMBTU per Person"
     leglab = ""
     leg.ord = levels(with(dt[Year == "2011"], reorder(Region, -Value)))
     plot.cols = reg.cols
 
     line_energy_cons_percapita_region_1980_2011 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-      scale_x_continuous(breaks = seq(1980,2011,10), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1979,2011,4), expand = c(0,0)) +
       scale_y_comma(breaks = seq(0,400,50), expand = c(0,0), limits = c(0, 400))
     
     ggsave(line_energy_cons_percapita_region_1980_2011, 
-           filename = "Energy_Primary Energy Consumption per Capita by Region_LTS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_Primary Energy Consumption per Capita by Region_1989-2011_LTS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # SEGMENT PLOT -------------
@@ -110,23 +110,23 @@ reg.cols      = c("#e41a1c",
     xval = dt[, Year]
     yval = dt[, Value]
     fillval = dt[, Region]
-    tlab = "1980 - 2011 Primary Energy Consumption per Capita by Region"
+    tlab = "1980 - 2011 Annual U.S. Primary Energy Consumption per Capita by Region"
     sublab = "Data: U.S. Energy Information Administration"
     gval = "Y"
     wsize = 4
     csize = 2
-    xlab = ""
+    xlab = NULL
     ylab = "MMBTU per Person"
     leglab = ""
     leg.ord = levels(with(dt[Year == "2011"], reorder(Region, -Value)))
     plot.cols = reg.cols
     
     seg_energy_cons_percapita_region_1980_2011 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-      scale_x_continuous(breaks = seq(1980,2011,10), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1979,2011,4), expand = c(0,0)) +
       scale_y_comma(breaks = seq(0,400,50), expand = c(0,0), limits = c(0, 400))
   
   ggsave(seg_energy_cons_percapita_region_1980_2011, 
-         filename = "Energy_Primary Energy Consumption per Capita by Region_STS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         filename = "Energy_Primary Energy Consumption per Capita by Region_1989-2011_STS.png", 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)

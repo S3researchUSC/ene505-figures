@@ -86,23 +86,24 @@ setwd(out.loc)
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2014 U.S. Primary Energy Consumption Estimates by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Consumption Estimates by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(fillval)
     plot.cols = source.cols
     
-    area_pe_cons_1949_2014 = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+    area_pe_cons_1949_2014 = f.areaplot(dt, xval, yval, fillval, 
+                                        tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,100,20), expand = c(0,0))
     
     ggsave(area_pe_cons_1949_2014, 
-           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source 1949-2014_ATS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source_1949-2014_ATS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # LINE PLOT -------------
@@ -113,23 +114,24 @@ setwd(out.loc)
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2014 U.S. Primary Energy Consumption Estimates by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Consumption Estimates by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
     plot.cols = source.cols
     
-    line_energy_cons_1949_2014 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+    line_energy_cons_1949_2014 = f.lineplot(dt, xval, yval, fillval, 
+                                            tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,45,5), expand = c(0,0), limits = c(0, 45))
     
     ggsave(line_energy_cons_1949_2014, 
-           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source 1949-2014_LTS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source_1949-2014_LTS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # SEGMENT PLOT -------------
@@ -142,22 +144,23 @@ setwd(out.loc)
     fillval = dt[, MSN]
     wsize = 3
     csize = 2
-    tlab = "1949 - 2014  U.S. Primary Energy Production by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Production by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
     plot.cols = source.cols
     
-    seg_energy_cons_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) +
+    seg_energy_cons_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, 
+                                          tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) +
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,45,5), expand = c(0,0), limits = c(0, 45))
     
     ggsave(seg_energy_cons_1949_2014, 
-           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source 1949-2014_STS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.3_Primary Energy Consumption Estimates by Source_1949-2014_STS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
     

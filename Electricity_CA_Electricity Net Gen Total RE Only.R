@@ -104,7 +104,7 @@ setwd(out.loc)
   tlab = "1983-2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(fillval)
@@ -116,8 +116,8 @@ setwd(out.loc)
   
   ggsave(area_elec_CA_netgen_RE_1983_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total RE Only_ATS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   
   # LINE PLOT -------------
@@ -129,7 +129,7 @@ setwd(out.loc)
   tlab = "1983-2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
@@ -141,8 +141,8 @@ setwd(out.loc)
   
   ggsave(line_elec_CA_netgen_RE_1949_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total RE Only_LTS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   
 # SEGMENT PLOT -------------
@@ -156,7 +156,7 @@ setwd(out.loc)
   tlab = "1983-2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
@@ -168,6 +168,6 @@ setwd(out.loc)
   
   ggsave(seg_elec_CA_netgen_RE_1949_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total RE Only_STS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)

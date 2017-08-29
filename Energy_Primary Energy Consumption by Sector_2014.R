@@ -62,7 +62,7 @@ sector.cols   = c("Residential" = "#1b9e77",
     tlab = "2014 U.S. Primary Energy Consumption by Sector"
     sublab = "Data: U.S. Energy Information Administration"
     gval = "X"
-    xlab = ""
+    xlab = NULL
     ylab = "BTU (Trillions)"
     leglab = ""
     leg.ord = levels(with(dt, reorder(Sector, -Value)))
@@ -75,8 +75,7 @@ sector.cols   = c("Residential" = "#1b9e77",
     
     ggsave(bar_energy_cons_sector_2014, 
            filename = "Energy_US_Primary Energy Consumption by Sector_2014_BP.png", 
-           width = 14.5, 
-           height = 8.16, 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
-  
   

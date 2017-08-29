@@ -68,10 +68,10 @@ setwd(out.loc)
     xval = dt[, reorder(source, value)]
     yval = dt[, value]
     fillval = dt[,source]
-    tlab = "2014 U.S. Annual Primary Energy Consumption by Source"
+    tlab = "2014 U.S. Primary Energy Consumption by Source"
     sublab = "Data: U.S. Energy Information Administration"
     gval = "X"
-    xlab = ""
+    xlab = NULL
     ylab = "Btu (Quads)"
     leglab = ""
     leg.ord = levels(with(dt, reorder(source, -value)))
@@ -85,7 +85,7 @@ setwd(out.loc)
     
     ggsave(bar_energy_cons_2014, 
            filename = "Energy_1.3_Primary Energy Consumption by Source in 2014_BP.png", 
-           width = 14.5, 
-           height = 8.16, 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
     

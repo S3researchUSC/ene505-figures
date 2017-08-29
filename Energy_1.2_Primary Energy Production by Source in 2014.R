@@ -1,4 +1,4 @@
-########## Primary Energy Production by Source (2014) ###########
+# Energy_1.2_Primary Energy Production by Source_2014 #
 
 # ---------------------------------------------------------------
 # INPUT DATA ----------------------------------------------------
@@ -75,10 +75,10 @@ setwd(out.loc)
   xval = dt[, reorder(source, value)]
   yval = dt[, value]
   fillval = dt[,source]
-  tlab = "2014 U.S. Annual Primary Energy Production by Source"
+  tlab = "2014 U.S. Primary Energy Production by Source"
   sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
-  xlab = ""
+  xlab = NULL
   ylab = "Btu (Quads)"
   leglab = ""
   leg.ord = levels(with(dt, reorder(source, -value)))
@@ -92,25 +92,6 @@ setwd(out.loc)
   
   ggsave(bar_PE_prod_2014, 
          filename = "Energy_1.2_Primary Energy Production by Source in 2014_BP.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
-
-# bar_PE_prod_2014 = ggplot(dt_long[ ! source %in% c("Total Renewable", "Total Primary", "Total Fossil Fuels")], 
-#                           aes(x = reorder(source, value), y = value, fill = source)) + 
-#   geom_bar(stat = "identity") +
-#   coord_flip() +
-#   labs(title = "2014 U.S. Annual Primary Energy Production by Source",
-#        subtitle = "Data: U.S. Energy Information Administration", 
-#        x = "",
-#        y = "Btu (Quads)",
-#        fill = "") +
-#   theme_ipsum_rc(grid = "X") +
-#   scale_fill_manual(values = fuel.cols) +
-#   scale_y_continuous(breaks = seq(0,30,5), expand = c(0,0)) +
-#   theme(plot.title = element_text(size = 25, hjust = 0.5, face = "bold"),
-#         plot.subtitle = element_text(size = 14, hjust = 0.5),
-#         axis.title.x = element_text(hjust = 0.5, size = 20, face = "bold"),
-#         axis.text.x = element_text(size = 18, face="bold"),
-#         axis.text.y = element_text(size = 18, face="bold"),
-#         legend.text = element_text(size = 14, face = "bold"))

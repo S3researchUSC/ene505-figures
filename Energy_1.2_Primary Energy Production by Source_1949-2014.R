@@ -89,10 +89,10 @@ source.cols   = c("Geothermal" = "#880015",
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2014  U.S. Primary Energy Production by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Production by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(fillval)
@@ -103,9 +103,9 @@ source.cols   = c("Geothermal" = "#880015",
       scale_y_continuous(breaks = seq(0,80,10), expand = c(0,0))
     
     ggsave(area_pe_prod_1949_2014, 
-           filename = "Energy_1.2_Primary Energy Production by Source 1949-2014_ATS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.2_Primary Energy Production by Source_1949-2014_ATS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # LINE PLOT -------------
@@ -116,10 +116,10 @@ source.cols   = c("Geothermal" = "#880015",
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2014  U.S. Primary Energy Production by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Production by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
@@ -130,9 +130,9 @@ source.cols   = c("Geothermal" = "#880015",
       scale_y_continuous(breaks = seq(0,30,5), expand = c(0,0), limits = c(0, 30))
     
     ggsave(line_pe_prod_1949_2014, 
-           filename = "Energy_1.2_Primary Energy Production by Source 1949-2014_LTS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.2_Primary Energy Production by Source_1949-2014_LTS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
   
   # SEGMENT PLOT -------------
@@ -145,10 +145,10 @@ source.cols   = c("Geothermal" = "#880015",
     fillval = dt[, MSN]
     wsize = 3
     csize = 2
-    tlab = "1949 - 2014  U.S. Primary Energy Production by Source"
+    tlab = "1949 - 2014 Annual U.S. Primary Energy Production by Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
@@ -159,9 +159,9 @@ source.cols   = c("Geothermal" = "#880015",
       scale_y_continuous(breaks = seq(0,30,5), expand = c(0,0), limits = c(0, 30))
     
     ggsave(seg_pe_prod_1949_2014, 
-           filename = "Energy_1.2_Primary Energy Production by Source 1949-2014_STS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.2_Primary Energy Production by Source_1949-2014_STS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
     
         

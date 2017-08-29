@@ -81,23 +81,24 @@ source.cols   = c("Biofuels" = "#b5734e",
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2015 U.S. Primary Energy Trade by Export Source"
+    tlab = "1949 - 2015 Annual U.S. Primary Energy Trade by Export Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(fillval)
     plot.cols = source.cols
     
-    area_energy_export_1949_2014 = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+    area_energy_export_1949_2014 = f.areaplot(dt, xval, yval, fillval, 
+                                              tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,12,2), expand = c(0,0))
     
     ggsave(area_energy_export_1949_2014, 
-           filename = "Energy_1.4b_Primary Energy Trade by Export Source 1949-2014_ATS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.4b_Primary Energy Trade by Export Source_1949-2014_ATS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
 
   # LINE PLOT -------------
@@ -108,23 +109,24 @@ source.cols   = c("Biofuels" = "#b5734e",
     xval = dt[, YYYY]
     yval = dt[, Value]
     fillval = dt[, MSN]
-    tlab = "1949 - 2015 U.S. Primary Energy Trade by Export Source"
+    tlab = "1949 - 2015 Annual U.S. Primary Energy Trade by Export Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
     plot.cols = source.cols
     
-    line_energy_export_1949_2014 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+    line_energy_export_1949_2014 = f.lineplot(dt, xval, yval, fillval, 
+                                              tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,8,1), expand = c(0,0), limits = c(0,8))
     
     ggsave(line_energy_export_1949_2014, 
-           filename = "Energy_1.4b_Primary Energy Trade by Export Source 1949-2014_LTS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.4b_Primary Energy Trade by Export Source_1949-2014_LTS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
     
   # SEGMENT PLOT -------------
@@ -137,23 +139,24 @@ source.cols   = c("Biofuels" = "#b5734e",
     fillval = dt[, MSN]
     wsize = 3
     csize = 2
-    tlab = "1949 - 2015 U.S. Primary Energy Trade by Export Source"
+    tlab = "1949 - 2015 Annual U.S. Primary Energy Trade by Export Source"
     sublab = "Data: EIA Annual Energy Review"
     gval = "Y"
-    xlab = ""
+    xlab = NULL
     ylab = "Quadrillion BTU"
     leglab = ""
     leg.ord = levels(with(dt[YYYY == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to             greatest
     plot.cols = source.cols
     
-    seg_energy_import_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) +
+    seg_energy_import_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, 
+                                            tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) +
       scale_x_continuous(breaks = seq(1945,2015,10), expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,8,1), expand = c(0,0), limits = c(0,8))
     
     ggsave(seg_energy_import_1949_2014, 
-           filename = "Energy_1.4b_Primary Energy Trade by Export Source 1949-2014_STS.png", 
-           width = 14.5, 
-           height = 8.16, 
+           filename = "Energy_1.4b_Primary Energy Trade by Export Source_1949-2014_STS.png", 
+           width = 11.1, 
+           height = 6.25, 
            dpi = 400)
     
   

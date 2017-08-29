@@ -82,7 +82,7 @@ setwd(out.loc)
   tlab = "2014 U.S. Annual Electricity Net Generation by Source"
   sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
-  xlab = ""
+  xlab = NULL
   ylab = "MWh (Millions)"
   leglab = ""
   leg.ord = c("Coal", 
@@ -95,14 +95,15 @@ setwd(out.loc)
               "Other Gas")
   plot.cols = source.cols
   
-  bar_elec_netgen_2014 = f.barplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+  bar_elec_netgen_2014 = f.barplot(dt, xval, yval, fillval, 
+                                   tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
     coord_flip() + 
     scale_y_comma(breaks = seq(0,1500,250), expand = c(0,0)) +
     guides(fill=FALSE)
   
   ggsave(bar_elec_netgen_2014, 
          filename = "Electricity_US_Net Generation by Energy Source in 2014_BP.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   

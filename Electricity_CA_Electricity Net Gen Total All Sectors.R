@@ -101,23 +101,23 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 Annual California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(fillval)
   plot.cols = source.cols
   
   area_elec_CA_netgen_1983_2014 = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1983,2014,10), expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1982,2014,4), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,300,50), expand = c(0,0))
   
   ggsave(area_elec_CA_netgen_1983_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total All Sectors_ATS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   
 # LINE PLOT -------------
@@ -126,23 +126,23 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 Annual California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
   plot.cols = source.cols
   
   line_elec_CA_netgen_1949_2014 = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1948,2014,10), expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1982,2014,4), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,125,25), expand = c(0,0), limits = c(0, 125))
   
   ggsave(line_elec_CA_netgen_1949_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total All Sectors_LTS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   
 # SEGMENT PLOT -------------
@@ -153,22 +153,23 @@ setwd(out.loc)
   fillval = dt[, MSN]
   wsize = 3
   csize = 2
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 Annual California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
-  xlab = ""
+  xlab = NULL
   ylab = "Terawatt-hour"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
   plot.cols = source.cols
   
-  seg_elec_CA_netgen_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_continuous(breaks = seq(1983,2014,10), expand = c(0,0)) +
+  seg_elec_CA_netgen_1949_2014 = f.segplot(dt, xval, yval, fillval, wsize, csize, 
+                                           tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
+    scale_x_continuous(breaks = seq(1982,2014,4), expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,125,25), expand = c(0,0), limits = c(0, 125))
   
   ggsave(seg_elec_CA_netgen_1949_2014, 
          filename = "Electricity_CA_Electricity Net Gen Total All Sectors_STS.png", 
-         width = 14.5, 
-         height = 8.16, 
+         width = 11.1, 
+         height = 6.25, 
          dpi = 400)
   
