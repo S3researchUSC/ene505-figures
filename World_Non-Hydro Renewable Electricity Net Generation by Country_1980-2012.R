@@ -8,26 +8,26 @@ file.loc 	    = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
 data.file     = 'World_Non Hydro Net Generation by Country_1980_2012.csv' # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
-country.cols    = c("aquamarine3",
-                    "gray",
-                    "brown3",
-                    "burlywood2",
-                    "cadetblue3",
-                    "darkgoldenrod1",
-                    "chocolate3",
-                    "chartreuse3",
-                    "coral2",
-                    "darkgreen",
-                    "cornflowerblue",
-                    "pink1",
-                    "darkmagenta",
-                    "darkcyan",
-                    "darkorange1",
-                    "yellow1",
-                    "slategray4",
-                    "darkred",
-                    "darksalmon",
-                    "darkseagreen3")
+ran.cols      = c("#4b8b76",
+                  "#699cc7",
+                  "#682e29",
+                  "#cf97c4",
+                  "#3c2d5e",
+                  "#d58d79",
+                  "#b7c282",
+                  "#866a32",
+                  "#416329",
+                  "#73dabc",
+                  "#883c6c",
+                  "#7772ce",
+                  "#d89c3f",
+                  "#d24365",
+                  "#d153af",
+                  "#ce4f2d",
+                  "#bdc841",
+                  "#6bcf58",
+                  "#5936b1",
+                  "#ba48d8") # palette generated from iwanthue
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -79,7 +79,7 @@ country.cols    = c("aquamarine3",
   ylab = "Billion KWh"
   leglab = ""
   leg.ord = levels(factor(fillval))
-  plot.cols = country.cols
+  plot.cols = ran.cols
   
   area_world_re_netgen = f.areaplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
     scale_x_continuous(breaks = seq(1978,2012,4), expand = c(0,0)) +
@@ -104,7 +104,7 @@ country.cols    = c("aquamarine3",
   ylab = "Billion KWh"
   leglab = ""
   leg.ord = levels(with(dt[year == "2012"], reorder(country, -value)))
-  plot.cols = country.cols
+  plot.cols = ran.cols
   
   line_world_re_netgen = f.lineplot(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
     scale_x_continuous(breaks = seq(1978,2012,4), expand = c(0,0)) +
@@ -131,7 +131,7 @@ country.cols    = c("aquamarine3",
   ylab = "Billion KWh"
   leglab = ""
   leg.ord = levels(with(dt[year == "2012"], reorder(country, -value)))
-  plot.cols = country.cols
+  plot.cols = ran.cols
   
   seg_world_re_netgen = f.segplot(dt, xval, yval, fillval, wsize, csize, 
                                      tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
