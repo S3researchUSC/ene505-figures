@@ -101,7 +101,7 @@ type.cols     = c("Production" = "coral3",
   
   line_ng_monthly_prod_vs_cons = ggplot(dt_monthly, aes(x = date, y = value, linetype = type)) + 
     geom_line(stat = "identity", color = "gray10") +
-    labs(title = "1973 - 2015 Monthly U.S. Natural Gas Production and Consumption",
+    labs(title = "1973 - 2014 Monthly U.S. Natural Gas Production and Consumption",
          subtitle = "Data: EIA Annual Energy Review", 
          x = NULL,
          y = "Quadrillion BTU",
@@ -115,11 +115,13 @@ type.cols     = c("Production" = "coral3",
           axis.text.y = element_text(size = 15, face="bold"),
           legend.text = element_text(size = 13, face = "bold"),
           legend.position = "bottom") + 
-    scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2015-01-01"), by = "5 years"), date_labels = "%Y", expand = c(0,0)) +
+    scale_x_date(breaks = seq(as.Date("1970-01-01"), as.Date("2015-01-01"), by = "5 years"), 
+                 limits = c(as.Date("1973-01-01"), as.Date("2015-01-01")),
+                 date_labels = "%Y", expand = c(0,0)) +
     scale_y_continuous(breaks = seq(0,3.5,0.5), expand = c(0,0), limits = c(0, 3.5))
   
   ggsave(line_ng_monthly_prod_vs_cons, 
-         filename = "NG_Production vs Consumption_1973-2015_Monthly_LTS.png", 
+         filename = "NG_Production vs Consumption_1973-2014_Monthly_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
