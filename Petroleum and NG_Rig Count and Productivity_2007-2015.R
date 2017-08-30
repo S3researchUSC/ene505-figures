@@ -26,6 +26,7 @@ reg.cols      = c("Bakken" = "hotpink1",
   library(hrbrthemes)
   library(lubridate)
   library(tidyr)
+  library(plyr)
 
 
 # import data ------
@@ -73,6 +74,8 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   setwd(out.loc)
   
+  # DUAL AXIS LINE PLOT -------
+  
   main = "2007 - 2014 Daily U.S. Oil and Natural Gas Rig Count and Productivity by Shale Region"
   sub = "Data: U.S. Energy Information Administration"
   xlab = ""
@@ -83,12 +86,12 @@ reg.cols      = c("Bakken" = "hotpink1",
   }
   ylab1 = "Total Rig Count"
   ylab2 = "MMBTU per Rig"
-  xbreaks = c(seq(as.Date("2007-01-01"), as.Date("2015-12-01"), by = "2 years"))
+  xbreaks = c(seq(as.Date("2007-01-01"), as.Date("2015-01-01"), by = "2 years"))
   y1breaks = seq(0, 600, 100)
-  y2breaks = seq(0, 450000, 50000)
+  y2breaks = seq(0, 300000, 50000)
   col = c("black", "black")
 
-  # create lists of x and y data for each type and region ------
+  # create lists of x and y data for each type and region
   xvals = list()
   yvals = list()
   
@@ -102,12 +105,13 @@ reg.cols      = c("Bakken" = "hotpink1",
   }
   
  
+  png(file="Petroleum and NG_Rig Count and Productivity_Single_2007-2014.png", width = 4400, height = 2500, res = 400)
   
-  png(file="Petroleum and NG_Rig Count and Productivity_2007-2014.png", width = 4400, height = 2500, res = 400)
-  
+  # set margins 
   mar.default <- c(3,6,3,6) + 0.1
   par(mar = mar.default + c(3, 0, 0, 2)) 
   
+  # import roboto condensed fonts 
   quartzFonts(rcfont = c("Roboto Condensed Regular", "Roboto Condensed Bold", "Roboto Condensed Italic", "Roboto Condensed Light"))
   par(family = 'rcfont')
   
@@ -144,12 +148,11 @@ reg.cols      = c("Bakken" = "hotpink1",
   # Draw the horizontal time axis
   axis(1, at = xbreaks, labels = format(xbreaks, "%b %Y"), lwd.ticks = 0)
   
+  # parameters for legend
   legx = "topleft"
   legy = NULL
-  
   yleg1 = paste(gsub("\n$", "", ylab1))
   yleg2 = paste(ylab2)
-  
   bty = "n"
   lwd = c(1, 2)
   
@@ -163,3 +166,46 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   dev.off()
   
+  # FACTED LINE PLOTS -------
+  
+  dummy <- data.table(day = range(dt_long[, day]), value = c(3, 600),
+                      type = "Total Rig Count",
+                      type_f = "Total Rig Count",
+                      region = "Bakken", stringsAsFactors=FALSE)
+  
+  dt <- copy(dt_long)[ day >= min(xbreaks) & day <= max(xbreaks)]
+  dt <- dt[ type == "Productivity", value := value/1000]
+  dt <- dt[, type := revalue(type, c(Count = "Total Rig Count", Productivity = "Thousand MMBTU per Rig"))]
+  dt <- dt[, type := factor(type, levels = rev(levels(factor(type))))]
+  dt[, type_f := factor(type, levels=c('Total Rig Count', 'Thousand MMBTU per Rig'))]
+  
+  line_petro_ng_rigcount_product = ggplot(dt, aes(x = day, y = value, color = region, linetype = type)) + 
+    geom_line(stat = "identity", size = 0.7) +
+    geom_blank(data = dummy) +
+    facet_grid(type_f ~ ., scales = "free_y", switch = "y") +
+    labs(title = "2007 - 2014 Daily U.S. Oil and Natural Gas Production by Shale Region",
+         subtitle = "Data: U.S. Energy Information Administration", 
+         x = NULL,
+         y = NULL,
+         color = "Shale Region",
+         linetype = "Source") +
+    theme_ipsum_rc(grid = "Y") +
+    scale_color_manual(values = reg.cols) +
+    theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(size = 14, hjust = 0.5),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 12, face="bold"),
+          axis.text.y = element_text(size = 12, face="bold"),
+          legend.title = element_text(size = 13, face = "bold"),
+          legend.text = element_text(size = 12),
+          strip.placement = 'outside',
+          strip.text.y = element_text(size = 14, face = "bold", hjust = 0.5, angle = 90)) + 
+    scale_x_date(breaks = xbreaks, limits = range(xbreaks), date_labels = "%b %Y", expand = c(0,0))
+
+  ggsave(line_petro_ng_rigcount_product, 
+         filename = "Petroleum and NG_Rig Count and Productivity_Faceted_2007-2014.png", 
+         width = 11.1, 
+         height = 6.25, 
+         dpi = 400)
+
