@@ -73,7 +73,8 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   # LINE PLOT -------------
   
-  dt = dt_long[, source := factor(source, levels = rev(levels(factor(source))))]
+  dt = copy(dt_long)
+  dt = dt[, source := factor(source, levels = rev(levels(factor(source))))]
   
   area_petro_ng_production = ggplot(dt, aes(x = day, y = value, color = region, linetype = source)) + 
     geom_line(stat = "identity", size = 0.7) +
