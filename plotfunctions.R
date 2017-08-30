@@ -38,7 +38,7 @@ f.areaplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab,
 
 f.lineplot = function(dt, xval, yval, fillval, tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols){
   ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
-    geom_line(stat = "identity") +
+    geom_line(stat = "identity", size = 0.7) +
     labs(title = tlab,
          subtitle = sublab, 
          x = xlab,
