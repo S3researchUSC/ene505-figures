@@ -6,7 +6,7 @@
 
 file.loc 	  = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
-data.file     = c('Energy Production.csv', 'Energy Consumption.csv') # data file to be used
+data.file     = c('Energy_Production_1949-2015.csv', 'Energy_Consumption_1949-2015.csv') # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
 type.cols     = c("Production" = "coral3",
                   "Consumption" = "darkcyan")
