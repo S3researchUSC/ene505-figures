@@ -11,7 +11,7 @@ dualplot <- function(x1, y1, y2, xbreaks, y1breaks, y2breaks, col,
                      yleg1 = paste(gsub("\n$", "", ylab1), "(left axis)"), 
                      yleg2 = paste(ylab2, "(right axis)"),
                      ylim1 = NULL, ylim2 = NULL, ylim.ref = NULL,
-                     xlab = "", main = NULL, legx = "topleft", legy = NULL, 
+                     xlab = "", main = NULL, sub = NULL, legx = "topleft", legy = NULL, 
                      silent = FALSE, bty = "n", ...){
   # Base graphics function for drawing dual axis line plot.
   # Assumed to be two time series on a conceptually similar, non-identical scale 
@@ -106,7 +106,7 @@ dualplot <- function(x1, y1, y2, xbreaks, y1breaks, y2breaks, col,
   
   # draw first series - with no axes.
   plot(x1, y1, type = "l", axes = FALSE, lwd = lwd[1],
-       xlab = xlab, ylab = "", col = col[1], main = main, cex.lab=1.5, cex.axis=1.5, cex.main=1.8, cex.sub=1.5,
+       xlab = xlab, ylab = "", col = col[1], main = main, sub = sub, cex.lab=1.5, cex.axis=1.5, cex.main=1.8, cex.sub=1.0,
        xlim = range(xbreaks), ylim = c(min(y1breaks), max(y1breaks)),
        xaxs="i", yaxs="i")
   
