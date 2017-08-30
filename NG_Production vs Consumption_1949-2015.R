@@ -46,8 +46,8 @@ type.cols     = c("Production" = "coral3",
   dt_prod = dt_prod[, .(Value = sum(Value)), by = c("YYYYMM")]
   
 # rename column ------
-  colnames(dt_prod)[2] = "Consumption"
-  colnames(dt_cons)[2] = "Production"
+  colnames(dt_prod)[2] = "Production"
+  colnames(dt_cons)[2] = "Consumption"
   
 # merge production and consumption datatables  ------    
   dt_all = dt_prod[dt_cons, on = "YYYYMM", nomatch = 0]
