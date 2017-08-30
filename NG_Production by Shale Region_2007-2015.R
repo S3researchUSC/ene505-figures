@@ -57,7 +57,7 @@ reg.cols      = c("Bakken" = "hotpink1",
   xval = dt[, day]
   yval = dt[, value]
   fillval = dt[, region]
-  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
+  tlab = "2007 - 2014 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
@@ -68,11 +68,11 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   area_ng_prod_shale_region = f.areaplot(dt, xval, yval, fillval, 
                                       tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_date(breaks = seq(as.Date("2006-01-01"), as.Date("2016-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
+    scale_x_date(breaks = seq(as.Date("2007-01-01"), as.Date("2015-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
     scale_y_comma(breaks = seq(0,50000000,5000000), expand = c(0,0))
   
   ggsave(area_ng_prod_shale_region, 
-         filename = "NG_Natural Gas Production by Shale Region_2007-2015_ATS.png", 
+         filename = "NG_Natural Gas Production by Shale Region_2007-2014_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -83,7 +83,7 @@ reg.cols      = c("Bakken" = "hotpink1",
   xval = dt[, day]
   yval = dt[, value]
   fillval = dt[, region]
-  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
+  tlab = "2007 - 2014 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
@@ -94,11 +94,11 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   line_ng_prod_shale_region = f.lineplot(dt, xval, yval, fillval, 
                                           tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_date(breaks = seq(as.Date("2006-01-01"), as.Date("2016-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
+    scale_x_date(breaks = seq(as.Date("2007-01-01"), as.Date("2015-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
     scale_y_comma(breaks = seq(0,18000000,3000000), limits = c(0,18000000), expand = c(0,0))
   
   ggsave(line_ng_prod_shale_region, 
-         filename = "NG_Natural Gas Production by Shale Region_2007-2015_LTS.png", 
+         filename = "NG_Natural Gas Production by Shale Region_2007-2014_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -111,7 +111,7 @@ reg.cols      = c("Bakken" = "hotpink1",
   fillval = dt[, region]
   wsize = 2
   csize = 1
-  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
+  tlab = "2007 - 2014 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
@@ -122,11 +122,11 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   seg_ng_prod_shale_region = f.segplot(dt, xval, yval, fillval, wsize, csize, 
                                         tlab, sublab, xlab, ylab, leglab, gval, leg.ord, plot.cols) + 
-    scale_x_date(breaks = seq(as.Date("2006-01-01"), as.Date("2016-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
+    scale_x_date(breaks = seq(as.Date("2007-01-01"), as.Date("2015-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
     scale_y_comma(breaks = seq(0,18000000,3000000), limits = c(0,18000000), expand = c(0,0))
   
   ggsave(seg_ng_prod_shale_region, 
-         filename = "NG_Natural Gas Production by Shale Region_2007-2015_STS.png", 
+         filename = "NG_Natural Gas Production by Shale Region_2007-2014_STS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
