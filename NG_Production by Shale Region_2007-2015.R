@@ -8,7 +8,7 @@ file.loc 	    = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
 data.file     = c('NG_Production by Region_2007_2015.csv') # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
-reg.cols      = c("Bakken" = "snow3",
+reg.cols      = c("Bakken" = "hotpink1",
                   "Eagle Ford" = "mediumpurple3",
                   "Haynesville" = "darkgoldenrod2", 
                   "Marcellus" = "brown3",
@@ -57,7 +57,7 @@ reg.cols      = c("Bakken" = "snow3",
   xval = dt[, day]
   yval = dt[, value]
   fillval = dt[, region]
-  tlab = "2007 - 2015 Daily Natural Gas Production by Shale Region"
+  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
@@ -83,7 +83,7 @@ reg.cols      = c("Bakken" = "snow3",
   xval = dt[, day]
   yval = dt[, value]
   fillval = dt[, region]
-  tlab = "2007 - 2015 Daily Natural Gas Production by Shale Region"
+  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
@@ -111,7 +111,7 @@ reg.cols      = c("Bakken" = "snow3",
   fillval = dt[, region]
   wsize = 2
   csize = 1
-  tlab = "2007 - 2015 Daily Natural Gas Production by Shale Region"
+  tlab = "2007 - 2015 Daily U.S. Natural Gas Production by Shale Region"
   sublab = "Data: U.S Energy Information Administration"
   gval = "Y"
   xlab = NULL
