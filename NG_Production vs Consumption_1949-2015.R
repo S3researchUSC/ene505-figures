@@ -20,6 +20,7 @@ type.cols     = c("Production" = "coral3",
   library(ggplot2)
   library(hrbrthemes)
   library(lubridate)
+  library(stringr)
 
 # load plot functions -----
   setwd(file.loc)
@@ -65,11 +66,6 @@ type.cols     = c("Production" = "coral3",
   dt_annual = melt(dt_annual, measure.vars = list(2:3), variable.name = "type", value.name = "value")
   dt_monthly = melt(dt_monthly, measure.vars = list(2:3), variable.name = "type", value.name = "value")
 
-  dt_long = melt(dt_annual, measure.vars = list(2:3), variable.name = "type", value.name = "value")
-  
-# create column for year -----
-  
-  
 # ---------------------------------------------------------------
 # FIGURES -------------------------------------------------------
 # ---------------------------------------------------------------
@@ -80,7 +76,7 @@ type.cols     = c("Production" = "coral3",
   
   line_ng_annual_prod_vs_cons = ggplot(dt_annual, aes(x = year, y = value, linetype = type)) + 
     geom_line(stat = "identity", color = "gray10", size = 1) +
-    labs(title = "1949 - 2015 Annual U.S. Natural Gas Production and Consumption",
+    labs(title = "1949 - 2014 Annual U.S. Natural Gas Production and Consumption",
          subtitle = "Data: EIA Annual Energy Review", 
          x = NULL,
          y = "Quadrillion BTU",
@@ -98,7 +94,7 @@ type.cols     = c("Production" = "coral3",
     scale_y_continuous(breaks = seq(0,35,5), expand = c(0,0), limits = c(0, 35))
   
   ggsave(line_ng_annual_prod_vs_cons, 
-         filename = "NG_Production vs Consumption_1949-2015_Annual_LTS.png", 
+         filename = "NG_Production vs Consumption_1949-2014_Annual_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -136,7 +132,7 @@ type.cols     = c("Production" = "coral3",
   fillval = dt[, type]
   wsize = 3
   csize = 2
-  tlab = "1949 - 2015 Annual U.S. Natural Gas Production and Consumption"
+  tlab = "1949 - 2014 Annual U.S. Natural Gas Production and Consumption"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -152,7 +148,7 @@ type.cols     = c("Production" = "coral3",
     theme(legend.position = "bottom")
   
   ggsave(seg_ng_prod_vs_cons_1949_2015, 
-         filename = "NG_Production vs Consumption_1949-2015_Annual_STS.png", 
+         filename = "NG_Production vs Consumption_1949-2014_Annual_STS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
