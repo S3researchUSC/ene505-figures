@@ -101,11 +101,11 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
   xlab = NULL
-  ylab = "Terawatt-hour"
+  ylab = "Terawatt-hours"
   leglab = ""
   leg.ord = levels(fillval)
   plot.cols = source.cols
@@ -126,11 +126,11 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
   xlab = NULL
-  ylab = "Terawatt-hour"
+  ylab = "Terawatt-hours"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
   plot.cols = source.cols
@@ -153,11 +153,11 @@ setwd(out.loc)
   fillval = dt[, MSN]
   wsize = 3
   csize = 2
-  tlab = "1983-2014 California Electricity Generation by Source"
+  tlab = "1983 - 2014 California Electricity Generation by Source"
   sublab = "Data: California Energy Commission"
   gval = "Y"
   xlab = NULL
-  ylab = "Terawatt-hour"
+  ylab = "Terawatt-hours"
   leglab = ""
   leg.ord = levels(with(dt[Year == "2014"], reorder(MSN, -Value))) # reorder legend of line plot to order 2014 values from least to greatest
   plot.cols = source.cols
