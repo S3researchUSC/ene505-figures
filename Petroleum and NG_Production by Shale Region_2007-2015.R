@@ -77,7 +77,7 @@ reg.cols      = c("Bakken" = "hotpink1",
   
   area_petro_ng_production = ggplot(dt, aes(x = day, y = value, color = region, linetype = source)) + 
     geom_line(stat = "identity", size = 0.7) +
-    labs(title = "2007 - 2015 Daily U.S. Oil and Natural Gas Production by Shale Region",
+    labs(title = "2007 - 2014 Daily U.S. Oil and Natural Gas Production by Shale Region",
          subtitle = "Data: U.S. Energy Information Administration", 
          x = NULL,
          y = "Trillion BTU/Day",
@@ -93,11 +93,11 @@ reg.cols      = c("Bakken" = "hotpink1",
           axis.text.y = element_text(size = 15, face="bold"),
           legend.title = element_text(size = 13, face = "bold"),
           legend.text = element_text(size = 12)) + 
-    scale_x_date(breaks = seq(as.Date("2006-01-01"), as.Date("2016-01-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
+    scale_x_date(breaks = seq(as.Date("2007-01-01"), as.Date("2015-12-01"), by = "2 years"), date_labels = "%b %Y", expand = c(0,0)) +
     scale_y_comma(breaks = seq(0,18,3), limits = c(0,18), expand = c(0,0))
   
   ggsave(area_petro_ng_production, 
-         filename = "Petroleum and NG_Production by Shale Region_2007-2015_LTS.png", 
+         filename = "Petroleum and NG_Production by Shale Region_2007-2014_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
