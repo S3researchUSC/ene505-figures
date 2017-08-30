@@ -1,4 +1,4 @@
-# NG_Monthly Primary Prod vs Price_1984-2015 #
+# Petroleum_Monthly Primary Prod vs Price_1986-2015 #
 
 # ---------------------------------------------------------------
 # INPUT DATA ----------------------------------------------------
@@ -6,7 +6,7 @@
 
 file.loc 	  = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts' # location of data file(s)
-data.file     = c('U.S._Dry_Natural_Gas_Production.csv', 'U.S._Natural_Gas_Citygate_Price.csv') # data file to be used
+data.file     = c('Petroleum_U.S._Field_Production_of_Crude_Oil.csv', 'Petroleum_Cushing_OK_WTI_Spot_Price_FOB.csv') # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 505 Charts/20170827' # location of where to save figures
 
 # ---------------------------------------------------------------
@@ -19,6 +19,7 @@ out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 50
   library(hrbrthemes)
   library(reshape2)
   library(gtable)
+  library(lubridate)
 
 # load plot functions -----
   setwd(file.loc)
@@ -27,17 +28,27 @@ out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 50
 # import data ------
   setwd(data.loc)
   dt_prod = fread(data.file[1], skip = 4, header = T)
-    colnames(dt_prod) = c("Date", "Production")
-    dt_prod[, Date := as.Date(paste("01", Date, sep="-"), "%d-%b %Y")]
-    dt_prod[, Date := as.Date(Date, "%m/%d/%Y")]
-
   dt_price = fread(data.file[2], skip = 4, header = T)
-    colnames(dt_price) = c("Date", "Price")
-    dt_price[, Date := as.Date(paste("01", Date, sep="-"), "%d-%b %Y")]
-    dt_price[, Date := as.Date(Date, "%m/%d/%Y")]
-
-  dt_all = dt_prod[dt_price, on = "Date", nomatch = 0]
   
+# change column names ------
+  colnames(dt_prod) = c("Date", "Production")
+  colnames(dt_price) = c("Date", "Price")
+  
+# format date columns -----  
+  dt_prod[, Date := mdy(Date)]
+  dt_price[, Date := mdy(Date)]
+  
+# take monthly average of prices -----
+  dt_price[, month_year := paste0(month(Date), "-", year(Date))]
+  dt_price <- dt_price[, .(Price = mean(Price)), by = c("month_year")]
+  dt_price[, Date := dmy(paste("01", month_year, sep="-"))]
+
+# merge data -----
+  dt_all = dt_prod[dt_price, on = "Date", nomatch = 0]
+
+# make production column numeric -----
+  dt_all[, Production := as.numeric(Production)]
+
 # ---------------------------------------------------------------
 # FIGURES -------------------------------------------------------
 # ---------------------------------------------------------------
@@ -46,21 +57,22 @@ out.loc       = '/Users/MEAS/Google Drive/TA Materials/ENE505 - Fall 2015/ENE 50
   
   # COMBINED PLOTS -------  
   
-  png(file="NG_Monthly Primary Prod vs Price_1984-2015.png", width = 4400, height = 2500, res = 400)
+  png(file="Petroleum_Monthly Primary Production vs Price_1985-2015.png", width = 4400, height = 2500, res = 400)
   
   with(dt_all, dualplot(x1 = Date, y1 = Production, y2 = Price, 
                         xbreaks = c(seq(as.Date("1984-01-01"), as.Date("2016-01-01"), by = "4 years")),
-                        y1breaks = seq(0, 2500, 500),
-                        y2breaks = seq(0, 15, 3),
+                        y1breaks = seq(0, 320000, 80000),
+                        y2breaks = seq(0, 160, 40),
                         col = c("firebrick", "dodgerblue3"),
                         lwd = 1.2, colgrid = NULL, 
-                        main = "1984 - 2015 U.S. Monthly Natural Gas Production and Prices",
+                        main = "1984 - 2015 U.S. Monthly Production of Crude and WTI Crude Oil Spot Price",
+                        sub = "Source: EIA Annual Energy Review",
                         ylim.ref = NULL, 
-                        ylab1 = "Billion Cubic Feet",
-                        ylab2 = "USD per Thousand Cubic Feet",
-                        yleg1 = "Natural Gas Production (left axis)",
-                        yleg2 = "Natural Gas Prices (right axis)",
-                        mar = c(5,6,3,6)))
+                        ylab1 = "Thousand Barrels",
+                        ylab2 = "USD per Barrel",
+                        yleg1 = "Monthly Crude Oil Production (left axis)",
+                        yleg2 = "Monthly Average WTI Spot Price (right axis)",
+                        mar = c(6,6,3,6)))
   
   dev.off()
   
