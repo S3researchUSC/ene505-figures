@@ -230,7 +230,7 @@ ran.cols      = c("#40516b",
     guides(fill=FALSE)
   
   ggsave(bar_world_petro_imports_2012, 
-         filename = "World_Petroleum Imports to U.S. by Country_2014_BP.png", 
+         filename = "World_Petroleum Imports to US_All Countries_2014_BP.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)

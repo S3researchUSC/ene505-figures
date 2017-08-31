@@ -228,12 +228,12 @@ ran.cols      = c("#40516b",
     scale_y_comma(breaks = seq(0,14000,2000), expand = c(0,0))
   
   ggsave(area_world_petro_imports, 
-         filename = "World_Petroleum Imports to U.S. by Country_1973-2014_ATS.png", 
+         filename = "World_Petroleum Imports to US_All Countries_1973-2014_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
   
-  # LINE PLOT -------------
+  # ALL COUNTRIES LINE PLOT -------------
   
   dt = dt_fin[! category %in% c("Total", 
                                 "Persian Gulf", 
@@ -256,10 +256,12 @@ ran.cols      = c("#40516b",
     scale_y_comma(breaks = seq(0,4000,500), expand = c(0,0), limits = c(0, 4000))
   
   ggsave(line_world_petro_imports, 
-         filename = "World_Petroleum Imports to U.S. by Country_1973-2014_LTS.png", 
+         filename = "World_Petroleum Imports to US_All Countries_1973-2014_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
+  
+  # OPEC VS NON-OPEC LINE PLOT ------
   
   # SEGMENT PLOT -------------
   
@@ -287,7 +289,7 @@ ran.cols      = c("#40516b",
     scale_y_comma(breaks = seq(0,4000,500), expand = c(0,0), limits = c(0, 4000))
   
   ggsave(seg_world_petro_imports, 
-         filename = "World_Petroleum Imports to U.S. by Country_1973-2014_STS.png", 
+         filename = "World_Petroleum Imports to US_All Countries_1973-2014_STS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
