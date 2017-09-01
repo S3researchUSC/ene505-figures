@@ -183,7 +183,7 @@ reg.cols      = c("Bakken" = "hotpink1",
     geom_line(stat = "identity", size = 0.7) +
     geom_blank(data = dummy) +
     facet_grid(type_f ~ ., scales = "free_y", switch = "y") +
-    labs(title = "2007 - 2014 Daily U.S. Oil and Natural Gas Production by Shale Region",
+    labs(title = "2007 - 2014 Daily U.S. Oil and Natural Gas Rig Count and Productivity by Shale Region",
          subtitle = "Data: U.S. Energy Information Administration", 
          x = NULL,
          y = NULL,
@@ -191,7 +191,7 @@ reg.cols      = c("Bakken" = "hotpink1",
          linetype = "Source") +
     theme_ipsum_rc(grid = "Y") +
     scale_color_manual(values = reg.cols) +
-    theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
+    theme(plot.title = element_text(size = 20, hjust = 0.3, face = "bold"),
           plot.subtitle = element_text(size = 14, hjust = 0.5),
           axis.title.x = element_blank(),
           axis.title.y = element_blank(),
