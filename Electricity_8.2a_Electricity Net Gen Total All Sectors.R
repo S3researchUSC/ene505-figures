@@ -63,36 +63,6 @@ source.cols   = c("Geothermal" = "#880015",
   dt_long = melt(dt_raw, measure.vars = colnames(dt_raw)[2:13],
                  variable.name = "MSN", value.name = "Value")
   
-  
-  # dt_annual = dt_raw[ str_sub(YYYYMM, start = -2) == "13" ] # last two characters of YYYYMM should be "13"
-
-# # rename MSN factor levels -------
-#   dt_annual[, MSN := revalue(MSN, c(CLETPUS = "Coal",
-#                                     GEETPUS = "Geothermal",
-#                                     HPETPUS = "Hydroelectric Pumped Storage",
-#                                     HVETPUS = "Hydroelectric",
-#                                     NGETPUS = "Natural Gas",
-#                                     NUETPUS = "Nuclear",
-#                                     OJETPUS = "Other Gases",
-#                                     PAETPUS = "Petroleum",
-#                                     SOETPUS = "Solar PV",
-#                                     WDETPUS = "Wood",
-#                                     WSETPUS = "Waste",
-#                                     WYETPUS = "Wind",
-#                                     ELETPUS = "Total"))]
-
-# # remove pumped storage ------
-#   dt_annual = dt_annual[ ! MSN == "Hydroelectric Pumped Storage" ]
-
-# # remove rows with data "Not Available" ------
-#   dt_annual = dt_annual[ ! Value == "Not Available" ]
-# 
-# # create column of years -----
-#   dt_annual[, YYYY := as.numeric(str_sub(YYYYMM, 1, 4)) ] # only keep first four characters
-# 
-# # make Value column numeric -----
-#   dt_annual[, Value := as.numeric(Value) ]
-
 # ---------------------------------------------------------------
 # FIGURES -------------------------------------------------------
 # ---------------------------------------------------------------
@@ -103,7 +73,7 @@ setwd(out.loc)
 
   dt = copy(dt_long)[, MSN := factor(MSN, levels = c("Total",
                                                  "Wind",
-                                                 "Solar PV",
+                                                 "Solar",
                                                  "Geothermal",
                                                  "Waste",
                                                  "Wood",
