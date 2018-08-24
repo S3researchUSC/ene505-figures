@@ -152,7 +152,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_ATS.png", 
+         filename = "Electricity_Annual Electricity Net Gen by Source_1949-2017_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)

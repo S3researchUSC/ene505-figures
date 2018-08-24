@@ -179,7 +179,7 @@ setwd(out.loc)
           axis.text.x = element_text(size = 15, face="bold"),
           axis.text.y = element_text(size = 15, face="bold"),
           legend.text = element_text(size = 13, face = "bold")) +
-    theme(plot.margin = unit(c(1,7,1,1), "lines"))
+    theme(plot.margin = unit(c(1,8,1,1), "lines"))
   
   
   line_annual_2 <- ggplotGrob(line_annual)
@@ -211,7 +211,7 @@ setwd(out.loc)
   xval = dt[, Month]
   yval = dt[, Value]
   fillval = dt[, MSN]
-  tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
+  tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -261,14 +261,15 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
-    theme(plot.margin = unit(c(1,8,1,1), "lines"))  +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
           axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
           axis.text.x = element_text(size = 15, face="bold"),
           axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold"))
+          legend.text = element_text(size = 13, face = "bold")) +
+    theme(plot.margin = unit(c(1,8,1,1), "lines"))
+    
   
   line_month_2 <- ggplotGrob(line_month)
   line_month_2$layout$clip[line_month_2$layout$name == "panel"] <- "off"
@@ -284,11 +285,13 @@ setwd(out.loc)
   
 # LATEST YEAR BAR PLOT -------------
   
-  dt = dt_annual[ Year == max(Year) & ! MSN == "Total"]
+  dt = dt_annual[ Year == max(Year) & ! MSN %in% c("Total Fossil Fuels",
+                                                         "Total Renewable Energy",
+                                                         "Total Primary Energy")]
   xval = dt[, reorder(MSN, Value)]
   yval = dt[, Value]
   fillval = dt[, MSN]
-  tlab = "2017 U.S. Electricity Generation By Source"
+  tlab = "2017 U.S. Primary Energy Production By Source"
   sublab = "Data: EIA Annual Energy Review"
   gval = "X"
   xlab = NULL
@@ -319,7 +322,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
 
   ggsave(bar_annual, 
-         filename = "Energy_Primary Energy Production by Source_2017_BP.png", 
+         filename = "Energy_Annual Primary Energy Production by Source_2017_BP.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -430,7 +433,7 @@ setwd(out.loc)
   xval = dt[, Month]
   yval = dt[, Value]
   fillval = dt[, MSN]
-  tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
+  tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -473,7 +476,7 @@ setwd(out.loc)
   xval = dt[, Month]
   yval = dt[, Value]
   fillval = dt[, MSN]
-  tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
+  tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
