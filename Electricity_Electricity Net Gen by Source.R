@@ -122,7 +122,7 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1949 - 2017 Annual U.S. Electricity Generation By Source"
+  tlab = "Annual U.S. Electricity Generation By Source (1949 - 2017)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -152,7 +152,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_ATS.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -188,7 +188,7 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_LTS.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -210,7 +210,7 @@ setwd(out.loc)
   xval = dt[, Month]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "January 1973 - April 2018 Monthly U.S. Electricity Generation By Source"
+  tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -240,7 +240,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source All Sectors_ATS.png", 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -275,7 +275,7 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source All Sectors_LTS.png", 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -318,7 +318,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
 
   ggsave(bar_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_Latest_BP.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_2017_BP.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -340,7 +340,7 @@ setwd(out.loc)
   xval = dt[, Year]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "1949 - 2017 Annual U.S. Renewable Electricity Generation By Source"
+  tlab = "Annual U.S. Renewable Electricity Generation By Source (1949 - 2017)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -370,7 +370,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_ATS.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE Only_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -406,13 +406,13 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_LTS.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE Only_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
   
   
-  # MONTHLY AREA PLOT AND LINE PLOT -------------
+# (RE ONLY) MONTHLY AREA PLOT AND LINE PLOT -------------
   
   dt = dt_month[ ! MSN %in% c("Total", "Coal", "Petroleum", "Natural Gas", 
                               "Nuclear", "Other Gases")][, MSN := factor(MSN, levels = c("Wind",
@@ -429,7 +429,7 @@ setwd(out.loc)
   xval = dt[, Month]
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
-  tlab = "January 1973 - April 2018 Monthly U.S. Renewable Electricity Generation By Source"
+  tlab = "Monthly U.S. Renewable Electricity Generation By Source (January 1973 - April 2018)"
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
@@ -459,7 +459,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source All Sectors_RE Only_ATS.png", 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE Only_ATS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
@@ -494,13 +494,13 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source All Sectors_RE Only_LTS.png", 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE Only_LTS.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
   
   
-  # LATEST YEAR BAR PLOT -------------
+# (RE ONLY) LATEST YEAR BAR PLOT -------------
   
   dt = dt_annual[ Year == max(Year) & !  MSN %in% c("Total", "Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases")]
   xval = dt[, reorder(MSN, Value)]
@@ -537,7 +537,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(bar_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_Latest_BP.png", 
+         filename = "Electricity_Annual Electricity Net Gen By Source_RE Only_2017_BP.png", 
          width = 11.1, 
          height = 6.25, 
          dpi = 400)
