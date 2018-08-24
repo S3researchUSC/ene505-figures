@@ -470,7 +470,7 @@ setwd(out.loc)
                              "Total Primary Energy")][, MSN := factor(MSN, levels = c("Total Renewable Energy", 
                                                                                       "Total Fossil Fuels",
                                                                                       "Total Primary Energy"))]
-  xval = dt[, Year]
+  xval = dt[, Month]
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
@@ -495,7 +495,7 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
-    theme(plot.margin = unit(c(1,8,1,1), "lines"))  +
+    theme(plot.margin = unit(c(1,9,1,1), "lines"))  +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
