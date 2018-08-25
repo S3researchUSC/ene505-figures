@@ -7,8 +7,8 @@ reg.fil       = 'International_Energy Intensity by Region_1980-2015.csv'
 cntry.fil     = 'International_Energy Intensity by Country_1980-2015.csv' 
 gdp.fil       = 'International_Gross Domestic Product_1980-2015.csv'
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
-region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
-                  "#937860", "#DA8BC3", "#8C8C8C", "#CCB974", "#64B5CD")
+reg.cols      = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3", "#937860", "#DA8BC3", "#8C8C8C", "#CCB974", "#64B5CD")
+cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA9161", "#FBAFE4", "#949494", "#ECE133", "#56B4E9")
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -66,7 +66,13 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   
 # combine datasets ------
   
-  dt_all = rbindlist(list(dt_reg, dt_country[ Region %in% c("United States", "Qatar") ]))
+  pltcountries = c("United States", "Qatar")
+  dt_all = rbindlist(list(dt_reg, dt_country[ Region %in% pltcountries ]))
+  
+# assign colors ------
+  
+  names(reg.cols) = levels(factor(dt_reg[, Region]))
+  names(reg.cols)[9:10] = pltcountries
   
 # convert years and values to numeric ----
   
@@ -93,7 +99,7 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   ylab = "MMBTu per Person"
   leglab = ""
   leg.ord = levels(fillval)
-  plot.cols = region.cols
+  plot.cols = reg.cols
   
 
   line_annual = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
@@ -146,7 +152,7 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   ylab = "MMBTu per Person"
   leglab = ""
   leg.ord = levels(fillval)
-  plot.cols = region.cols
+  plot.cols = cntry.cols
   
   
   line_annual = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
@@ -201,7 +207,7 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   ylab = "MMBTu per Person"
   leglab = ""
   leg.ord = levels(fillval)
-  plot.cols = region.cols
+  plot.cols = reg.cols
   
   
   line_annual = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
