@@ -1,0 +1,46 @@
+#,Plot Type,Plot File,R File,Data File,Start Date,End Date,Resolution,Source
+1,Area,Electricity_Annual Electricity Net Gen By Source All Sectors_ATS,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,1949,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+2,Line,Electricity_Annual Electricity Net Gen By Source All Sectors_LTS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,1949,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+3,Area,Electricity_Monthly Electricity Net Gen By Source All Sectors_ATS,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,Jan-73,Apr-18,Monthly,https://www.eia.gov/totalenergy/data/monthly/index.php
+4,Line,Electricity_Monthly Electricity Net Gen By Source All Sectors_LTS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,Jan-73,Apr-18,Monthly,https://www.eia.gov/totalenergy/data/monthly/index.php
+5,Area,Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_ATS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,1949,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+6,Line,Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_LTS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,1949,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+7,Area,Electricity_Monthly Electricity Net Gen By Source All Sectors_RE Only_ATS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,Jan-73,Apr-18,Monthly,https://www.eia.gov/totalenergy/data/monthly/index.php
+8,Line,Electricity_Monthly Electricity Net Gen By Source All Sectors_RE Only_LTS.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,Jan-73,Apr-18,Monthly,https://www.eia.gov/totalenergy/data/monthly/index.php
+9,Bar,Electricity_Annual Electricity Net Gen By Source All Sectors_Latest_BP.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,2017,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+10,Bar,Electricity_Annual Electricity Net Gen By Source All Sectors_RE Only_Latest_BP.png,Electricity_Electricity Net Gen by Source.R,Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx,2017,2017,Annual,https://www.eia.gov/totalenergy/data/monthly/index.php
+11,Area,,,,,,,
+12,Line,,,,,,,
+13,Bar,,,,,,,
+14,Area,,,,,,,
+15,Line,,,,,,,
+16,Bar,,,,,,,
+17,,,,,,,,
+18,Bar,Energy_1.2_Primary Energy Production by Source in 2016_BP.png,Energy_1.2_Primary Energy Production by Source in 2016.R,chart123.csv,2016,2016,Yearly,
+19,Bar,Energy_1.3_Primary Energy Consumption by Source in 2016_BP.png,Energy_1.3_Primary Energy Consumption by Source in 2016.R,chart123.csv,,,,
+20,Area,Energy_1.2_Primary Energy Production by Source_1973-2016_ATS.png,Energy_1.2_Primary Energy Production by Source_1973-2016.R,chart456.csv,Jan-73,Apr-17,Monthly,
+21,Line,Energy_1.2_Primary Energy Production by Source_1973-2016_LTS.png,Energy_1.2_Primary Energy Production by Source_1973-2016.R,chart456.csv,Jan-73,Apr-17,Monthly,
+22,Area,Energy_1.2_Primary Energy Production by Source_Total_1973-2016_ATS.png,Energy_1.2_Primary Energy Production by Source_1973-2016.R,chart456.csv,Jan-73,Apr-17,Monthly,
+23,Line,Energy_1.2_Primary Energy Production by Source_Totals_1973-2016_LTS.png,Energy_1.2_Primary Energy Production by Source_1973-2016.R,chart456.csv,Jan-73,Apr-17,Monthly,
+24,,,,,,,,
+25,,Energy_1.3_Primary Energy Consumption Estimates by Source_1973-2016_ATS.png,Energy_1.3_Primary Energy Consumption by Source_1973-2016.R,chart789_data.csv,Jan-73,Apr-17,Monthly,
+,,Energy_1.3_Primary Energy Consumption Estimates by Source_1973-2016_LTS.png,Energy_1.3_Primary Energy Consumption by Source_1973-2016.R,chart789_data.csv,Jan-73,Apr-17,Monthly,
+,,Energy_1.3_Primary Energy Consumption Estimates by Source_Total_1973-2016_ATS.png,Energy_1.3_Primary Energy Consumption by Source_1973-2016.R,chart789_data.csv,Jan-73,Apr-17,Monthly,
+,,Energy_1.3_Primary Energy Consumption Estimates by Source_Totals_1973-2016_LTS.png,Energy_1.3_Primary Energy Consumption by Source_1973-2016.R,chart789_data.csv,Jan-73,Apr-17,Monthly,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,Area,Electricity_CA_Electricity Net Gen Total All Sectors_ATS.png,Electricity_CA_Electricity Net Gen Total All Sectors.R,Electricity_CA Electricity Net Gen Total All Sectors_1983_2014.csv,1983,2014,Yearly,
