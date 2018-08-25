@@ -6,7 +6,7 @@ file.loc 	    = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
 data.file     = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx' # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
-source.cols   = c("Geothermal" = "#a83829",
+source.cols   = c("Geothermal" = "#8a195e",
                   "Solar" = "#ed8a32",
                   "Waste" = "#858585",
                   "Wood" = "#925b24",
@@ -140,8 +140,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), limits = c(1949, 2017), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -153,7 +153,7 @@ setwd(out.loc)
   
   ggsave(area_annual, 
          filename = "Electricity_Annual Electricity Net Gen by Source_1949-2017_ATS.png", 
-         width = 11.1, 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -168,8 +168,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), limits = c(1949, 2017), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -189,7 +189,7 @@ setwd(out.loc)
   
   ggsave(line_annual_2, 
          filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_LTS.png", 
-         width = 11.1, 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -228,8 +228,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -241,7 +241,7 @@ setwd(out.loc)
   
   ggsave(area_month, 
          filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_ATS.png", 
-         width = 11.1, 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -256,8 +256,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.margin = unit(c(1,7,1,1), "lines"))  +
@@ -276,7 +276,7 @@ setwd(out.loc)
   
   ggsave(line_month_2, 
          filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_LTS.png", 
-         width = 11.1, 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -319,7 +319,7 @@ setwd(out.loc)
 
   ggsave(bar_annual, 
          filename = "Electricity_Annual Electricity Net Gen By Source_2017_BP.png", 
-         width = 11.1, 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -358,8 +358,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), limits = c(1949, 2017), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -370,8 +370,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE Only_ATS.png", 
-         width = 11.1, 
+         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -386,8 +386,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -406,8 +406,8 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE Only_LTS.png", 
-         width = 11.1, 
+         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -447,8 +447,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -459,8 +459,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE Only_ATS.png", 
-         width = 11.1, 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -475,8 +475,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.margin = unit(c(1,7,1,1), "lines"))  +
@@ -494,8 +494,8 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE Only_LTS.png", 
-         width = 11.1, 
+         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -537,8 +537,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(bar_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_RE Only_2017_BP.png", 
-         width = 11.1, 
+         filename = "Electricity_Annual Electricity Net Gen By Source_RE_2017_BP.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
