@@ -73,7 +73,7 @@ setwd(out.loc)
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
-  ylab = "Quadrillion BTU"
+  ylab = "Trillion BTU"
   leglab = ""
   leg.ord = levels(fillval)
   plot.cols = sector.cols
@@ -88,7 +88,7 @@ setwd(out.loc)
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
     scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
-    scale_y_continuous(expand = c(0.01,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -116,7 +116,7 @@ setwd(out.loc)
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
     scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
-    scale_y_continuous(expand = c(0.01,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
     geom_dl(aes(label = Sector), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -150,7 +150,7 @@ setwd(out.loc)
   sublab = "Data: EIA Annual Energy Review"
   gval = "Y"
   xlab = NULL
-  ylab = "Quadrillion BTU"
+  ylab = "Trillion BTU"
   leglab = ""
   leg.ord = levels(fillval)
   plot.cols = sector.cols
@@ -165,7 +165,7 @@ setwd(out.loc)
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
     scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
-    scale_y_continuous(expand = c(0.01,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -193,7 +193,7 @@ setwd(out.loc)
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
     scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
-    scale_y_continuous(expand = c(0.01,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
     geom_dl(aes(label = Sector), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -227,7 +227,7 @@ setwd(out.loc)
   sublab = "Data: EIA Annual Energy Review"
   gval = "X"
   xlab = NULL
-  ylab = "Quadrillion BTU"
+  ylab = "Trillion BTU"
   leglab = ""
   leg.ord = levels(fillval)
   plot.cols = sector.cols
