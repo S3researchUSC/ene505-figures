@@ -5,19 +5,19 @@
 data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
 data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx' # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
-source.cols   = c("Geothermal" = "#a83829",
-                  "Solar" = "#ed8a32",
-                  "Biomass" = "#925b24",
-                  "Wind" = "#1488a6",
-                  "Hydroelectric" = "#52c4cf",
-                  "Biomass" = "#b5734e",
-                  "Nuclear" = "#286c4f",
-                  "Petroleum" = "#fece33",
+source.cols   = c("Geothermal" = "#6a3d9a",
+                  "Solar" = "#ff7f00",
+                  "Waste" = "#858585",
+                  "Biomass" = "#8c613c",
+                  "Wind" = "#1f78b4",
+                  "Hydroelectric" = "#a6cee3",
+                  "Nuclear" = "#55a868",
+                  "Petroleum" = "#fdbf6f",
                   "Coal" = "#12253d",
-                  "Natural Gas" = "#ed3232",
-                  "Total Primary Energy" = "#fd6968",
+                  "Natural Gas" = "#c44e52",
+                  "Total Primary Energy" = "#fc8d62",
                   "Total Fossil Fuels" = "#383e56",
-                  "Total Renewable Energy" = "#48be9d")
+                  "Total Renewable Energy" = "#66c2a5")
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -106,15 +106,15 @@ setwd(out.loc)
   
   dt = dt_annual[! MSN %in% c("Total Fossil Fuels",
                               "Total Renewable Energy",
-                              "Total Primary Energy")][, MSN := factor(MSN, levels = c("Biomass",
-                                                       "Wind",
-                                                       "Solar",
-                                                       "Geothermal",
-                                                       "Hydroelectric",
-                                                       "Nuclear",
-                                                       "Petroleum",
-                                                       "Natural Gas",
-                                                       "Coal"))]
+                              "Total Primary Energy")][, MSN := factor(MSN, levels = c("Wind",
+                                                                                       "Solar",
+                                                                                       "Geothermal",
+                                                                                       "Biomass",
+                                                                                       "Hydroelectric",
+                                                                                       "Nuclear",
+                                                                                       "Natural Gas",
+                                                                                       "Petroleum",
+                                                                                       "Coal"))]
   xval = dt[, Year]
   yval = dt[, Value]
   fillval = dt[, MSN]
@@ -136,8 +136,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -148,8 +148,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Energy_Annual Primary Energy Consumption by Source_1949-2017_ATS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Annual_1949-2017_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -164,8 +164,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -183,8 +183,8 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Energy_Annual Primary Energy Consumption by Source_1949-2017_LTS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Annual_1949-2017_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -193,14 +193,14 @@ setwd(out.loc)
 
   dt = dt_month[! MSN %in% c("Total Fossil Fuels",
                               "Total Renewable Energy",
-                              "Total Primary Energy")][, MSN := factor(MSN, levels = c("Biomass",
-                                                                                       "Wind",
+                              "Total Primary Energy")][, MSN := factor(MSN, levels = c("Wind",
                                                                                        "Solar",
                                                                                        "Geothermal",
+                                                                                       "Biomass",
                                                                                        "Hydroelectric",
                                                                                        "Nuclear",
-                                                                                       "Petroleum",
                                                                                        "Natural Gas",
+                                                                                       "Petroleum",
                                                                                        "Coal"))]
   xval = dt[, Month]
   yval = dt[, Value]
@@ -223,8 +223,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -235,8 +235,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Energy_Monthly Primary Energy Consumption by Source_Jan1973-Apr2018_ATS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Monthly_Jan1973-Apr2018_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -251,8 +251,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -270,8 +270,8 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Energy_Monthly Primary Energy Consumption by Source_Jan1973-Apr2018_LTS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Monthly_Jan1973-Apr2018_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -315,8 +315,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
 
   ggsave(bar_annual, 
-         filename = "Energy_Annual Primary Energy Consumption by Source_2017_BP.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Annual_2017_BP.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -346,8 +346,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -358,8 +358,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Energy_Annual Primary Energy Consumption by Source_1949-2017_Totals Only_ATS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Annual_1949-2017_Totals_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -389,8 +389,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(1950,2017,5), expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -409,8 +409,8 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Energy_Annual Primary Energy Consumption by Source_1949-2017_Totals Only_LTS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Annual_1949-2017_Totals_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -444,8 +444,8 @@ setwd(out.loc)
          fill = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_fill_manual(breaks = leg.ord, values = plot.cols) +
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
           axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
@@ -456,8 +456,8 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Energy_Monthly Primary Energy Consumption by Source_Jan1973-Apr2018_Totals Only_ATS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Monthly_Jan1973-Apr2018_Totals_ATS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   
@@ -487,8 +487,8 @@ setwd(out.loc)
          color = leglab) +
     theme_ipsum_rc(grid = gval) +
     scale_color_manual(breaks = leg.ord, values = plot.cols) + 
-    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,1)) +
-    scale_y_continuous(expand = c(0,0)) +
+    scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = c(0,0)) +
+    scale_y_continuous(expand = c(0.01,0)) +
     geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), "last.bumpup", cex = 1.1, fontfamily = "Roboto Condensed")) +
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
@@ -506,8 +506,8 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Energy_Monthly Primary Energy Consumption by Source_Jan1973-Apr2018_Totals Only_LTS.png", 
-         width = 11.1, 
+         filename = "Energy_Primary Energy Consumption by Source_Monthly_Jan1973-Apr2018_Totals_LTS.png", 
+         width = 11.75, 
          height = 6.25, 
          dpi = 400)
   

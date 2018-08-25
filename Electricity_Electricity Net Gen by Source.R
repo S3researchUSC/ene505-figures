@@ -9,14 +9,13 @@ out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 50
 source.cols   = c("Geothermal" = "#6a3d9a",
                   "Solar" = "#ff7f00",
                   "Waste" = "#858585",
-                  "Wood" = "#ca9161",
+                  "Wood" = "#8c613c",
                   "Wind" = "#1f78b4",
                   "Hydroelectric" = "#a6cee3",
-                  "Biomass" = "#b5734e",
-                  "Nuclear" = "#286c4f",
+                  "Nuclear" = "#55a868",
                   "Petroleum" = "#fdbf6f",
                   "Coal" = "#12253d",
-                  "Natural Gas" = "#e31a1c",
+                  "Natural Gas" = "#c44e52",
                   "Other Gases" = "#fb9a99")
 
 # ---------------------------------------------------------------
@@ -152,7 +151,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen by Source_1949-2017_ATS.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_1949-2017_ATS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -188,7 +187,7 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_LTS.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_1949-2017_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -240,7 +239,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_ATS.png", 
+         filename = "Electricity_Net Electricity Gen By Source_Monthly_Jan1973-Apr2018_ATS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -275,7 +274,7 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_LTS.png", 
+         filename = "Electricity_Net Electricity Gen By Source_Monthly_Jan1973-Apr2018_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -318,7 +317,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
 
   ggsave(bar_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_2017_BP.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_2017_BP.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -370,7 +369,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE_ATS.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_1949-2017_RE_ATS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -406,7 +405,7 @@ setwd(out.loc)
   
   
   ggsave(line_annual_2, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_1949-2017_RE_LTS.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_1949-2017_RE_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -459,7 +458,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE_ATS.png", 
+         filename = "Electricity_Net Electricity Gen By Source_Monthly_Jan1973-Apr2018_RE_ATS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -494,7 +493,7 @@ setwd(out.loc)
   
   
   ggsave(line_month_2, 
-         filename = "Electricity_Monthly Electricity Net Gen By Source_Jan1973-Apr2018_RE_LTS.png", 
+         filename = "Electricity_Net Electricity Gen By Source_Monthly_Jan1973-Apr2018_RE_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -537,7 +536,7 @@ setwd(out.loc)
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(bar_annual, 
-         filename = "Electricity_Annual Electricity Net Gen By Source_RE_2017_BP.png", 
+         filename = "Electricity_Net Electricity Gen by Source_Annual_2017_RE_BP.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
