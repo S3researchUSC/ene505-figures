@@ -6,18 +6,18 @@ file.loc 	    = '/Users/MEAS/GitHub/ene505-figures' # location of scripts
 data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
 data.file     = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx' # data file to be used
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
-source.cols   = c("Geothermal" = "#8a195e",
-                  "Solar" = "#ed8a32",
+source.cols   = c("Geothermal" = "#6a3d9a",
+                  "Solar" = "#ff7f00",
                   "Waste" = "#858585",
-                  "Wood" = "#925b24",
-                  "Wind" = "#1488a6",
-                  "Hydroelectric" = "#52c4cf",
+                  "Wood" = "#ca9161",
+                  "Wind" = "#1f78b4",
+                  "Hydroelectric" = "#a6cee3",
                   "Biomass" = "#b5734e",
                   "Nuclear" = "#286c4f",
-                  "Petroleum" = "#fece33",
+                  "Petroleum" = "#fdbf6f",
                   "Coal" = "#12253d",
-                  "Natural Gas" = "#ed3232",
-                  "Other Gases" = "#fd9ea9")
+                  "Natural Gas" = "#e31a1c",
+                  "Other Gases" = "#fb9a99")
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
