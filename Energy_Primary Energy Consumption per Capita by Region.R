@@ -3,9 +3,9 @@
 # ---------------------------------------------------------------
 
 data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
-reg.fil       = 'Intl_Energy-Intensity by Region_1980-2015.csv' 
-cntry.fil     = 'Intl_Energy-Intensity by Country_1980-2015.csv' 
-gdp.fil       = 'Intl_Gross Domestic Product_1980-2015.csv'
+reg.fil       = 'International_Energy-Intensity by Region_1980-2015.csv' 
+cntry.fil     = 'International_Energy-Intensity by Country_1980-2015.csv' 
+gdp.fil       = 'International_Gross Domestic Product_1980-2015.csv'
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
 region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
                   "#937860", "#DA8BC3", "#8C8C8C", "#CCB974", "#64B5CD")
@@ -124,7 +124,7 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   
   
   ggsave(line_annual_2, 
-         filename = "Energy_Primary Energy Consumption per Capita by Region_Annual_1980-2015_LTS.png", 
+         filename = "World_Primary Energy Consumption per Capita by Region_Annual_1980-2015_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -177,7 +177,7 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   
   
   ggsave(line_annual_2, 
-         filename = "Energy_Primary Energy Consumption per Capita by Country_Annual_1980-2015_LTS.png", 
+         filename = "World_Primary Energy Consumption per Capita by Country_Annual_1980-2015_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
@@ -232,11 +232,8 @@ region.cols   = c("#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
   
   
   ggsave(line_annual_2, 
-         filename = "Energy_Primary Energy Consumption per Capita by Region and Country_Annual_1980-2015_LTS.png", 
+         filename = "World_Primary Energy Consumption per Capita by Region and Country_Annual_1980-2015_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  
-  
-  
   
