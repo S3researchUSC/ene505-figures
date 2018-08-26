@@ -72,6 +72,8 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   names(reg.cols) = levels(factor(dt_reg[, Region]))
   names(reg.cols)[9:10] = pltcountries
   
+  # names(cntry.cols) = dt_gdp[, Region][1:10]
+  
 # convert years and values to numeric ----
   
   dt_all[, Year := as.numeric(as.character(Year))]
@@ -85,6 +87,45 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   setwd(out.loc) 
   
   # (REGIONS ONLY) ANNUAL AREA PLOT AND LINE PLOT -------------
+  
+  dt = dt_reg[ ! Region %in% c("World")]
+  xval = dt[, Year]
+  yval = dt[, Value]
+  fillval = dt[, Region]
+  tlab = "Annual Primary Energy Consumption by Region (1980 - 2015)"
+  sublab = "Data: EIA International Energy Statistics"
+  gval = "Y"
+  xlab = NULL
+  ylab = "Quad BTU"
+  leglab = ""
+  leg.ord = levels(fillval)
+  plot.cols = reg.cols
+  
+  area_annual = ggplot(dt, aes(x = xval, y = yval, fill = fillval)) + 
+    geom_area(stat = "identity") +
+    labs(title = tlab,
+         subtitle = sublab, 
+         x = xlab,
+         y = ylab,
+         fill = leglab) +
+    theme_ipsum_rc(grid = gval) +
+    scale_fill_manual(values = plot.cols) +
+    scale_x_continuous(breaks = seq(1980,2015,5), expand = c(0,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
+    theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(size = 15, hjust = 0.5),
+          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 15, face="bold"),
+          axis.text.y = element_text(size = 15, face="bold"),
+          legend.text = element_text(size = 13, face = "bold")) +
+    theme(plot.margin = unit(c(1,1,1,1), "lines"))
+  
+  ggsave(area_annual, 
+         filename = "World_Primary Energy Consumption by Region_Annual_1980-2015_ATS.png", 
+         width = 11.75, 
+         height = 6.25, 
+         dpi = 400)
   
   dt = dt_reg
   xval = dt[, Year]
@@ -140,13 +181,41 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption by Country (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Countries with 10 Highest GDP \n Data: EIA International Energy Statistics"
   gval = "Y"
   xlab = NULL
   ylab = "Quad BTU"
   leglab = ""
-  leg.ord = levels(fillval)
+  leg.ord = levels(factor(fillval))
   plot.cols = cntry.cols
+  
+  area_annual = ggplot(dt, aes(x = xval, y = yval, fill = fillval)) + 
+    geom_area(stat = "identity") +
+    labs(title = tlab,
+         subtitle = sublab, 
+         x = xlab,
+         y = ylab,
+         fill = leglab) +
+    theme_ipsum_rc(grid = gval) +
+    scale_fill_manual(breaks = leg.ord, values = plot.cols) +
+    scale_x_continuous(breaks = seq(1980,2015,5), expand = c(0,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
+    theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(size = 15, hjust = 0.5),
+          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 15, face="bold"),
+          axis.text.y = element_text(size = 15, face="bold"),
+          legend.text = element_text(size = 13, face = "bold")) +
+    theme(plot.margin = unit(c(1,1,1,1), "lines"))
+  
+  ggsave(area_annual, 
+         filename = "World_Primary Energy Consumption by Country_Annual_1980-2015_ATS.png", 
+         width = 11.75, 
+         height = 6.25, 
+         dpi = 400)
+  
+  
   
   
   line_annual = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
