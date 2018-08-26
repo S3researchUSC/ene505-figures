@@ -45,7 +45,6 @@ sector.cols   = c("#fd6968", "#383e56", "#9ecffd", "#fbd55b", "#48be9d")
   dt_annual = melt(dt_annual, measure.vars = colnames(dt_annual)[2:7],
                    variable.name = "Sector", value.name = "Value")
   
-
 # convert value column to numeric ----
   
   dt_month[, Value := as.numeric(Value)]
@@ -56,6 +55,9 @@ sector.cols   = c("#fd6968", "#383e56", "#9ecffd", "#fbd55b", "#48be9d")
   dt_month = dt_month[!is.na(Month)]
   dt_annual = dt_annual[!is.na(Year)]
   
+# assign colors ------
+  
+  names(sector.cols) = c("Residential", "Commercial", "Industrial", "Transportation", "Electric Power")
 
 # ---------------------------------------------------------------
 # FIGURES -------------------------------------------------------
