@@ -123,7 +123,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Annual U.S. Primary Energy Production by Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -219,7 +219,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -299,7 +299,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "2017 U.S. Primary Energy Production By Source"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -343,7 +343,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Annual U.S. Primary Energy Production by Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -386,7 +386,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "1949 - 2017 Annual U.S. Primary Energy Production by Source"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -441,7 +441,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -484,7 +484,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Primary Energy Production By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"

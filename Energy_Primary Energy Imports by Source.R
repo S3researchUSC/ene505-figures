@@ -108,7 +108,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Annual U.S. Primary Energy Imports by Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -192,7 +192,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Primary Energy Imports By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -270,7 +270,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "2017 U.S. Primary Energy Imports by Source"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -312,7 +312,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Annual U.S. Primary Energy Imports by Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -363,7 +363,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Primary Energy Imports By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quadrillion BTU"
@@ -403,6 +403,4 @@ setwd(out.loc)
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  
-  
   

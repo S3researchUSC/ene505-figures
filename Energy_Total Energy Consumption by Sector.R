@@ -74,7 +74,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, Sector]
   tlab = "Annual U.S. Total Energy Consumption by Sector (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Trillion BTU"
@@ -151,7 +151,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, Sector]
   tlab = "Monthly U.S. Total Energy Consumption by Sector (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Trillion BTU"
@@ -228,7 +228,7 @@ setwd(out.loc)
   yval = dt[, Value]
   fillval = dt[, Sector]
   tlab = "2017 U.S. Total Energy Consumption by Sector"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
   xlab = NULL
   ylab = "Trillion BTU"
@@ -262,4 +262,3 @@ setwd(out.loc)
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  

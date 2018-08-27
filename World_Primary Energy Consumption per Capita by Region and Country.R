@@ -93,7 +93,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption per Capita by Region (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "MMBTu per Person"
@@ -146,7 +146,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption per Capita by Country (1980 - 2015)"
-  sublab = "Countries with 10 Highest GDP \n Data: EIA International Energy Statistics"
+  sublab = "Countries with 10 Highest GDP \n Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "MMBTu per Person"
@@ -175,7 +175,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
           axis.text.x = element_text(size = 15, face="bold"),
           axis.text.y = element_text(size = 15, face="bold"),
           legend.text = element_text(size = 13, face = "bold")) +
-    theme(plot.margin = unit(c(1,10,1,1), "lines"))
+    theme(plot.margin = unit(c(1,8,1,1), "lines"))
   
   line_annual_2 <- ggplotGrob(line_annual)
   line_annual_2$layout$clip[line_annual_2$layout$name == "panel"] <- "off"
@@ -201,7 +201,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption per Capita by Region (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "MMBTu per Person"

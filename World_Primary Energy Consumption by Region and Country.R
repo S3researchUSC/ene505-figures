@@ -93,7 +93,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption by Region (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quad BTU"
@@ -127,12 +127,12 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
          height = 6.25, 
          dpi = 400)
   
-  dt = dt_reg
+  dt = dt_reg[ ! Region %in% c("World")]
   xval = dt[, Year]
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption by Region (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quad BTU"
@@ -181,7 +181,7 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption by Country (1980 - 2015)"
-  sublab = "Countries with 10 Highest GDP \n Data: EIA International Energy Statistics"
+  sublab = "Countries with 10 Highest GDP \n Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quad BTU"
@@ -259,12 +259,12 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   # (BOTH) ANNUAL AREA PLOT AND LINE PLOT -------------
   
   rm(dt)
-  dt = dt_all
+  dt = dt_all[ ! Region %in% c("World")]
   xval = dt[, Year]
   yval = dt[, Value]
   fillval = dt[, Region]
   tlab = "Annual Primary Energy Consumption by Region (1980 - 2015)"
-  sublab = "Data: EIA International Energy Statistics"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Quad BTU"

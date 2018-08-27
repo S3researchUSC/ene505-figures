@@ -122,7 +122,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "Annual U.S. Electricity Generation By Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
@@ -210,7 +210,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Electricity Generation By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
@@ -287,7 +287,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "2017 U.S. Electricity Generation By Source"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
@@ -340,7 +340,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "Annual U.S. Renewable Electricity Generation By Source (1949 - 2017)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
@@ -429,7 +429,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "Monthly U.S. Renewable Electricity Generation By Source (January 1973 - April 2018)"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
@@ -506,7 +506,7 @@ setwd(out.loc)
   yval = dt[, Value]/1000
   fillval = dt[, MSN]
   tlab = "2017 U.S. Renewable Electricity Generation By Source"
-  sublab = "Data: EIA Annual Energy Review"
+  sublab = "Data: U.S. Energy Information Administration"
   gval = "X"
   xlab = NULL
   ylab = "Kilowatt-hour (Billions)"
