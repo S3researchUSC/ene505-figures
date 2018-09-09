@@ -160,8 +160,8 @@ out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 50
   xval = dt[, Month]
   yval = dt[, Value]
   fillval = dt[, Type]
-  tlab = "Based on sum of dry, liquid, and NGPL production \n Monthly U.S. Natural Gas Production and Consumption (January 1973 - April 2018)"
-  sublab = "Data: U.S. Energy Information Administration"
+  tlab = "Monthly U.S. Natural Gas Production and Consumption (January 1973 - April 2018)"
+  sublab = "Based on sum of dry, liquid, and NGPL production \n Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Billion Cubic Feet"
@@ -240,7 +240,7 @@ out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 50
   line_annual_2$layout$clip[line_annual_2$layout$name == "panel"] <- "off"
   
   ggsave(line_annual_2, 
-         filename = "NG_Production and Consumption_Annual_1949-2017_LTS_v1.png", 
+         filename = "NG_Production and Consumption_Annual_1949-2017_LTS_v2.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
