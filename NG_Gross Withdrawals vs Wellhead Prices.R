@@ -9,7 +9,7 @@ price.mon     = 'NG_PRI_SUM_DCU_NUS_M.xlsx'
 price.an      = 'NG_PRI_SUM_DCU_NUS_A.xlsx'
 out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
 pal.col       = c('Gross Withdrawals' = '#c44e52',
-                  'Wellhead Prices' = '#4c72b0')
+                  'Wellhead Price' = '#4c72b0')
 
 # ---------------------------------------------------------------
 # MAIN SCRIPT ---------------------------------------------------
@@ -41,8 +41,8 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
   colnames(with_month) = c("Month", "Gross Withdrawals")
   colnames(with_annual) = c("Year", "Gross Withdrawals")
   
-  colnames(price_month) = c("Month", "Wellhead Prices")
-  colnames(price_annual) = c("Year", "Wellhead Prices")
+  colnames(price_month) = c("Month", "Wellhead Price")
+  colnames(price_annual) = c("Year", "Wellhead Price")
   
 # merge data tables ------
   
@@ -64,12 +64,12 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
   
   # MONTHLY WITHDRAWALS VS PRICE -------
   
-  tlab = "Monthly U.S. Natural Gas Gross Withdrawals and Wellhead Prices (January 1980 - December 2012)"
+  tlab = "Monthly U.S. Natural Gas Gross Withdrawals and Wellhead Price (January 1980 - December 2012)"
   sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Gross Withdrawals (Billion Cubic Feet)"
-  ylab2 = "Wellhead Prices (Dollars per Thousand Cubic Feet)"
+  ylab2 = "Wellhead Price (Dollars per Thousand Cubic Feet)"
   leglab = ""
   plot.cols = pal.col
   
@@ -77,7 +77,7 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
   line_monthly = ggplot() + 
     geom_line(data = dt_month[type == "Gross Withdrawals"], size = 0.7, 
               aes(x = Month, y = value/1000, color = type, linetype = type)) +
-    geom_line(data = dt_month[type == "Wellhead Prices"], size = 0.7, 
+    geom_line(data = dt_month[type == "Wellhead Price"], size = 0.7, 
               aes(x = Month, y = value*400, color = type, linetype = type)) +
     scale_color_manual(values = plot.cols) +
     # scale_linetype_manual(values = rig.lines) +
@@ -104,7 +104,7 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(line_monthly, 
-         filename = "NG_Gross Withdrawals and Wellhead Prices_Monthly_Jan1980-Dec2012_LTS.png", 
+         filename = "NG_Gross Withdrawals and Wellhead Price_Monthly_Jan1980-Dec2012_LTS.png", 
          width = 12.75, 
          height = 7, 
          dpi = 400)
@@ -112,12 +112,12 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
 
   # MONTHLY WITHDRAWALS VS PRICE -------
   
-  tlab = "Annual U.S. Natural Gas Gross Withdrawals and Wellhead Prices (1939 - 2012)"
+  tlab = "Annual U.S. Natural Gas Gross Withdrawals and Wellhead Price (1939 - 2012)"
   sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
   ylab = "Gross Withdrawals (Billion Cubic Feet)"
-  ylab2 = "Wellhead Prices (Dollars per Thousand Cubic Feet)"
+  ylab2 = "Wellhead Price (Dollars per Thousand Cubic Feet)"
   leglab = ""
   plot.cols = pal.col
   
@@ -125,7 +125,7 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
   line_annual = ggplot() + 
     geom_line(data = dt_annual[type == "Gross Withdrawals"], size = 0.7, 
               aes(x = Year, y = value/1000, color = type, linetype = type)) +
-    geom_line(data = dt_annual[type == "Wellhead Prices"], size = 0.7, 
+    geom_line(data = dt_annual[type == "Wellhead Price"], size = 0.7, 
               aes(x = Year, y = value*5000, color = type, linetype = type)) +
     scale_color_manual(values = plot.cols) +
     # scale_linetype_manual(values = rig.lines) +
@@ -151,7 +151,7 @@ pal.col       = c('Gross Withdrawals' = '#c44e52',
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(line_annual, 
-         filename = "NG_Gross Withdrawals and Wellhead Prices_Annual_1936-2012_LTS.png", 
+         filename = "NG_Gross Withdrawals and Wellhead Price_Annual_1936-2012_LTS.png", 
          width = 12.75, 
          height = 7, 
          dpi = 400)
