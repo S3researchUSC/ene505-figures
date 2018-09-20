@@ -118,9 +118,9 @@ pal.lin       = c('Dry Production' = 1,
          dpi = 400)
 
 
-# MONTHLY WITHDRAWALS VS PRICE -------
+# ANNUAL WITHDRAWALS VS PRICE -------
 
-  tlab = "Annual U.S. Natural Gas Gross Withdrawals and Wellhead Prices (1984 - 2017)"
+  tlab = "Annual U.S. Natural Gas Dry Production and Citygate Price (1984 - 2017)"
   sublab = "Data: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
