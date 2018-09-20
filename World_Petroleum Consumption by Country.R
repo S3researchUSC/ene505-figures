@@ -139,13 +139,13 @@ cntry.cols    = c("#0173B2", "#DE8F05", "#029E73", "#D55E00", "#CC78BC", "#CA916
   
   dt = consdat[ Country %in% gdpdat_rec[, Country][1:10]]
   xval = dt[, Year]
-  yval = dt[, Value]
+  yval = dt[, Value]/1000
   fillval = dt[, Country]
   tlab = "Annual Petroleum Consumption by Country (1980 - 2015)"
   sublab = "Countries with 10 Highest GDP in 2015 \nData: U.S. Energy Information Administration"
   gval = "Y"
   xlab = NULL
-  ylab = "Thousand Barrels per Day"
+  ylab = "Million Barrels per Day"
   leglab = ""
   leg.ord = levels(factor(fillval))
   plot.cols = cntry.cols
