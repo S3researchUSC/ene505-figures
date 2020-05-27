@@ -2,9 +2,9 @@
 # INPUT DATA ----------------------------------------------------
 # ---------------------------------------------------------------
 
-data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
+data.loc      = '/data_2017-2018' # location of data file(s)
 data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx' # data file to be used
-out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
+out.loc       = '/figures' # location of where to save figures
 source.cols   = c("Geothermal" = "#6a3d9a",
                   "Solar" = "#ff7f00",
                   "Waste" = "#858585",
@@ -33,10 +33,19 @@ source.cols   = c("Geothermal" = "#6a3d9a",
   library(plyr)
   library(directlabels)
   library(grid)
+  library(rstudioapi) 
 
+# get file location as working directory -----
+
+  current.fil = getActiveDocumentContext()$path 
+  current.loc = dirname(current.fil)
+  setwd(dirname(current.fil))
+
+# set working directory as data file location ------
+  
+  setwd(paste0(current.loc, data.loc))
+  
 # load data ------
-
-  setwd(data.loc)
 
   dt_month = as.data.table(read.xlsx(data.file, sheet = "Monthly Data", startRow = 11, detectDates = T))
   dt_month = dt_month[2:nrow(dt_month)]
@@ -100,7 +109,7 @@ source.cols   = c("Geothermal" = "#6a3d9a",
 # FIGURES -------------------------------------------------------
 # ---------------------------------------------------------------
 
-setwd(out.loc) 
+  setwd(paste0(current.loc, out.loc))
   
 # ANNUAL AREA PLOT AND LINE PLOT -------------
   
@@ -140,11 +149,11 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
@@ -170,17 +179,16 @@ setwd(out.loc)
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,8,1,1), "lines"))
   
+  # this is to add labels of fuel type on the outside of the plot
   line_annual_2 <- ggplotGrob(line_annual)
   line_annual_2$layout$clip[line_annual_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
   
   ggsave(line_annual_2, 
          filename = "Energy_Primary Energy Consumption by Source_Annual_1949-2017_LTS.png", 
@@ -227,11 +235,11 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
@@ -257,18 +265,16 @@ setwd(out.loc)
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,8,1,1), "lines"))
   
   line_month_2 <- ggplotGrob(line_month)
   line_month_2$layout$clip[line_month_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
-  
+
   ggsave(line_month_2, 
          filename = "Energy_Primary Energy Consumption by Source_Monthly_Jan1973-Apr2018_LTS.png", 
          width = 11.75, 
@@ -307,11 +313,11 @@ setwd(out.loc)
       scale_fill_manual(breaks = leg.ord, values = plot.cols) +
       theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
             plot.subtitle = element_text(size = 15, hjust = 0.5),
-            axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-            axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-            axis.text.x = element_text(size = 15, face="bold"),
-            axis.text.y = element_text(size = 15, face="bold"),
-            legend.text = element_text(size = 13, face = "bold")) +
+            axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+            axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+            axis.text.x = element_text(size = 18, face="bold"),
+            axis.text.y = element_text(size = 18, face="bold"),
+            legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
 
   ggsave(bar_annual, 
@@ -350,11 +356,11 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_annual, 
@@ -395,11 +401,11 @@ setwd(out.loc)
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,9,1,1), "lines"))
   
   
@@ -448,11 +454,11 @@ setwd(out.loc)
     scale_y_continuous(expand = c(0.01,0)) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,1,1,1), "lines"))
   
   ggsave(area_month, 
@@ -493,11 +499,11 @@ setwd(out.loc)
     guides(color = FALSE) +
     theme(plot.title = element_text(size = 21, hjust = 0.5, face = "bold"),
           plot.subtitle = element_text(size = 15, hjust = 0.5),
-          axis.title.x = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.title.y = element_text(size = 17, hjust = 0.5, face = "bold"),
-          axis.text.x = element_text(size = 15, face="bold"),
-          axis.text.y = element_text(size = 15, face="bold"),
-          legend.text = element_text(size = 13, face = "bold")) +
+          axis.title.x = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.title.y = element_text(size = 24, hjust = 0.5, face = "bold"),
+          axis.text.x = element_text(size = 18, face="bold"),
+          axis.text.y = element_text(size = 18, face="bold"),
+          legend.text = element_text(size = 14, face = "bold")) +
     theme(plot.margin = unit(c(1,10,1,1), "lines"))
   
   line_month_2 <- ggplotGrob(line_month)

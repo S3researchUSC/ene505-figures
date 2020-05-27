@@ -2,9 +2,9 @@
 # INPUT DATA ----------------------------------------------------
 # ---------------------------------------------------------------
 
-data.loc      = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/data_2017-2018' # location of data file(s)
+data.loc      = '/data_2017-2018' # location of data file(s)
 data.file     = 'Table_1.2_Primary_Energy_Production_by_Source.xlsx' # data file to be used
-out.loc       = '/Users/MEAS/Google Drive/ta-materials/ENE505 - Fall 2015/ENE 505 Charts/20180823' # location of where to save figures
+out.loc       = '/figures' # location of where to save figures
 source.cols   = c("Geothermal" = "#6a3d9a",
                   "Solar" = "#ff7f00",
                   "Waste" = "#858585",
@@ -34,10 +34,19 @@ source.cols   = c("Geothermal" = "#6a3d9a",
   library(plyr)
   library(directlabels)
   library(grid)
+  library(rstudioapi) 
+
+# get file location as working directory -----
+
+  current.fil = getActiveDocumentContext()$path 
+  current.loc = dirname(current.fil)
+  setwd(dirname(current.fil))
+
+# set working directory as data file location ------
+
+  setwd(paste0(current.loc, data.loc))
 
 # load data ------
-
-  setwd(data.loc)
 
   dt_month = as.data.table(read.xlsx(data.file, sheet = "Monthly Data", startRow = 11, detectDates = T))
   dt_month = dt_month[2:nrow(dt_month)]
@@ -103,7 +112,7 @@ source.cols   = c("Geothermal" = "#6a3d9a",
 # FIGURES -------------------------------------------------------
 # ---------------------------------------------------------------
 
-setwd(out.loc) 
+  setwd(paste0(current.loc, out.loc))
   
 # ANNUAL AREA PLOT AND LINE PLOT -------------
   
@@ -164,8 +173,6 @@ setwd(out.loc)
          height = 6.25, 
          dpi = 400)
   
-  # leg.ord = levels(with(dt[Month == max(dt[,Month])], reorder(MSN, -Value)))
-  
   line_annual = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
     geom_line(stat = "identity", size = 0.7) +
     labs(title = tlab,
@@ -191,9 +198,7 @@ setwd(out.loc)
   
   line_annual_2 <- ggplotGrob(line_annual)
   line_annual_2$layout$clip[line_annual_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
-  
+
   ggsave(line_annual_2, 
          filename = "Energy_Primary Energy Production by Source_Annual_1949-2017_LTS.png", 
          width = 11.75, 
@@ -252,8 +257,6 @@ setwd(out.loc)
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  
-  # leg.ord = levels(with(dt[Month == max(dt[,Month])], reorder(MSN, -Value)))
 
   line_month = ggplot(dt, aes(x = xval, y = yval, color = fillval)) + 
     geom_line(stat = "identity", size = 0.7) +
@@ -280,9 +283,7 @@ setwd(out.loc)
   
   line_month_2 <- ggplotGrob(line_month)
   line_month_2$layout$clip[line_month_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
-  
+
   ggsave(line_month_2, 
          filename = "Energy_Primary Energy Production by Source_Monthly_Jan1973-Apr2018_LTS.png", 
          width = 11.75, 
@@ -419,16 +420,12 @@ setwd(out.loc)
   
   line_annual_2 <- ggplotGrob(line_annual)
   line_annual_2$layout$clip[line_annual_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
-  
+
   ggsave(line_annual_2, 
          filename = "Energy_Primary Energy Production by Source_Annual_1949-2017_Totals_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  
-  
   
   
   
@@ -516,14 +513,10 @@ setwd(out.loc)
   
   line_month_2 <- ggplotGrob(line_month)
   line_month_2$layout$clip[line_month_2$layout$name == "panel"] <- "off"
-  # grid.draw(gt1)
-  
-  
+
   ggsave(line_month_2, 
          filename = "Energy_Primary Energy Production by Source_Monthly_Jan1973-Apr2018_Totals_LTS.png", 
          width = 11.75, 
          height = 6.25, 
          dpi = 400)
-  
-  
   
