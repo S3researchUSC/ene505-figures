@@ -33,9 +33,6 @@ source.cols   = c("Biomass" = "#8c613c",
   library(directlabels)
   library(grid)
   library(rstudioapi) 
-  library(extrafont)
-  # font_import() # run these next two lines if you want to save images as pdf (since i use roboto condensed)
-  # loadfonts()
 
 # get file location as working directory -----
 
