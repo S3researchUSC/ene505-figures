@@ -1,4 +1,4 @@
-theme_line = theme_ipsum_rc(base_family = 'Secca Soft',
+theme_line = theme_ipsum(base_family = 'Secca Soft',
                             grid = 'Y', 
                             plot_title_size = 20, 
                             subtitle_size = 16,
@@ -15,7 +15,7 @@ theme_line = theme_ipsum_rc(base_family = 'Secca Soft',
         legend.text = element_text(size = 16),
         plot.margin = unit(c(1,8,1,1), "lines"))
 
-theme_area = theme_ipsum_rc(base_family = 'Secca Soft',
+theme_area = theme_ipsum(base_family = 'Secca Soft',
                             grid = 'Y', 
                             plot_title_size = 20, 
                             subtitle_size = 16,
