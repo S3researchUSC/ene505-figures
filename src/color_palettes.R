@@ -1,0 +1,11 @@
+pal_fuel   = c("Geothermal" = "#6a3d9a",
+               "Solar" = "#ff7f00",
+               "Waste" = "#858585",
+               "Wood" = "#8c613c",
+               "Wind" = "#1f78b4",
+               "Hydroelectric" = "#a6cee3",
+               "Nuclear" = "#55a868",
+               "Petroleum" = "#fdbf6f",
+               "Coal" = "#12253d",
+               "Natural Gas" = "#c44e52",
+               "Other Gases" = "#fb9a99")
