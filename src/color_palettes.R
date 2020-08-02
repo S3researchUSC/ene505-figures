@@ -12,3 +12,9 @@ pal_fuel   = c("Geothermal" = "#6a3d9a",
                "Natural Gas (Dry)" = "#c44e52",
                "Natural Gas (Liquid)" = "#fb9a99",
                "Other Gases" = "#fb9a99")
+
+pal_sector   = c("Residential" = "#fd6968", 
+                 "Commercial" = "#383e56", 
+                 "Industrial" = "#9ecffd", 
+                 "Transportation" = "#fbd55b", 
+                 "Electric Power" = "#48be9d")
