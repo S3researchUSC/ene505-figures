@@ -77,7 +77,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
   
     fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = sector, color = sector)) + 
       geom_line(size = 0.9) +
-      labs(title = 'Annual U.S. energy consumption by sector (1949-2019)',
+      labs(title = 'Annual U.S. primary energy consumption by sector (1949-2019)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -87,7 +87,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
       theme_line +
-      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.2, fontfamily = 'Secca Soft', fontface = 'bold')) 
+      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1, fontfamily = 'Secca Soft', fontface = 'bold')) 
   
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
