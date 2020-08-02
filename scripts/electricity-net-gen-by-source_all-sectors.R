@@ -359,7 +359,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
   # bar, 2019 ---------
     
-    fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = MSN, y = value/1000, group = MSN, fill = MSN)) + 
+    fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
       geom_bar(stat = "identity") +
       labs(title = 'Annual U.S. Electricity Generation of All Sectors By Source (2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
@@ -375,7 +375,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       theme_bar_flipped + 
       geom_text(data = dt_annual[year == max(year)],
                 aes(x = MSN, y = value/1000 + 75,
-                    label = paste0(signif(prop*100,0), '%'), color = MSN), hjust = 0.5,
+                    label = paste0(signif(prop*100,2), '%'), color = MSN), hjust = 0.5,
                 size = 6, fontface = 'bold',
                 family = 'Secca Soft') +
       coord_flip()
