@@ -434,8 +434,8 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
                 outfile = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'))
     
     # save as png:
-    # ggsave(fig_line_annual, 
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts.png'), 
+    # ggsave(fig_line_month, 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.png'), 
     #        width = 11.75, 
     #        height = 6.25, 
     #        dpi = 600)
