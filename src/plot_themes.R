@@ -33,3 +33,39 @@ theme_area = theme_ipsum(base_family = 'Secca Soft',
         legend.title = element_text(size = 18), 
         plot.margin = unit(c(1,1,1,1), "lines"))
 
+theme_area_labeled = theme_ipsum(base_family = 'Secca Soft',
+                         grid = 'Y', 
+                         plot_title_size = 20, 
+                         subtitle_size = 16,
+                         axis_title_just = "center",
+                         axis_title_size = 18, 
+                         axis_text_size = 16)   +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5),
+        axis.text.x = element_text(margin = margin(t = .3, unit = "cm")),
+        axis.line.x = element_line(color = 'black'),
+        axis.ticks.x = element_line(color = 'black'),
+        axis.ticks.length.x = unit(0.25, "cm"),
+        axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size = 18), 
+        plot.margin = unit(c(1,8,1,1), "lines"))
+
+theme_bar_flipped = theme_ipsum(base_family = 'Secca Soft',
+                                 grid = 'X', 
+                                 plot_title_size = 20, 
+                                 subtitle_size = 16,
+                                 axis_title_just = "center",
+                                 axis_title_size = 18, 
+                                 axis_text_size = 16)   +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5),
+        axis.text.x = element_text(margin = margin(t = .3, unit = "cm")),
+        axis.line.x = element_line(color = 'black'),
+        axis.ticks.x = element_line(color = 'black'),
+        axis.ticks.length.x = unit(0.25, "cm"),
+        axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
+        legend.text = element_text(size = 16),
+        legend.title = element_text(size = 18), 
+        plot.margin = unit(c(1,8,1,1), "lines"))
+
