@@ -146,12 +146,13 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
-           y = 'Billion Kilowatthours') +
-      guides(color = FALSE) +
+           y = NULL) +
+      guides(color = 'none') +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
       geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
@@ -182,12 +183,13 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_abs = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours',
+           y = NULL ,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_fill_manual(values = pal_fuel) + 
       theme_area
     
@@ -211,12 +213,13 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_prop = ggplot(dt_annual, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Share of electricity generation',
+           caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
-           y = 'Share of electricity generation',
+           y = NULL,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_percent(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
       scale_fill_manual(values = pal_fuel) + 
       theme_area
     
@@ -240,12 +243,13 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_annual_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours') +
-      guides(color = FALSE) +
+           y = NULL) +
+      guides(color = 'none') +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
       geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
@@ -282,16 +286,17 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_abs_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours',
+           y = NULL,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) +
       scale_fill_manual(values = pal_fuel) + 
-      guides(fill = FALSE,
-             color = FALSE) +
+      guides(fill = 'none',
+             color = 'none') +
       theme_area_labeled + 
       geom_text(data = labs_area_re,
                 aes(x = Inf, y = position,
@@ -328,16 +333,17 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Share of renewable electricity generation', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Share of renewable electricity generation',
+           y = NULL,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_percent(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) +
       scale_fill_manual(values = pal_fuel) + 
-      guides(fill = FALSE,
-             color = FALSE) +
+      guides(fill = 'none',
+             color = 'none') +
       theme_area_labeled + 
       geom_text(data = labs_area_re_prop,
                 aes(x = Inf, y = position,
@@ -368,16 +374,16 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
       geom_bar(stat = "identity") +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours',
+           y = NULL,
            fill = NULL) +
-      # scale_x_continuous() +
-      scale_y_comma(expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
       scale_color_manual(values = pal_fuel) +
       scale_fill_manual(values = pal_fuel) + 
-      guides(fill = FALSE,
-             color = FALSE) +
+      guides(fill = 'none',
+             color = 'none') +
       theme_bar_flipped + 
       geom_text(data = dt_annual[year == max(year)],
                 aes(x = MSN, y = value/1000 + 75,
@@ -406,10 +412,11 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
       labs(title = 'Monthly U.S. electricity generation by energy source, all sectors (Jan 1973-April 2020)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours',
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours') +
-      guides(color = FALSE) +
+           y = NULL) +
+      guides(color = 'none') +
       scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,200,50), limits = c(0,210), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
@@ -445,10 +452,11 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
       labs(title = 'Monthly U.S. electricity generation from renewable energy sources, all sectors (Jan 1973-April 2020)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Billion Kilowatthours') +
-      guides(color = FALSE) +
+           y = NULL) +
+      guides(color = 'none') +
       scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,35,5), limits = c(0,35), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 

@@ -78,12 +78,13 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = sector, color = sector)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. energy consumption by sector (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Quadrillion BTU') +
-      guides(color = FALSE) +
+           y = NULL) +
+      guides(color = 'none') +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
       theme_line +
       geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.2, fontfamily = 'Secca Soft', fontface = 'bold')) 
@@ -117,16 +118,17 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_area_annual_abs = ggplot(dt_annual, aes(x = year, y = value/1000, group = sector, fill = sector)) + 
       geom_area() +
       labs(title = 'Annual U.S. primary energy consumption by sector (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Quadrillion BTU',
+           y = NULL,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_fill_manual(values = pal_sector) + 
       scale_color_manual(values = pal_sector) + 
-      guides(fill = FALSE,
-             color = FALSE) +
+      guides(fill = 'none',
+             color = 'none') +
       theme_area_labeled +
       geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 4.7, fontface = 'bold', family = 'Secca Soft') 
     
@@ -159,16 +161,17 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_area_annual_prop = ggplot(dt_annual, aes(x = year, y = prop, group = sector, fill = sector)) + 
       geom_area() +
       labs(title = 'Annual U.S. primary energy consumption by sector (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
+           subtitle = 'Share of primary energy consumption',
+           caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = 'Share of primary energy consumption',
+           y = NULL,
            fill = NULL) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_percent(expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) +
       scale_fill_manual(values = pal_sector) + 
-      guides(fill = FALSE,
-             color = FALSE) +
+      guides(fill = 'none',
+             color = 'none') +
       theme_area_labeled + 
       geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 4.7, fontface = 'bold', family = 'Secca Soft')  
     
@@ -189,4 +192,3 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     #        width = 12,
     #        height = 6.25,
     #        dpi = 600)
-    
