@@ -150,7 +150,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     #        height = 6.25, 
     #        dpi = 600)
   
-  # renewable, area, annual (proportion) -------
+  # area, annual (proportion) -------
     
     # create dataset of where to put the labels on area chart
     labs_area_prop = dt_annual[year == max(year)][order(factor(sector, levels = rev(c('Residential', 'Commercial', 'Industrial', 'Transportation', 'Electric Power'))))]
@@ -161,7 +161,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_area_annual_prop = ggplot(dt_annual, aes(x = year, y = prop, group = sector, fill = sector)) + 
       geom_area() +
       labs(title = 'Annual U.S. primary energy consumption by sector (1949-2019)',
-           subtitle = 'Share of primary energy consumption',
+           subtitle = 'Quadrillion BTU',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
@@ -192,3 +192,40 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
+    
+  # bar, 2019 ---------
+    
+    fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(sector, value), y = value/1000, group = sector, fill = sector)) + 
+      geom_bar(stat = "identity") +
+      labs(title = 'Annual U.S. primary energy consumption by sector (2019)',
+           subtitle = 'Billion Kilowatthours',
+           caption = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL, 
+           fill = NULL) +
+      # scale_x_continuous() +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,35,10), limits = c(0,40)) +
+      scale_color_manual(values = pal_sector) +
+      scale_fill_manual(values = pal_sector) + 
+      guides(fill = 'none',
+             color ='none') +
+      theme_bar_flipped + 
+      geom_text(data = dt_annual[year == max(year)], aes(x = sector, y = value/1000 + 1, label = paste0(signif(prop*100,2), '%'), color = sector), hjust = 0.5,
+                size = 6, fontface = 'bold', family = 'Secca Soft') +
+      coord_flip()
+    
+    ggsave(fig_bar_2019, 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_2019_bar.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-sector_2019_bar.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-sector_2019_bar.pdf'))
+    
+    # save as png: 
+    # ggsave(fig_bar_2019,
+    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_2019_bar.png'),
+    #        width = 11.5,
+    #        height = 6.25,
+    #        dpi = 600)
+    
