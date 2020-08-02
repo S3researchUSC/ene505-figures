@@ -1,10 +1,10 @@
 theme_line = theme_ipsum(base_family = 'Secca Soft',
                             grid = 'Y', 
-                            plot_title_size = 20, 
-                            subtitle_size = 16,
+                            plot_title_size = 18, 
+                            subtitle_size = 14,
                             axis_title_just = "center",
-                            axis_title_size = 18, 
-                            axis_text_size = 16)  +
+                            axis_title_size = 16, 
+                            axis_text_size = 14)  +
   theme(plot.title = element_text(hjust = 0, face = "bold"),
         plot.subtitle = element_text(hjust = 0),
         axis.text.x = element_text(margin = margin(t = .3, unit = "cm")),
@@ -12,7 +12,7 @@ theme_line = theme_ipsum(base_family = 'Secca Soft',
         axis.ticks.x = element_line(color = 'black'),
         axis.ticks.length.x = unit(0.25, "cm"),
         axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
-        legend.text = element_text(size = 16),
+        legend.text = element_text(size = 14),
         plot.margin = unit(c(1,8,1,1), "lines"))
 
 theme_area = theme_ipsum(base_family = 'Secca Soft',

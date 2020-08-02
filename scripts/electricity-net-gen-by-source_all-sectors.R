@@ -410,7 +410,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            x = NULL,
            y = 'Billion Kilowatthours') +
       guides(color = FALSE) +
-      scale_x_date(breaks = seq(ymd('1973-01-01'), ymd('2020-04-01'), by = '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
       scale_y_continuous(breaks = seq(0,200,50), limits = c(0,210), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
@@ -440,4 +440,38 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     #        height = 6.25, 
     #        dpi = 600)
     
+  # rewnewable, line, monthly -------
     
+    fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. electricity generation from renewable energy sources, all sectors (Jan 1973-April 2020)',
+           subtitle = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = 'Billion Kilowatthours') +
+      guides(color = FALSE) +
+      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,35,5), limits = c(0,35), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
+                                              cex = 1,
+                                              fontfamily = 'Secca Soft',
+                                              fontface = 'bold')) +
+      theme_line
+    
+    fig_line_month_re = ggplotGrob(fig_line_month_re)
+    fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month_re, 
+           filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.pdf'), 
+           width = 11.75, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month_re, 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.png'), 
+    #        width = 11.75, 
+    #        height = 6.25, 
+    #        dpi = 600)

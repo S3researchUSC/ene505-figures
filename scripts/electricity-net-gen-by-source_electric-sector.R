@@ -143,20 +143,20 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
   # line, annual -------
   
     fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
-      geom_line(size = 0.9) +
-      labs(title = 'U.S. electricity generation by energy source, electric power sector (1949-2019)',
-           subtitle = 'Data: U.S. Energy Information Administration', 
-           x = NULL,
-           y = 'Billion Kilowatthours') +
-      guides(color = FALSE) +
-      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0.01,0)) +
-      scale_color_manual(values = pal_fuel) + 
-      theme_line +
-      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
-                                                 cex = 1,
-                                                 fontfamily = 'Secca Soft',
-                                                 fontface = 'bold')) 
+    geom_line(size = 0.9) +
+    labs(title = 'U.S. electricity generation by energy source, electric power sector (1949-2019)',
+         subtitle = 'Data: U.S. Energy Information Administration', 
+         x = NULL,
+         y = 'Billion Kilowatthours') +
+    guides(color = FALSE) +
+    scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+    scale_y_comma(expand = c(0.01,0)) +
+    scale_color_manual(values = pal_fuel) +
+    geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
+                                            cex = 1,
+                                            fontfamily = 'Secca Soft',
+                                            fontface = 'bold')) + 
+    theme_line
     
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
@@ -246,12 +246,11 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
       scale_y_comma(expand = c(0.01,0)) +
       scale_color_manual(values = pal_fuel) + 
-      theme_line +
       geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
                                               cex = 1,
                                               fontfamily = 'Secca Soft',
                                               fontface = 'bold')) +
-      theme(plot.title = element_text(hjust = 0, face = 'bold', size = 18))
+      theme_line
     
     fig_line_annual_re = ggplotGrob(fig_line_annual_re)
     fig_line_annual_re$layout$clip[fig_line_annual_re$layout$name == "panel"] = "off"
@@ -292,13 +291,12 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
       scale_fill_manual(values = pal_fuel) + 
       guides(fill = FALSE,
              color = FALSE) +
-      theme_area_labeled + 
       geom_text(data = labs_area_re,
                 aes(x = Inf, y = position,
                     label = paste0(' ', MSN), color = MSN), hjust = 0, 
                 size = 4.7, fontface = 'bold',
                 family = 'Secca Soft') +
-      theme(plot.title = element_text(hjust = 0, face = 'bold', size = 18))
+      theme_area_labeled
     
     fig_area_annual_abs_re = ggplotGrob(fig_area_annual_abs_re)
     fig_area_annual_abs_re$layout$clip[fig_area_annual_abs_re$layout$name == "panel"] = "off"
@@ -421,8 +419,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
                                               fontface = 'bold')) +
       geom_segment(x = ymd('2015-04-01'), xend = ymd('2015-04-01'), y = 0, yend = 200, color = 'black', linetype = 2)  +
       annotate('text', x = ymd('2015-04-01'), y = 205, label = 'Natural gas surpassed coal in April 2015', vjust = 0,
-               color = '#404040', size = 6, family = 'Secca Soft' )  +
-      theme(plot.title = element_text(hjust = 0, face = 'bold', size = 18))
+               color = '#404040', size = 6, family = 'Secca Soft' )
     
     fig_line_month = ggplotGrob(fig_line_month)
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
@@ -441,4 +438,41 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     #        width = 11.75, 
     #        height = 6.25, 
     #        dpi = 600)
+    
+  # rewnewable, line, monthly -------
+    
+    fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. electricity generation from renewable energy sources, electric sector (Jan 1973-April 2020)',
+           subtitle = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = 'Billion Kilowatthours') +
+      guides(color = FALSE) +
+      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,35,5), limits = c(0,35), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
+                                              cex = 1,
+                                              fontfamily = 'Secca Soft',
+                                              fontface = 'bold')) +
+      theme_line
+    
+    fig_line_month_re = ggplotGrob(fig_line_month_re)
+    fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month_re, 
+           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'), 
+           width = 11.75, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month_re, 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.png'), 
+    #        width = 11.75, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
     
