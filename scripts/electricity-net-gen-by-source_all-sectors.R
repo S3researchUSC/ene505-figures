@@ -164,7 +164,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_line_annual, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts.pdf'),
@@ -173,7 +173,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png:
     # ggsave(fig_line_annual, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -193,7 +193,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_area_annual_abs, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_absolute.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_absolute.pdf'),
@@ -202,7 +202,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png: 
     # ggsave(fig_area_annual_abs, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_absolute.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -222,7 +222,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_area_annual_prop, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_proportion.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_proportion.pdf'),
@@ -231,7 +231,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png:
     # ggsave(fig_area_annual_prop, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_ats_proportion.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -258,7 +258,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_line_annual_re, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_lts.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_lts.pdf'),
@@ -267,7 +267,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png:
     # ggsave(fig_line_annual_re, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_lts.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -304,7 +304,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_area_annual_abs_re, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_absolute.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_absolute.pdf'),
@@ -313,7 +313,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png: 
     # ggsave(fig_area_annual_abs_re,
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_absolute.png'),
-    #        width = 10,
+    #        width = 10.5,
     #        height = 6.25,
     #        dpi = 600)
   
@@ -350,7 +350,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
 
     ggsave(fig_area_annual_prop_re, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_proportion.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_proportion.pdf'),
@@ -359,7 +359,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png: 
     # ggsave(fig_area_annual_prop_re,
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_renewable_ats_proportion.png'),
-    #        width = 10,
+    #        width = 10.5,
     #        height = 6.25,
     #        dpi = 600)
     
@@ -388,7 +388,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_bar_2019, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_2019_bar.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_2019_bar.pdf'),
@@ -397,7 +397,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png: 
     # ggsave(fig_bar_2019,
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_2019_bar.png'),
-    #        width = 10,
+    #        width = 10.5,
     #        height = 6.25,
     #        dpi = 600)
     
@@ -427,7 +427,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_line_month, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'),
@@ -436,7 +436,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png:
     # ggsave(fig_line_month, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
     
@@ -463,7 +463,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     ggsave(fig_line_month_re, 
            filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.pdf'), 
-           width = 10, 
+           width = 10.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.pdf'),
@@ -472,6 +472,6 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     # save as png:
     # ggsave(fig_line_month_re, 
     #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_renewable_lts.png'), 
-    #        width = 10, 
+    #        width = 10.5, 
     #        height = 6.25, 
     #        dpi = 600)
