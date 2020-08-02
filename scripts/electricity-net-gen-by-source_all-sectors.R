@@ -401,7 +401,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     #        height = 6.25,
     #        dpi = 600)
     
-  # line, annual -------
+  # line, monthly -------
     
     fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
