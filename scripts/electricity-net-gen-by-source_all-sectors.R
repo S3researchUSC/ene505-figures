@@ -107,10 +107,15 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   dt_month = dt_month[!is.na(value)]
   dt_annual = dt_annual[!is.na(value)]
   
+# remove totals -----
+  
+  dt_month = dt_month[! MSN == 'Total']
+  dt_annual = dt_annual[! MSN == 'Total']
+  
 # keep renewables only ------
   
-  dt_annual_re = dt_annual[! MSN %in% c("Total", "Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
-  dt_month_re = dt_month[! MSN %in% c("Total", "Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
+  dt_annual_re = dt_annual[! MSN %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
+  dt_month_re = dt_month[! MSN %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
   
 # calculate proportion (or percentage) contributed by each fuel type, for each month, for each year -----
   
@@ -119,27 +124,28 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   dt_month_re[, prop := value/sum(value), by = c("year", "month_name")]
   dt_annual_re[, prop := value/sum(value), by = c("year")]
   
+  
 #  ------------------------------------------------------- FIGURES -------------------------------------------------------
 
   # reorder factor levels for plots -----
   
-    dt_annual = dt_annual[ ! MSN %in% c("Total")][, MSN := factor(MSN, levels = c("Wind",
-                                                                                  "Solar",
-                                                                                  "Geothermal",
-                                                                                  "Waste",
-                                                                                  "Wood",
-                                                                                  "Hydroelectric",
-                                                                                  "Nuclear",
-                                                                                  "Other Gases",
-                                                                                  "Natural Gas",
-                                                                                  "Petroleum",
-                                                                                  "Coal"))]
+    dt_annual = dt_annual[, MSN := factor(MSN, levels = c("Wind",
+                                                          "Solar",
+                                                          "Geothermal",
+                                                          "Waste",
+                                                          "Wood",
+                                                          "Hydroelectric",
+                                                          "Nuclear",
+                                                          "Other Gases",
+                                                          "Natural Gas",
+                                                          "Petroleum",
+                                                          "Coal"))]
   
   # line, annual -------
   
     fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
-      labs(title = 'U.S. electricity generation by energy source, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Billion Kilowatthours') +
@@ -175,7 +181,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   
     fig_area_annual_abs = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation by energy source, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Billion Kilowatthours',
@@ -204,7 +210,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   
     fig_area_annual_prop = ggplot(dt_annual, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation by energy source, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Share of electricity generation',
@@ -233,7 +239,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   
     fig_line_annual_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
-      labs(title = 'U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Billion Kilowatthours') +
@@ -275,7 +281,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
 
     fig_area_annual_abs_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Billion Kilowatthours',
@@ -321,7 +327,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
+      labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Share of renewable electricity generation',
@@ -361,7 +367,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
       geom_bar(stat = "identity") +
-      labs(title = 'U.S. electricity generation by energy source, all sectors (2019)',
+      labs(title = 'Annual U.S. electricity generation by energy source, all sectors (2019)',
            subtitle = 'Data: U.S. Energy Information Administration', 
            x = NULL,
            y = 'Billion Kilowatthours',
@@ -394,4 +400,44 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     #        width = 11.75,
     #        height = 6.25,
     #        dpi = 600)
+    
+  # line, annual -------
+    
+    fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. electricity generation by energy source, all sectors (Jan 1973-April 2020)',
+           subtitle = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = 'Billion Kilowatthours') +
+      guides(color = FALSE) +
+      scale_x_date(breaks = seq(ymd('1973-01-01'), ymd('2020-04-01'), by = '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,200,50), limits = c(0,210), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      theme_line +
+      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
+                                              cex = 1,
+                                              fontfamily = 'Secca Soft',
+                                              fontface = 'bold')) +
+      geom_segment(x = ymd('2015-04-01'), xend = ymd('2015-04-01'), y = 0, yend = 200, color = 'black', linetype = 2)  +
+      annotate('text', x = ymd('2015-04-01'), y = 205, label = 'Natural gas surpassed coal in April 2015', vjust = 0,
+               color = '#404040', size = 6, family = 'Secca Soft' )
+    
+    fig_line_month = ggplotGrob(fig_line_month)
+    fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month, 
+           filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'), 
+           width = 11.75, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_annual, 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts.png'), 
+    #        width = 11.75, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
     
