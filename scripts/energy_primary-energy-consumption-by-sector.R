@@ -210,7 +210,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       guides(fill = 'none',
              color ='none') +
       theme_bar_flipped + 
-      geom_text(data = dt_annual[year == max(year)], aes(x = sector, y = value/1000 + 1, label = paste0(signif(prop*100,2), '%'), color = sector), hjust = 0.5,
+      geom_text(data = dt_annual[year == max(year)], aes(x = sector, y = value/1000 + 1.1, label = paste0(signif(prop*100,2), '%'), color = sector), hjust = 0.5,
                 size = 6, fontface = 'bold', family = 'Secca Soft') +
       coord_flip()
     
