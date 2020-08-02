@@ -268,7 +268,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   # renewable, area, annual (absolute) -------
   
     # create dataset of where to put the labels on area chart
-    labs_area_re = dt_annual_re[year == 2019][order(factor(MSN, levels = rev(c("Wind", "Solar", "Geothermal", "Waste", "Wood", "Hydroelectric"))))]
+    labs_area_re = dt_annual_re[year == 2019][order(factor(MSN, levels = (c("Wind", "Solar", "Geothermal", "Waste", "Wood", "Hydroelectric"))))]
     labs_area_re[, cum_sum := cumsum(value/1000)] 
     labs_area_re[, difference := diff(c(0,cum_sum))/2]
     labs_area_re[, position := cum_sum - difference]
