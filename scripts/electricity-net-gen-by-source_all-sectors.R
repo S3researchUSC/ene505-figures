@@ -151,7 +151,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            y = 'Billion Kilowatthours') +
       guides(color = FALSE) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0.01,0)) +
+      scale_y_comma(expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
       geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
@@ -245,7 +245,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            y = 'Billion Kilowatthours') +
       guides(color = FALSE) +
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
-      scale_y_comma(expand = c(0.01,0)) +
+      scale_y_comma(expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
       geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
