@@ -94,7 +94,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     
     ggsave(fig_line_annual, 
            filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_lts.pdf'), 
-           width = 12, 
+           width = 11.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_lts.pdf'),
@@ -103,7 +103,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     # save as png:
     # ggsave(fig_line_annual, 
     #        filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_lts.png'), 
-    #        width = 12, 
+    #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -137,7 +137,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
 
     ggsave(fig_area_annual_abs, 
            filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_absolute.pdf'), 
-           width = 12, 
+           width = 11.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_absolute.pdf'),
@@ -146,7 +146,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     # save as png: 
     # ggsave(fig_area_annual_abs, 
     #        filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_absolute.png'), 
-    #        width = 12, 
+    #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
   
@@ -180,7 +180,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     
     ggsave(fig_area_annual_prop, 
            filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_proportion.pdf'), 
-           width = 12, 
+           width = 11.5, 
            height = 6.25)
     
     embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_proportion.pdf'),
@@ -189,6 +189,6 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     # save as png: 
     # ggsave(fig_area_annual_prop,
     #        filename = here::here('figures', 'energy_primary-energy-consumption-by-sector_annual_1949-2019_ats_proportion.png'),
-    #        width = 12,
+    #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
