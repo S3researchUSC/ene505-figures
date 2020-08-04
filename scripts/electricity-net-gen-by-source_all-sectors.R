@@ -117,33 +117,64 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
   dt_annual_re = dt_annual[! MSN %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
   dt_month_re = dt_month[! MSN %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear", "Other Gases") ]
   
+# combine non-hydro into 'Other Renewables' ------
+  
+  dt_annual[, fuel := MSN]
+  dt_annual[ MSN %in% c('Wood', 'Waste', 'Geothermal', 'Solar', 'Wind'), fuel := 'Other Renewables' ]
+  
+  dt_month[, fuel := MSN]
+  dt_month[ MSN %in% c('Wood', 'Waste', 'Geothermal', 'Solar', 'Wind'), fuel := 'Other Renewables' ]
+  
+# aggregate by fuel ------
+  
+  dt_annual_agg = dt_annual[, .(value = sum(value)), by = .(year, fuel)]
+  dt_month_agg = dt_month[, .(value = sum(value)), by = .(month, year, month_val, month_name, fuel )]
+  
 # calculate proportion (or percentage) contributed by each fuel type, for each month, for each year -----
   
   dt_month[, prop := value/sum(value), by = c("year", "month_name")]
   dt_annual[, prop := value/sum(value), by = c("year")]
+  dt_month_agg[, prop := value/sum(value), by = c("year", "month_name")]
+  dt_annual_agg[, prop := value/sum(value), by = c("year")]
   dt_month_re[, prop := value/sum(value), by = c("year", "month_name")]
   dt_annual_re[, prop := value/sum(value), by = c("year")]
   
   
 #  ------------------------------------------------------- FIGURES -------------------------------------------------------
 
-  # reorder factor levels for plots -----
   
-    dt_annual = dt_annual[, MSN := factor(MSN, levels = c("Wind",
-                                                          "Solar",
-                                                          "Geothermal",
-                                                          "Waste",
-                                                          "Wood",
-                                                          "Hydroelectric",
-                                                          "Nuclear",
-                                                          "Other Gases",
-                                                          "Natural Gas",
-                                                          "Petroleum",
-                                                          "Coal"))]
+  # reorder factor levels for plots ------
+  
+    dt_annual_agg = dt_annual_agg[, fuel := factor(fuel, levels = c('Other Renewables',
+                                                                    "Hydroelectric",
+                                                                    "Nuclear",
+                                                                    "Other Gases",
+                                                                    "Natural Gas",
+                                                                    "Petroleum",
+                                                                    "Coal"))]
+  
+    dt_annual = dt_annual[, fuel := factor(fuel, levels = c("Wind",
+                                                            "Solar",
+                                                            "Geothermal",
+                                                            "Waste",
+                                                            "Wood",
+                                                            "Hydroelectric",
+                                                            "Nuclear",
+                                                            "Other Gases",
+                                                            "Natural Gas",
+                                                            "Petroleum",
+                                                            "Coal"))]
+  
   
   # line, annual -------
+    
+    # create dataset of where to put the labels on line chart
+    labs_line = dt_annual_agg[year == max(year)]
+    labs_line = labs_line[order(rank(value))]
+    labs_line[1:2, position := c(0,85)]
+    labs_line[is.na(position), position := value/1000]
   
-    fig_line_annual = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
+    fig_line_annual = ggplot(dt_annual_agg, aes(x = year, y = value/1000, group = fuel, color = fuel)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
            subtitle = 'Billion Kilowatthours', 
@@ -155,10 +186,9 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
-      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
-                                                 cex = 1,
-                                                 fontfamily = 'Secca Soft',
-                                                 fontface = 'bold')) 
+      geom_text(data = labs_line, aes(x = Inf, y = position, label = paste0(' ', fuel), color = fuel), hjust = 0, 
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+      # geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .2), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain'))
     
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
@@ -177,6 +207,34 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
+    
+    fig_line_annual_2 = ggplot(dt_annual, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual U.S. electricity generation by energy source, all sectors (1949-2019)',
+           subtitle = 'Billion Kilowatthours', 
+           caption = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      theme_line +
+      # geom_text(data = labs_line, aes(x = Inf, y = position, label = paste0(' ', fuel), color = fuel), hjust = 0, 
+      #           size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .2), 'last.bumpup', cex = 1.1, fontfamily = 'Secca Soft', fontface = 'plain'))
+    
+    fig_line_annual_2 = ggplotGrob(fig_line_annual_2)
+    fig_line_annual_2$layout$clip[fig_line_annual_2$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_annual_2, 
+           filename = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts_v2.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts_v2.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_all-sectors_annual_1949-2019_lts_v2.pdf'))
+    
   
   # area, annual (absolute) -------
   
@@ -239,7 +297,13 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     #        dpi = 600)
   
   # renewable, line, annual -------
-  
+    
+    # create dataset of where to put the labels on line chart
+    labs_line_re = dt_annual_re[year == max(year)]
+    labs_line_re = labs_line_re[order(rank(value))]
+    labs_line_re[1:3, position := c(9,24,41)]
+    labs_line_re[is.na(position), position := value/1000]
+
     fig_line_annual_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
@@ -252,10 +316,9 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       theme_line +
-      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
-                                              cex = 1,
-                                              fontfamily = 'Secca Soft',
-                                              fontface = 'bold')) 
+      geom_text(data = labs_line_re, aes(x = Inf, y = position, label = paste0(' ', MSN), color = MSN), hjust = 0, 
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+      # geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) 
     
     fig_line_annual_re = ggplotGrob(fig_line_annual_re)
     fig_line_annual_re$layout$clip[fig_line_annual_re$layout$name == "panel"] = "off"
@@ -282,6 +345,9 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     labs_area_re[, cum_sum := cumsum(value/1000)] 
     labs_area_re[, difference := diff(c(0,cum_sum))/2]
     labs_area_re[, position := cum_sum - difference]
+    labs_area_re[ MSN == 'Geothermal', position := position - 2 ]
+    labs_area_re[ MSN == 'Waste', position := position + 8 ]
+    labs_area_re[ MSN == 'Wood', position := position + 8 ]
 
     fig_area_annual_abs_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
@@ -298,11 +364,8 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       guides(fill = 'none',
              color = 'none') +
       theme_area_labeled + 
-      geom_text(data = labs_area_re,
-                aes(x = Inf, y = position,
-                    label = paste0(' ', MSN), color = MSN), hjust = 0, 
-                size = 4.7, fontface = 'bold',
-                family = 'Secca Soft')  
+      geom_text(data = labs_area_re, aes(x = Inf, y = position, label = paste0(' ', MSN), color = MSN), hjust = 0, 
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')  
     
     fig_area_annual_abs_re = ggplotGrob(fig_area_annual_abs_re)
     fig_area_annual_abs_re$layout$clip[fig_area_annual_abs_re$layout$name == "panel"] = "off"
@@ -329,7 +392,10 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     labs_area_re_prop[, cum_sum := cumsum(prop)] 
     labs_area_re_prop[, difference := diff(c(0,cum_sum))/2]
     labs_area_re_prop[, position := cum_sum - difference]
-    
+    labs_area_re_prop[ MSN == 'Geothermal', position := position - 0.01 ]
+    labs_area_re_prop[ MSN == 'Waste', position := position + 0.01 ]
+    labs_area_re_prop[ MSN == 'Wood', position := position + 0.01 ]
+
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'Annual U.S. electricity generation from renewable energy sources, all sectors (1949-2019)',
@@ -345,11 +411,8 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       guides(fill = 'none',
              color = 'none') +
       theme_area_labeled + 
-      geom_text(data = labs_area_re_prop,
-                aes(x = Inf, y = position,
-                    label = paste0(' ', MSN), color = MSN), hjust = 0, 
-                size = 4.7, fontface = 'bold',
-                family = 'Secca Soft')  
+      geom_text(data = labs_area_re_prop, aes(x = Inf, y = position, label = paste0(' ', MSN), color = MSN), hjust = 0, 
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')  
     
     fig_area_annual_prop_re = ggplotGrob(fig_area_annual_prop_re)
     fig_area_annual_prop_re$layout$clip[fig_area_annual_prop_re$layout$name == "panel"] = "off"

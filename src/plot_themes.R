@@ -4,7 +4,7 @@ theme_line = theme_ipsum(base_family = 'Secca Soft',
                          subtitle_size = 14,
                          axis_title_just = 'center',
                          axis_title_size = 16, 
-                         axis_text_size = 14)  +
+                         axis_text_size = 16)  +
   theme(plot.title = element_text(hjust = 0, face = 'bold'),
         plot.title.position = 'plot',
         plot.subtitle = element_text(hjust = 0),
@@ -14,7 +14,7 @@ theme_line = theme_ipsum(base_family = 'Secca Soft',
         axis.ticks.x = element_line(color = 'black'),
         axis.ticks.length.x = unit(0.25, "cm"),
         axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
-        plot.margin = unit(c(1,6,1,1), "lines"))
+        plot.margin = unit(c(1,11,1,1), "lines"))
 
 theme_area = theme_ipsum(base_family = 'Secca Soft',
                          grid = 'Y', 
@@ -22,7 +22,7 @@ theme_area = theme_ipsum(base_family = 'Secca Soft',
                          subtitle_size = 14,
                          axis_title_just = "center",
                          axis_title_size = 16, 
-                         axis_text_size = 14) +
+                         axis_text_size = 16) +
   theme(plot.title = element_text(hjust = 0, face = "bold"),
         plot.title.position = 'plot',
         plot.subtitle = element_text(hjust = 0),
@@ -42,7 +42,7 @@ theme_area_labeled = theme_ipsum(base_family = 'Secca Soft',
                                  subtitle_size = 14,
                                  axis_title_just = "center",
                                  axis_title_size = 16, 
-                                 axis_text_size = 14)  +
+                                 axis_text_size = 16)  +
   theme(plot.title = element_text(hjust = 0, face = "bold"),
         plot.title.position = 'plot',
         plot.subtitle = element_text(hjust = 0),
@@ -54,7 +54,7 @@ theme_area_labeled = theme_ipsum(base_family = 'Secca Soft',
         axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 15), 
-        plot.margin = unit(c(1,6,1,1), "lines"))
+        plot.margin = unit(c(1,9,1,1), "lines"))
 
 theme_bar_flipped = theme_ipsum(base_family = 'Secca Soft',
                                 grid = 'X', 
@@ -62,7 +62,7 @@ theme_bar_flipped = theme_ipsum(base_family = 'Secca Soft',
                                 subtitle_size = 14,
                                 axis_title_just = "center",
                                 axis_title_size = 16, 
-                                axis_text_size = 14)  +
+                                axis_text_size = 16)  +
   theme(plot.title = element_text(hjust = 0, face = "bold"),
         plot.title.position = 'plot',
         plot.subtitle = element_text(hjust = 0),
