@@ -300,7 +300,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_line_annual_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.9) +
-      labs(title = 'U.S. electricity generation from renewable energy sources, electric power sector (1949-2019)',
+      labs(title = 'U.S. electricity generation from renewable sources, electric power sector (1949-2019)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -353,7 +353,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
 
     fig_area_annual_abs_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation from renewable energy sources, electric power sector (1949-2019)',
+      labs(title = 'U.S. electricity generation from renewable sources, electric power sector (1949-2019)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -403,7 +403,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
-      labs(title = 'U.S. electricity generation from renewable energy sources, electric power sector (1949-2019)',
+      labs(title = 'U.S. electricity generation from renewable sources, electric power sector (1949-2019)',
            subtitle = 'Share of renewable electricity generation',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -519,7 +519,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation from renewable energy sources, electric sector (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. electricity generation from renewable sources, electric sector (Jan 1973-April 2020)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,

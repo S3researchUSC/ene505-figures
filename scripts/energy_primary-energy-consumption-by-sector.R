@@ -87,7 +87,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
       theme_line +
-      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.7, fontfamily = 'Secca Soft', fontface = 'plain')) 
+      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) 
   
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
@@ -130,7 +130,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       guides(fill = 'none',
              color = 'none') +
       theme_area_labeled +
-      geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 4.7, fontface = 'bold', family = 'Secca Soft') 
+      geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft') 
     
     fig_area_annual_abs = ggplotGrob(fig_area_annual_abs)
     fig_area_annual_abs$layout$clip[fig_area_annual_abs$layout$name == "panel"] = "off"
@@ -173,7 +173,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       guides(fill = 'none',
              color = 'none') +
       theme_area_labeled + 
-      geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 4.7, fontface = 'bold', family = 'Secca Soft')  
+      geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')  
     
     fig_area_annual_prop = ggplotGrob(fig_area_annual_prop)
     fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
