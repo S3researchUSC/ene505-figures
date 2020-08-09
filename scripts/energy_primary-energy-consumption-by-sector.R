@@ -87,7 +87,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
       theme_line +
-      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1, fontfamily = 'Secca Soft', fontface = 'bold')) 
+      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.7, fontfamily = 'Secca Soft', fontface = 'plain')) 
   
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
