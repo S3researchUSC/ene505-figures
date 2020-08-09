@@ -442,7 +442,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            x = NULL,
            y = NULL,
            fill = NULL) +
-      scale_y_continuous(expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
       scale_color_manual(values = pal_fuel) +
       scale_fill_manual(values = pal_fuel) + 
       guides(fill = 'none',
