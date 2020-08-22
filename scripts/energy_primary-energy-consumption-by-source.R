@@ -74,18 +74,21 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   
 # aggregate by fuel ------
   
-  dt_annual_agg = dt_annual[, .(value = sum(value)), by = .(year, fuel)]
-  dt_month_agg = dt_month[, .(value = sum(value)), by = .(month, year, month_val, month_name, fuel )]
+  dt_annual_agg = dt_annual[, .(value = sum(value, na.rm = T)), by = .(year, fuel)]
+  dt_month_agg = dt_month[, .(value = sum(value, na.rm = T)), by = .(month, year, month_val, month_name, fuel )]
 
 # calculate proportion (or percentage) contributed by each fuel type, for each month, for each year -----
   
-  dt_month_agg[, prop := value/sum(value), by = c("year", "month_name")]
-  dt_annual_agg[, prop := value/sum(value), by = c("year")]
+  dt_month_agg[, prop := value/sum(value, na.rm = T), by = c("year", "month_name")]
+  dt_annual_agg[, prop := value/sum(value, na.rm = T), by = c("year")]
   
 # separate totals from main ------
   
   dt_annual_main = dt_annual_agg[ ! fuel %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
   dt_annual_tot = dt_annual_agg[  fuel %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
+  
+  dt_annual_main[, prop := value/sum(value, na.rm = T), by = c('year')]
+  
   
 #  ------------------------------------------------------- FIGURES -------------------------------------------------------
   
@@ -134,11 +137,18 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     
   # area, annual (absolute) -------
     
-    fig_area_annual_abs = ggplot(dt_annual[ ! fuel %like% c('Total', 'Other')], 
+    # create dataset of where to put the labels on area chart
+    labs_area = dt_annual_main[year == max(year)][order(factor(fuel, levels = rev(levels(factor(dt_annual_main[, fuel])))))]
+    labs_area[, cum_sum := cumsum(value)] 
+    labs_area[, difference := diff(c(0,cum_sum))/2]
+    labs_area[, position := cum_sum - difference]
+    
+    
+    fig_area_annual_abs = ggplot(dt_annual_main, 
                                  aes(x = year, y = value, group = fuel, fill = fuel)) + 
       geom_area() +
-      labs(title = 'Annual U.S. electricity generation by energy source, electric power sector (1949-2019)',
-           subtitle = 'Billion Kilowatthours', 
+      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
+           subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
@@ -146,21 +156,66 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
       scale_y_continuous(expand = c(0,0)) +
       scale_fill_manual(values = pal_fuel) + 
-      theme_area
+      scale_color_manual(values = pal_fuel) + 
+      guides(fill = 'none',
+             color = 'none') +
+      theme_area_labeled +
+      geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', fuel), color = fuel), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft') 
+    
+    fig_area_annual_abs = ggplotGrob(fig_area_annual_abs)
+    fig_area_annual_abs$layout$clip[fig_area_annual_abs$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_ats_absolute.pdf'), 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs, 
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_ats_absolute.png'), 
+    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
     
-  
+  # area, annual (proportion) -------
+    
+    # create dataset of where to put the labels on area chart
+    labs_area_prop = dt_annual_main[year == max(year)][order(factor(fuel, levels = rev(levels(factor(dt_annual_main[, fuel])))))]
+    labs_area_prop[, cum_sum := cumsum(prop)] 
+    labs_area_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_prop[, position := cum_sum - difference]
+    
+    fig_area_annual_prop = ggplot(dt_annual_main, aes(x = year, y = prop, group = fuel, fill = fuel)) + 
+      geom_area() +
+      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
+           subtitle = 'Share of total primary energy consumption', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL,
+           fill = NULL) +
+      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      scale_fill_manual(values = pal_fuel) + 
+      scale_color_manual(values = pal_fuel) + 
+      guides(fill = 'none',
+             color = 'none') +
+      theme_area_labeled + 
+      geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', fuel), color = fuel), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+    
+    fig_area_annual_prop = ggplotGrob(fig_area_annual_prop)
+    fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
+    
+    ggsave(fig_area_annual_prop, 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'))
+    
+    

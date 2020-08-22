@@ -54,7 +54,7 @@ theme_area_labeled = theme_ipsum(base_family = 'Secca Soft',
         axis.text.y = element_text(margin = margin(r = .3, unit = "cm")),
         legend.text = element_text(size = 14),
         legend.title = element_text(size = 15), 
-        plot.margin = unit(c(1,9,1,1), "lines"))
+        plot.margin = unit(c(1,11,1,1), "lines"))
 
 theme_bar_flipped = theme_ipsum(base_family = 'Secca Soft',
                                 grid = 'X', 
