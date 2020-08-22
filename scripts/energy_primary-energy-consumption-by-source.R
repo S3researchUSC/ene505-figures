@@ -341,7 +341,7 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     #        height = 6.25, 
     #        dpi = 600)
     
-  # area, annual (proportion) -------
+  # area, annual (totals) (proportion) -------
     
     # create dataset of where to put the labels on area chart
     labs_area_prop_tot = dt_annual_tot[year == max(year) & ! fuel2 == 'Total Primary Energy'][order(factor(fuel2, levels = rev(levels(factor(dt_annual_tot[, fuel2])))))]
