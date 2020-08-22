@@ -198,10 +198,10 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(sector, value), y = value/1000, group = sector, fill = sector)) + 
       geom_bar(stat = "identity") +
       labs(title = 'Annual U.S. primary energy consumption by sector (2019)',
-           subtitle = 'Billion Kilowatthours',
+           subtitle = NULL,
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
-           y = NULL, 
+           y = 'Quadrillion BTU', 
            fill = NULL) +
       # scale_x_continuous() +
       scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,35,10), limits = c(0,40)) +
@@ -210,7 +210,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       guides(fill = 'none',
              color ='none') +
       theme_bar_flipped + 
-      geom_text(data = dt_annual[year == max(year)], aes(x = sector, y = value/1000 + 1.1, label = paste0(signif(prop*100,2), '%'), color = sector), hjust = 0.5,
+      geom_text(data = dt_annual[year == max(year)], aes(x = sector, y = value/1000 + 1.3, label = paste0(signif(prop*100,2), '%'), color = sector), hjust = 0.5,
                 size = 6, fontface = 'bold', family = 'Secca Soft') +
       coord_flip()
     

@@ -437,10 +437,10 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
       geom_bar(stat = "identity") +
       labs(title = 'Annual U.S. electricity generation by energy source, all sectors (2019)',
-           subtitle = 'Billion Kilowatthours', 
+           subtitle = NULL, 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = NULL,
+           y = 'Billion Kilowatthours',
            fill = NULL) +
       scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
       scale_color_manual(values = pal_fuel) +

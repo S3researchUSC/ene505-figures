@@ -231,10 +231,10 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
                           aes(x = reorder(fuel, value), y = value, group = fuel, fill = fuel)) + 
       geom_bar(stat = "identity") +
       labs(title = 'Annual U.S. primary energy consumption by source (2019)',
-           subtitle = 'Quadrillion BTU', 
+           subtitle = NULL, 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
-           y = NULL, 
+           y = 'Quadrillion BTU', 
            fill = NULL) +
       # scale_x_continuous() +
       scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,35,10), limits = c(0,40)) +
