@@ -163,6 +163,46 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
                                                             "Petroleum",
                                                             "Coal"))]
   
+  # bar, 2019 ---------
+    
+    fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
+      geom_bar(stat = "identity") +
+      labs(title = 'Annual U.S. electricity generation by energy source, electric power sector (2019)',
+           subtitle = NULL,
+           caption = 'Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = 'Billion Kilowatthours', 
+           fill = NULL) +
+      # scale_x_continuous() +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
+      scale_color_manual(values = pal_fuel) +
+      scale_fill_manual(values = pal_fuel) + 
+      guides(fill = 'none',
+             color ='none') +
+      theme_bar_flipped + 
+      geom_text(data = dt_annual[year == max(year)],
+                aes(x = MSN, y = value/1000 + 75,
+                    label = paste0(signif(prop*100,2), '%'), color = MSN), hjust = 0.5,
+                size = 6, fontface = 'bold',
+                family = 'Secca Soft') +
+      coord_flip()
+    
+    ggsave(fig_bar_2019, 
+           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'))
+    
+    # save as png: 
+    # ggsave(fig_bar_2019,
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.png'),
+    #        width = 11.5,
+    #        height = 6.25,
+    #        dpi = 600)
+    
+    
   # line, annual -------
     
     # create dataset of where to put the labels on line chart
@@ -322,16 +362,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_line_annual_re$layout$clip[fig_line_annual_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual_re, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_lts.pdf'), 
+           filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_lts.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_annual_re, 
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_lts.png'), 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -346,10 +386,6 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     labs_area_re[ MSN == 'Geothermal', position := position - 12 ]
     labs_area_re[ MSN == 'Waste', position := position + 2 ]
     labs_area_re[ MSN == 'Wood', position := position + 10 ]
-    # labs_area_re = dt_annual_re[year == 2019][order(factor(MSN, levels = (c("Wind", "Solar", "Geothermal", "Waste", "Wood", "Hydroelectric"))))]
-    # labs_area_re[, cum_sum := cumsum(value/1000)] 
-    # labs_area_re[, difference := diff(c(0,cum_sum))/2]
-    # labs_area_re[, position := cum_sum - difference]
 
     fig_area_annual_abs_re = ggplot(dt_annual_re, aes(x = year, y = value/1000, group = MSN, fill = MSN)) + 
       geom_area() +
@@ -372,16 +408,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_area_annual_abs_re$layout$clip[fig_area_annual_abs_re$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs_re, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_absolute.pdf'), 
+           filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_absolute.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs_re,
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_absolute.png'),
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_absolute.png'),
     #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
@@ -396,11 +432,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     labs_area_re_prop[ MSN == 'Geothermal', position := position - 0.02 ]
     labs_area_re_prop[ MSN == 'Waste', position := position  ]
     labs_area_re_prop[ MSN == 'Wood', position := position + 0.01 ]
-    # labs_area_re_prop = dt_annual_re[year == 2019][order(factor(MSN, levels = (c("Wind", "Solar", "Geothermal", "Waste", "Wood", "Hydroelectric"))))]
-    # labs_area_re_prop[, cum_sum := cumsum(prop)] 
-    # labs_area_re_prop[, difference := diff(c(0,cum_sum))/2]
-    # labs_area_re_prop[, position := cum_sum - difference]
-    
+
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = MSN, fill = MSN)) + 
       geom_area() +
       labs(title = 'U.S. electricity generation from renewable sources, electric power sector (1949-2019)',
@@ -422,55 +454,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_area_annual_prop_re$layout$clip[fig_area_annual_prop_re$layout$name == "panel"] = "off"
 
     ggsave(fig_area_annual_prop_re, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_proportion.pdf'), 
+           filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_proportion.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_proportion.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_prop_re,
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_annual_1949-2019_renewable_ats_proportion.png'),
-    #        width = 11.5,
-    #        height = 6.25,
-    #        dpi = 600)
-    
-  # bar, 2019 ---------
-    
-    fig_bar_2019 = ggplot(dt_annual[year == max(year)], aes(x = reorder(MSN, value), y = value/1000, group = MSN, fill = MSN)) + 
-      geom_bar(stat = "identity") +
-      labs(title = 'Annual U.S. electricity generation by energy source, electric power sector (2019)',
-           subtitle = NULL,
-           caption = 'Data: U.S. Energy Information Administration', 
-           x = NULL,
-           y = 'Billion Kilowatthours', 
-           fill = NULL) +
-      # scale_x_continuous() +
-      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,1600,400), limits = c(0,1700)) +
-      scale_color_manual(values = pal_fuel) +
-      scale_fill_manual(values = pal_fuel) + 
-      guides(fill = 'none',
-             color ='none') +
-      theme_bar_flipped + 
-      geom_text(data = dt_annual[year == max(year)],
-                aes(x = MSN, y = value/1000 + 75,
-                    label = paste0(signif(prop*100,2), '%'), color = MSN), hjust = 0.5,
-                size = 6, fontface = 'bold',
-                family = 'Secca Soft') +
-      coord_flip()
-    
-    ggsave(fig_bar_2019, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'), 
-           width = 11.5, 
-           height = 6.25)
-    
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.pdf'))
-    
-    # save as png: 
-    # ggsave(fig_bar_2019,
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_2019_bar.png'),
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_annual_1949-2019_ats_proportion.png'),
     #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
@@ -538,16 +531,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_re, 
-           filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'), 
+           filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_month_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'),
-                outfile = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_month_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_month_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month_re, 
-    #        filename = here::here('figures', 'electricity_net-generation-by-source_electric-sector_month_1949-2019_renewable_lts.png'), 
+    #        filename = here::here('figures', 'electricity_net-generation-by-source_renewables_electric-sector_month_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)

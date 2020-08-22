@@ -382,8 +382,8 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     
     fig_area_annual_prop_re = ggplot(dt_annual_re, aes(x = year, y = prop, group = fuel, fill = fuel)) + 
       geom_area() +
-      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
-           subtitle = 'Share of total primary energy consumption', 
+      labs(title = 'Annual U.S. primary energy consumption from renewable sources (1949-2019)',
+           subtitle = 'Share of renewable primary energy consumption', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
