@@ -89,8 +89,10 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   
   dt_annual_main = dt_annual_agg[ ! fuel2 %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
   dt_annual_tot = dt_annual_agg[  fuel2 %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
-  
+
   dt_annual_main[, prop := value/sum(value, na.rm = T), by = c('year')]
+  dt_annual_tot[! fuel2 == 'Total Primary Energy', prop := value/sum(value, na.rm = T), by = c('year')]
+  dt_annual_tot[ fuel2 == 'Total Primary Energy', prop := NA]
   
 # get all fuels, non totals ------
   
@@ -254,5 +256,126 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     
     embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_2019_bar.pdf'),
                 outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_2019_bar.pdf'))
+    
+  # line, annual (totals) -------
+    
+    # create dataset of where to put the labels on line chart
+    labs_line_tot = dt_annual_tot[year == max(year)]
+    labs_line_tot = labs_line_tot[order(rank(value))]
+    labs_line_tot[, position := value]
+
+    fig_line_annual_tot = ggplot(dt_annual_tot, aes(x = year, y = value, group = fuel2, color = fuel2)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      theme_line +
+      geom_text(data = labs_line_tot, aes(x = Inf, y = position, label = paste0(' ', fuel2), color = fuel2), hjust = 0,
+                size = 6, fontface = 'plain', family = 'Secca Soft')
+    
+    fig_line_annual_tot = ggplotGrob(fig_line_annual_tot)
+    fig_line_annual_tot$layout$clip[fig_line_annual_tot$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_annual_tot, 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_annual_tot, 
+    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+  # area, annual (totals) (absolute) -------
+    
+    # create dataset of where to put the labels on area chart
+    labs_area_tot = dt_annual_tot[year == max(year) & ! fuel2 == 'Total Primary Energy'][order(factor(fuel2, levels = rev(levels(factor(dt_annual_tot[, fuel2])))))]
+    labs_area_tot[, cum_sum := cumsum(value)] 
+    labs_area_tot[, difference := diff(c(0,cum_sum))/2]
+    labs_area_tot[, position := cum_sum - difference]
+    
+    fig_area_annual_abs_tot = ggplot(dt_annual_tot[! fuel2 == 'Total Primary Energy'], aes(x = year, y = value, group = fuel2, fill = fuel2)) + 
+      geom_area() +
+      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL,
+           fill = NULL) +
+      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0)) +
+      scale_fill_manual(values = pal_fuel) + 
+      scale_color_manual(values = pal_fuel) + 
+      guides(fill = 'none',
+             color = 'none') +
+      theme_area_labeled +
+      geom_text(data = labs_area_tot, aes(x = Inf, y = position, label = paste0(' ', fuel2), color = fuel2), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft') 
+    
+    fig_area_annual_abs_tot = ggplotGrob(fig_area_annual_abs_tot)
+    fig_area_annual_abs_tot$layout$clip[fig_area_annual_abs_tot$layout$name == "panel"] = "off"
+    
+    ggsave(fig_area_annual_abs_tot, 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'))
+    
+    # save as png: 
+    # ggsave(fig_area_annual_abs, 
+    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+  # area, annual (proportion) -------
+    
+    # create dataset of where to put the labels on area chart
+    labs_area_prop_tot = dt_annual_tot[year == max(year) & ! fuel2 == 'Total Primary Energy'][order(factor(fuel2, levels = rev(levels(factor(dt_annual_tot[, fuel2])))))]
+    labs_area_prop_tot[, cum_sum := cumsum(prop)] 
+    labs_area_prop_tot[, difference := diff(c(0,cum_sum))/2]
+    labs_area_prop_tot[, position := cum_sum - difference]
+    
+    fig_area_annual_prop = ggplot(dt_annual_tot[! fuel2 == 'Total Primary Energy'], aes(x = year, y = prop, group = fuel2, fill = fuel2)) + 
+      geom_area() +
+      labs(title = 'Annual U.S. primary energy consumption by source (1949-2019)',
+           subtitle = 'Share of total primary energy consumption', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL,
+           fill = NULL) +
+      scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      scale_fill_manual(values = pal_fuel) + 
+      scale_color_manual(values = pal_fuel) + 
+      guides(fill = 'none',
+             color = 'none') +
+      theme_area_labeled + 
+      geom_text(data = labs_area_prop_tot, aes(x = Inf, y = position, label = paste0(' ', fuel2), color = fuel2), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+    
+    fig_area_annual_prop = ggplotGrob(fig_area_annual_prop)
+    fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
+    
+    ggsave(fig_area_annual_prop, 
+           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'))
     
     
