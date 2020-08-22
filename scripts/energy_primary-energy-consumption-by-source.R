@@ -80,11 +80,6 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   dt_annual_re = dt_annual[ fuel %in% c('Wind', 'Hydroelectric', 'Solar', 'Wind', 'Waste', 'Geothermal')]
   dt_month_re = dt_month[ fuel %in% c('Wind', 'Hydroelectric', 'Solar', 'Wind', 'Waste', 'Geothermal')]
   
-# # keep renewables only ------
-#   
-#   dt_annual_re = dt_annual[! fuel %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear") ]
-#   dt_month_re = dt_month[! fuel %in% c("Coal", "Petroleum", "Natural Gas", "Nuclear") ]
-  
 # combine non-hydro into 'Other Renewables' ------
   
   dt_annual[, fuel2 := fuel]
@@ -106,27 +101,6 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   dt_annual_re[, prop := value/sum(value, na.rm = T), by = c('year')]
   
   dt_month_re[, prop := value/sum(value, na.rm = T), by = c('month', 'year', 'month_val', 'month_name', 'fuel')]
-  
-
-# # calculate proportion (or percentage) contributed by each fuel type, for each month, for each year -----
-#   
-#   dt_month_agg[, prop := value/sum(value, na.rm = T), by = c("year", "month_name")]
-#   dt_annual_agg[, prop := value/sum(value, na.rm = T), by = c("year")]
-#   
-# # separate totals from main ------
-#   
-#   dt_annual_main = dt_annual_agg[ ! fuel2 %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
-#   dt_annual_tot = dt_annual_agg[  fuel2 %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
-# 
-#   dt_annual_main[, prop := value/sum(value, na.rm = T), by = c('year')]
-#   dt_annual_tot[! fuel2 == 'Total Primary Energy', prop := value/sum(value, na.rm = T), by = c('year')]
-#   dt_annual_tot[ fuel2 == 'Total Primary Energy', prop := NA]
-#   
-# # get all fuels, non totals ------
-#   
-#   dt_annual_fuels = dt_annual[ ! fuel %in% c('Total Fossil Fuels', 'Total Renewables', 'Total Primary Energy')]
-#   dt_annual_fuels[, prop := value/sum(value, na.rm = T), by = c('year')]
-  
   
 #  ------------------------------------------------------- FIGURES -------------------------------------------------------
   
