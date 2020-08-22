@@ -161,7 +161,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     fig_area_annual_prop = ggplot(dt_annual, aes(x = year, y = prop, group = sector, fill = sector)) + 
       geom_area() +
       labs(title = 'Annual U.S. primary energy consumption by sector (1949-2019)',
-           subtitle = 'Quadrillion BTU',
+           subtitle = 'Share of primary energy consumption',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
