@@ -4,7 +4,8 @@ theme_line = theme_ipsum(base_family = 'Secca Soft',
                          subtitle_size = 14,
                          axis_title_just = 'center',
                          axis_title_size = 16, 
-                         axis_text_size = 16)  +
+                         axis_text_size = 16,
+                         strip_text_size = 16)  +
   theme(plot.title = element_text(hjust = 0, face = 'bold'),
         plot.title.position = 'plot',
         plot.subtitle = element_text(hjust = 0),
