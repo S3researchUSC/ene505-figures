@@ -22,7 +22,7 @@ pal_fuel   = c("Geothermal" = "#6a3d9a",
                "Total Renewable Energy" = "#66c2a5",
                "Total Renewables" = "#66c2a5",
                "Electricity" = "#ff9f9b",
-               "Total Energy Exports" = "#8da0cb")
+               "Total Energy" = "#8da0cb")
 
 pal_sector   = c("Residential" = "#fd6968", 
                  "Commercial" = "#383e56", 
