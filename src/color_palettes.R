@@ -8,7 +8,8 @@ pal_fuel   = c("Geothermal" = "#6a3d9a",
                "Nuclear" = "#55a868",
                "Petroleum" = "#fdbf6f",
                "Crude Oil" = "#fdbf6f",
-               "Petroleum Products" = "#e59024",
+               "Petroleum Products" = "#eb8a19",
+               # "Petroleum Products" = "#e59024",
                "Coal" = "#12253d",
                "Coal Coke" = "#848484",
                "Natural Gas" = "#c44e52",
@@ -29,3 +30,6 @@ pal_sector   = c("Residential" = "#fd6968",
                  "Industrial" = "#9ecffd", 
                  "Transportation" = "#fbd55b", 
                  "Electric Power" = "#48be9d")
+
+pal_type      = c('export' = '#3778bf',
+                  'import' = '#feb308')
