@@ -127,12 +127,12 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     coord_flip()
   
   ggsave(fig_bar_2019, 
-         filename = here::here('figures', 'energy_primary-energy-consumption-by-source_2019_bar.pdf'), 
+         filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_2019_bar.pdf'), 
          width = 11.5, 
          height = 6.25)
   
-  embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_2019_bar.pdf'),
-              outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_2019_bar.pdf'))
+  embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_2019_bar.pdf'),
+              outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_2019_bar.pdf'))
   
   
   # line, annual -------
@@ -162,16 +162,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_annual, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -207,16 +207,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_abs$layout$clip[fig_area_annual_abs$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -251,12 +251,12 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_prop, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_proportion.pdf'))
     
   # line, annual, renewables -------
     
@@ -284,16 +284,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_line_annual_re$layout$clip[fig_line_annual_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual_re, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_annual, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -331,16 +331,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_abs_re$layout$clip[fig_area_annual_abs_re$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs_re, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_absolute.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -376,12 +376,12 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_prop_re$layout$clip[fig_area_annual_prop_re$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_prop_re, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_annual_1949-2019_ats_proportion.pdf'))
     
     
   # line, annual, totals  -------
@@ -410,16 +410,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_line_annual_tot$layout$clip[fig_line_annual_tot$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual_tot, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_annual_tot, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -454,16 +454,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_abs_tot$layout$clip[fig_area_annual_abs_tot$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs_tot, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_annual_1949-2019_ats_absolute.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -498,16 +498,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_area_annual_prop_tot$layout$clip[fig_area_annual_prop_tot$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_prop_tot, 
-           filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'),
-                outfile = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_prop_tot, 
-    #        filename = here::here('figures', 'energy_primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_totals_annual_1949-2019_ats_proportion.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
