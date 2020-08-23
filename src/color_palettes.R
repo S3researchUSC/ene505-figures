@@ -17,6 +17,7 @@ pal_fuel   = c("Geothermal" = "#6a3d9a",
                "Other Gases" = "#fb9a99",
                "Other Renewables" = "#a8a495",
                "Total Primary Energy" = "#fc8d62",
+               "Total Petroleum" = "#383e56",
                "Total Fossil Fuels" = "#383e56",
                "Total Renewable Energy" = "#66c2a5",
                "Total Renewables" = "#66c2a5")
