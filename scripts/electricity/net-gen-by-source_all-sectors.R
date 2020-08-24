@@ -1,5 +1,6 @@
 #  ---------------------------------------------------- INPUT DATA ----------------------------------------------------
 
+# data downloaded from:https://www.eia.gov/totalenergy/data/browser/index.php?tbl=T07.02A#/?f=M
 data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
 
 #  --------------------------------------------------- MAIN SCRIPT ---------------------------------------------------
@@ -226,8 +227,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
       theme_line +
       geom_text(data = labs_line, aes(x = Inf, y = position, label = paste0(' ', fuel), color = fuel), hjust = 0, 
                 size = 6.5, fontface = 'plain', family = 'Secca Soft')  
-      # geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .2), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain'))
-    
+
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
     
@@ -471,7 +471,14 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
   # line, monthly -------
     
-    fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
+    labs_line = dt_month_agg[month == max(month)]
+    labs_line = labs_line[order(rank(value))]
+    labs_line[, position := value/1000]
+    # labs_line[1:2, position := c(0,85)]
+    # labs_line[is.na(position), position := value/1000]
+    
+    
+    fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value/1000, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
       labs(title = 'Monthly U.S. electricity generation by energy source, all sectors (Jan 1973-April 2020)',
            subtitle = 'Billion Kilowatthours',
@@ -479,37 +486,36 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
-      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(breaks = seq(0,200,50), limits = c(0,210), expand = c(0,0)) +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,200,50), limits = c(-0.1,210), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
-      theme_line +
-      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
-                                              cex = 1,
-                                              fontfamily = 'Secca Soft',
-                                              fontface = 'bold')) +
+      geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2,
+                                              fontfamily = 'Secca Soft', fontface = 'plain')) +
       geom_segment(x = ymd('2015-04-01'), xend = ymd('2015-04-01'), y = 0, yend = 200, color = 'black', linetype = 2)  +
       annotate('text', x = ymd('2015-04-01'), y = 205, label = 'Natural gas surpassed coal in April 2015', vjust = 0,
-               color = '#404040', size = 6, family = 'Secca Soft' )
+               color = '#404040', size = 6, family = 'Secca Soft' ) +
+      theme_line +
+      theme(plot.margin = unit(c(1,8,1,1), "lines"))
     
     fig_line_month = ggplotGrob(fig_line_month)
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_Jan1973-Apr2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_Jan1973-Apr2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_month_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
     
-  # rewnewable, line, monthly -------
+  # renewable, line, monthly -------
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
@@ -519,29 +525,27 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
-      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(breaks = seq(0,35,5), limits = c(0,35), expand = c(0,0)) +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,35,5), limits = c(-0.1,35), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
-      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup', 
-                                              cex = 1,
-                                              fontfamily = 'Secca Soft',
-                                              fontface = 'bold')) +
-      theme_line
+      geom_dl(aes(label = MSN), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,8,1,1), "lines"))
     
     fig_line_month_re = ggplotGrob(fig_line_month_re)
     fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month_re, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
