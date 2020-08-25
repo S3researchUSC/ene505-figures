@@ -511,4 +511,76 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
+  
+  # line, monthly ------
+  
+    fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value, group = fuel2, color = fuel2)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy consumption by source (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU',
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,5,1), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel2), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      # geom_segment(x = ymd('2015-04-01'), xend = ymd('2015-04-01'), y = 0, yend = 200, color = 'black', linetype = 2)  +
+      # annotate('text', x = ymd('2015-04-01'), y = 205, label = 'Natural gas surpassed coal in April 2015', vjust = 0,
+      #          color = '#404040', size = 6, family = 'Secca Soft' ) +
+      theme_line +
+      theme(plot.margin = unit(c(1,8,1,1), "lines"))
     
+    fig_line_month = ggplotGrob(fig_line_month)
+    fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month, 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+  # line, renewables, monthly -------
+    
+    fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value, group = fuel, color = fuel)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy consumption from renewable sources (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,0.35,0.05), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,8,1,1), "lines"))
+    
+    fig_line_month_re = ggplotGrob(fig_line_month_re)
+    fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month_re, 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month_re, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
