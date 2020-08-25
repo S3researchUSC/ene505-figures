@@ -234,41 +234,35 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
   
   # line, monthly -------
   
-    # create dataset of where to put the labels on line chart
-    labs_line = dt_month[month == max(month)]
-    labs_line = labs_line[order(rank(value))]
-    labs_line[, position := value/1000]
-
     fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = sector, color = sector)) + 
-      geom_line(size = 0.6) +
-      labs(title = 'Monthly U.S. total energy consumption by sector (1949-2019)',
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. total energy consumption by sector (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
-      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
+      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
       theme_line +
-      geom_text(data = labs_line, aes(x = ymd('2020-04-02'), y = position, label = paste0(' ', sector), color = sector), hjust = 0,
-                size = 6.5, fontface = 'plain', family = 'Secca Soft') +
-      theme(plot.margin = unit(c(1,9,1,1), "lines"))
+      theme(plot.margin = unit(c(1,7,1,1), "lines"))
     
     fig_line_month = ggplotGrob(fig_line_month)
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month, 
-           filename = here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_Jan1973-Apr2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'total-energy-consumption-by-sector_month_Jan1973-Apr2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month, 
-    #        filename = here::here('figures', 'energy', 'total-energy-consumption-by-sector_annual_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'total-energy-consumption-by-sector_annual_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
