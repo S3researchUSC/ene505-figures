@@ -511,7 +511,7 @@ data.file     = 'Table_1.2_Primary_Energy_Production_by_Source.xlsx'
     
     fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value, group = fuel2, color = fuel2)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy production by source (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy production by source (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,

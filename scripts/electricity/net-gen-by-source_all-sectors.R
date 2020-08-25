@@ -361,16 +361,16 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_annual_re$layout$clip[fig_line_annual_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_annual_re, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -408,16 +408,16 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_abs_re$layout$clip[fig_area_annual_abs_re$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_absolute.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_absolute.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_abs_re,
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_absolute.png'),
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_absolute.png'),
     #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
@@ -455,16 +455,16 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_area_annual_prop_re$layout$clip[fig_area_annual_prop_re$layout$name == "panel"] = "off"
 
     ggsave(fig_area_annual_prop_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_proportion.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_proportion.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_proportion.pdf'))
     
     # save as png: 
     # ggsave(fig_area_annual_prop_re,
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_annual_1949-2019_ats_proportion.png'),
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_annual_1949-2019_ats_proportion.png'),
     #        width = 11.5,
     #        height = 6.25,
     #        dpi = 600)
@@ -480,7 +480,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value/1000, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation by energy source, all sectors (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. electricity generation by energy source, all sectors (Jan 1973-Apr 2020)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -519,7 +519,7 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation from renewable sources, all sectors (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. electricity generation from renewable sources, all sectors (Jan 1973-Apr 2020)',
            subtitle = 'Billion Kilowatthours', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -536,16 +536,16 @@ data.file = 'Table_7.2a_Electricity_Net_Generation__Total_(All_Sectors).xlsx'
     fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_month_Jan1973-Apr2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_month_Jan1973-Apr2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month_re, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_renewables_all-sectors_month_Jan1973-Apr2020_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_all-sectors_renewables_month_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
