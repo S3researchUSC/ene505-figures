@@ -516,7 +516,7 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   
     fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value, group = fuel2, color = fuel2)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy consumption by source (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy consumption by source (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -551,7 +551,7 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy consumption from renewable sources (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy consumption from renewable sources (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,

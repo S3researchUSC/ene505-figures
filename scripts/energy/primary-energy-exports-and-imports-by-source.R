@@ -313,7 +313,7 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
     
     fig_exp_line_month = ggplot(dt_month, aes(x = month, y = export, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy exports by source (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy exports by source (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -553,7 +553,7 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
     
     fig_imp_line_month = ggplot(dt_month, aes(x = month, y = import, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy imports by source (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy imports by source (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -725,7 +725,7 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
     
     fig_all_line_month_tot = ggplot(dt_month_tot_long[fuel == 'Total Energy'], aes(x = month, y = value, linetype = type)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. total primary energy exports and imports (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. total primary energy exports and imports (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,

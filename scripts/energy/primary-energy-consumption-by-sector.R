@@ -240,7 +240,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     
     fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = sector, color = sector)) + 
       geom_line(size = 0.6) +
-      labs(title = 'Monthly U.S. primary energy consumption by sector (Jan 1973-April 2020)',
+      labs(title = 'Monthly U.S. primary energy consumption by sector (Jan 1973-Apr 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
