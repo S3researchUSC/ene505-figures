@@ -309,6 +309,41 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
     #        height = 6.25, 
     #        dpi = 600)
     
+  # exports, line, monthly -------
+    
+    fig_exp_line_month = ggplot(dt_month, aes(x = month, y = export, group = fuel, color = fuel)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy exports by source (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,0.9,0.1)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.15, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
+
+    fig_exp_line_month = ggplotGrob(fig_exp_line_month)
+    fig_exp_line_month$layout$clip[fig_exp_line_month$layout$name == "panel"] = "off"
+    
+    ggsave(fig_exp_line_month, 
+           filename = here::here('figures', 'energy', 'primary-energy-exports-by-source_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-exports-by-source_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-exports-by-source_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_exp_line_month, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-exports-by-source_month_Jan1973-Apr2020_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
     
   # imports, bar, 2019 ---------
     
@@ -514,6 +549,42 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
     #        height = 6.25, 
     #        dpi = 600)
     
+  # imports, line, monthly -------
+    
+    fig_imp_line_month = ggplot(dt_month, aes(x = month, y = import, group = fuel, color = fuel)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy imports by source (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,2,0.2), limits = c(0,2)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.15, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
+    
+    fig_imp_line_month = ggplotGrob(fig_imp_line_month)
+    fig_imp_line_month$layout$clip[fig_imp_line_month$layout$name == "panel"] = "off"
+    
+    ggsave(fig_imp_line_month, 
+           filename = here::here('figures', 'energy', 'primary-energy-imports-by-source_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-imports-by-source_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-imports-by-source_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_imp_line_month, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-imports-by-source_month_Jan1973-Apr2020_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+    
   # exports-imports, bar, 2019 ---------
     
     fig_all_bar_2019 = ggplot(dt_annual_long[year == max(year)], 
@@ -653,15 +724,15 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
   # exports-imports, line, monthly, totals -------
     
     fig_all_line_month_tot = ggplot(dt_month_tot_long[fuel == 'Total Energy'], aes(x = month, y = value, linetype = type)) + 
-      geom_line(size = 0.6) +
-      labs(title = 'Monthly U.S. total primary energy exports and imports (1949-2019)',
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. total primary energy exports and imports (Jan 1973-April 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
            color = NULL,
            linetype = NULL) +
-      scale_x_date(breaks = '5 years', date_labels = "%b %Y", expand = c(0,0)) +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
       scale_y_continuous(expand = c(0,0)) +
       scale_linetype_discrete(labels = c('Exports', 'Imports')) +
       theme_line +
@@ -670,16 +741,16 @@ imp.file      = 'Table_1.4a_Primary_Energy_Imports_by_Source.xlsx'
             plot.margin = unit(c(1,2,1,1), "lines"))
     
     ggsave(fig_all_line_month_tot, 
-           filename = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_monthly_1949-2019_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_month_Jan1973-Apr2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_monthly_1949-2019_lts.pdf'),
-                outfile = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_monthly_1949-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_month_Jan1973-Apr2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_all_line_month_tot, 
-    #        filename = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_monthly_1949-2019_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-exports-and-imports-by-source_totals_monthly_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
