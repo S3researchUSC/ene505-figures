@@ -523,12 +523,9 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
            y = NULL) +
       guides(color = 'none') +
       scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(breaks = seq(0,5,1), expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,4,0.5), expand = c(0,0)) +
       scale_color_manual(values = pal_fuel) + 
       geom_dl(aes(label = fuel2), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
-      # geom_segment(x = ymd('2015-04-01'), xend = ymd('2015-04-01'), y = 0, yend = 200, color = 'black', linetype = 2)  +
-      # annotate('text', x = ymd('2015-04-01'), y = 205, label = 'Natural gas surpassed coal in April 2015', vjust = 0,
-      #          color = '#404040', size = 6, family = 'Secca Soft' ) +
       theme_line +
       theme(plot.margin = unit(c(1,8,1,1), "lines"))
     

@@ -66,6 +66,10 @@ data.file     = 'Table_1.2_Primary_Energy_Production_by_Source.xlsx'
   dt_annual_tot = dt_annual[ fuel %like% 'Total']
   dt_annual = dt_annual[ ! fuel %like% 'Total']
   
+  dt_month_tot = dt_month[ fuel %like% 'Total']
+  dt_month = dt_month[ ! fuel %like% 'Total']
+  
+  
 # get renewables -------
   
   dt_annual_re = dt_annual[ fuel %in% c('Wind', 'Hydroelectric', 'Solar', 'Wind', 'Waste', 'Geothermal')]
@@ -498,6 +502,77 @@ data.file     = 'Table_1.2_Primary_Energy_Production_by_Source.xlsx'
     # save as png: 
     # ggsave(fig_area_annual_prop_tot, 
     #        filename = here::here('figures', 'energy', 'primary-energy-production-by-source_totals_annual_1949-2019_ats_proportion.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+    
+  # line, monthly ------
+    
+    fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value, group = fuel2, color = fuel2)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy production by source (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU',
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,3,0.5), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel2), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
+    
+    fig_line_month = ggplotGrob(fig_line_month)
+    fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month, 
+           filename = here::here('figures', 'energy', 'primary-energy-production-by-source_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-production-by-source_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-production-by-source_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-production-by-source_month_Jan1973-Apr2020_lts.png'), 
+    #        width = 11.5, 
+    #        height = 6.25, 
+    #        dpi = 600)
+    
+  # line, renewables, monthly -------
+    
+    fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value, group = fuel, color = fuel)) + 
+      geom_line(size = 0.5) +
+      labs(title = 'Monthly U.S. primary energy production from renewable sources (Jan 1973-April 2020)',
+           subtitle = 'Quadrillion BTU', 
+           caption = 'Data: U.S. Energy Information Administration',
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_date(breaks = seq(as.Date('1975-01-01'), as.Date('2020-01-01'), '5 years'), date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(breaks = seq(0,0.35,0.05), expand = c(0,0)) +
+      scale_color_manual(values = pal_fuel) + 
+      geom_dl(aes(label = fuel), method = list(dl.trans(x = x + .3), 'last.bumpup',  cex = 1.2, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      theme_line +
+      theme(plot.margin = unit(c(1,8,1,1), "lines"))
+    
+    fig_line_month_re = ggplotGrob(fig_line_month_re)
+    fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
+    
+    ggsave(fig_line_month_re, 
+           filename = here::here('figures', 'energy', 'primary-energy-production-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-production-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-production-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'))
+    
+    # save as png:
+    # ggsave(fig_line_month_re, 
+    #        filename = here::here('figures', 'energy', 'primary-energy-production-by-source_renewables_month_Jan1973-Apr2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
