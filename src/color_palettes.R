@@ -33,3 +33,11 @@ pal_sector   = c("Residential" = "#fd6968",
 
 pal_type      = c('export' = '#3778bf',
                   'import' = '#feb308')
+
+pal_shale     = c("Anadarko" = "#4aacae",
+                  "Appalachia" = "#414e52",
+                  "Bakken" = "#f6736a", 
+                  "Eagle Ford" = "#eccd2f",  
+                  "Haynesville" = "#6d7673", 
+                  "Niobrara" = "#a0daf0", 
+                  "Permian" = "#f5a273")
