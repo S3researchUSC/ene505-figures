@@ -292,7 +292,8 @@ data.file     = 'dpr-data.xlsx'
       guides(color = guide_legend(nrow = 2, title = NULL),
              linetype = guide_legend(title = NULL)) +
       theme_line + 
-      theme(plot.margin = unit(c(1,2,1,1), "lines"))
+      theme(plot.margin = unit(c(1,2,1,1), "lines"),
+            legend.key.width = unit(2.5,"line"))
     
     fig_line_ng_rig = ggplotGrob(fig_line_ng_rig)
     fig_line_ng_rig$layout$clip[fig_line_ng_rig$layout$name == "panel"] = "off"
@@ -364,7 +365,8 @@ data.file     = 'dpr-data.xlsx'
       guides(color = guide_legend(nrow = 2, title = NULL),
              linetype = guide_legend(title = NULL)) +
       theme_line +
-      theme(plot.margin = unit(c(1,2,1,1), "lines"))
+      theme(plot.margin = unit(c(1,2,1,1), "lines"),
+            legend.key.width = unit(2.5,"line"))
     
     fig_line_oil_rig = ggplotGrob(fig_line_oil_rig)
     fig_line_oil_rig$layout$clip[fig_line_oil_rig$layout$name == "panel"] = "off"
