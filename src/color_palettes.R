@@ -36,8 +36,12 @@ pal_type      = c('export' = '#3778bf',
 
 pal_shale     = c("Anadarko" = "#4aacae",
                   "Appalachia" = "#414e52",
-                  "Bakken" = "#f6736a", 
-                  "Eagle Ford" = "#eccd2f",  
-                  "Haynesville" = "#6d7673", 
-                  "Niobrara" = "#a0daf0", 
+                  "Bakken" = "#f6736a",
+                  "Eagle Ford" = "#eccd2f",
+                  "Haynesville" = "#6d7673",
+                  "Niobrara" = "#a0daf0",
                   "Permian" = "#f5a273")
+
+col_rig = '#12253d'
+col_oil = '#fdbf6f'
+col_ng  = '#c44e52'
