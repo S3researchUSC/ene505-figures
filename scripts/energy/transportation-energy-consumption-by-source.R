@@ -49,18 +49,11 @@ data.file     = 'Table_2.5_Transportation_Sector_Energy_Consumption.xlsx'
 # create year and month columns ------
   
   dt_month[, year := year(month)]
-  dt_month[, month_val := month(month)]
-  dt_month[, month_name := month(month, label = T)]
-  
+
 # convert value column to numeric ----
   
   dt_month[, value := as.numeric(value)]
   dt_annual[, value := as.numeric(value)]
-  
-# remove NA month or year entries ----
-  
-  dt_month = dt_month[!is.na(month)]
-  dt_annual = dt_annual[!is.na(year)]
   
 # remove NA month or year entries ----
   
