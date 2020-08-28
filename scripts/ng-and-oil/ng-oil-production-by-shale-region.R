@@ -313,12 +313,14 @@ data.file     = 'dpr-data.xlsx'
       scale_linetype_discrete(labels = c('New-well natural gas production per rig (thousand cubic feet per day)', 
                                          'Rig count (number of rigs)')) +
       theme_line +
-      theme(plot.margin = unit(c(1,2,1,1), "lines"))
+      theme(plot.margin = unit(c(1,2,1,1), "lines"),
+            plot.title = element_text(size = 24),
+            legend.text = element_text(size = 22))
     
     ggsave(fig_line_ng_rig_fac, 
            filename = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
-           width = 13, 
-           height = 8.5)
+           width = 17, 
+           height = 9.7)
     
     embed_fonts(here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
                 outfile = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
@@ -372,12 +374,14 @@ data.file     = 'dpr-data.xlsx'
       scale_linetype_discrete(labels = c('New-well oil production per rig (barrels per day)', 
                                          'Rig count (number of rigs)')) +
       theme_line +
-      theme(plot.margin = unit(c(1,2,1,1), "lines"))
+      theme(plot.margin = unit(c(1,2,1,1), "lines"),
+            plot.title = element_text(size = 24),
+            legend.text = element_text(size = 22))
     
     ggsave(fig_line_oil_rig_fac, 
            filename = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
-           width = 13, 
-           height = 8.5)
+           width = 17, 
+           height = 9.7)
     
     embed_fonts(here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
                 outfile = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
