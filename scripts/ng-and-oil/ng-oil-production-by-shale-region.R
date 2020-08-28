@@ -17,6 +17,7 @@ data.file     = 'dpr-data.xlsx'
   library(directlabels)
   library(grid)
   library(extrafont)
+  library(cowplot)
 
 # source color palettes and plot themes ------
 
@@ -267,23 +268,34 @@ data.file     = 'dpr-data.xlsx'
   # line, ng new prod vs rig count (aggregated) ------
     
     fig_line_ng_rig = ggplot(dt_dpr_agg) + 
-      geom_line(aes(x = month, y = ng_prod_per_rig, col = 'ng'), size = 1.2) +
-      geom_line(aes(x = month, y = rig_count*(8000/1600), col = 'rig'), size = 1.2) +
+      geom_line(aes(x = month, y = ng_prod_per_rig, col = 'ng', linetype = 'ng'), size = 1.2) +
+      geom_line(aes(x = month, y = rig_count*(8000/1600), col = 'rig', linetype = 'rig'), size = 1.2) +
       labs(title = 'New-well natural gas production per rig versus rig count (Jan 2007-Jul 2020)',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
-           color = NULL) +
+           color = 'guide',
+           linetype = 'guide') +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '2 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, name = 'Thousand cubic feet per day', breaks = seq(0,8000,1000), limits = c(0,8000),
-                         sec.axis = sec_axis( trans=~./(8000/1600), name = 'Number of rigs', breaks = seq(0,1600,200), labels = scales::comma)) +
-      scale_color_manual( breaks = c('ng', 'rig'), 
-                          values = c(col_ng, col_rig), 
-                          labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 
-                                     'Rig count (number of rigs)')) +
-      guides(color = guide_legend(nrow = 2)) +
-      theme_line +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0,8000,1000), limits = c(0,1.11*max(dt_dpr_agg[, ng_prod_per_rig])),
+                         sec.axis = sec_axis(trans=~./(8000/1600),  breaks = seq(0,1600,200), labels = scales::comma)) +
+      scale_color_manual(breaks = c('ng', 'rig'),  
+                         values = c(col_ng, col_rig),
+                         labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Rig count (number of rigs)')) +
+      scale_linetype_manual(breaks = c('ng', 'rig'), 
+                            values = c(1, 2),  
+                            labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Rig count (number of rigs)')) +
+      annotate("text", label = "Thousand cubic feet per day", x = min(dt_dpr_agg[, month]), y = 1.11*max(dt_dpr_agg[, ng_prod_per_rig]), 
+               size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.27) +
+      annotate("text", label = "Number of rigs", x = max(dt_dpr_agg[, month]), y = 1.11*max(dt_dpr_agg[, ng_prod_per_rig]), 
+               size = 6.5, fontface = 'plain', family = 'Secca Soft') +
+      guides(color = guide_legend(nrow = 2, title = NULL),
+             linetype = guide_legend(title = NULL)) +
+      theme_line + 
       theme(plot.margin = unit(c(1,2,1,1), "lines"))
+    
+    fig_line_ng_rig = ggplotGrob(fig_line_ng_rig)
+    fig_line_ng_rig$layout$clip[fig_line_ng_rig$layout$name == "panel"] = "off"
 
     ggsave(fig_line_ng_rig, 
            filename = here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
@@ -328,23 +340,34 @@ data.file     = 'dpr-data.xlsx'
   # line, oil new prod vs rig count (aggregated) ------
     
     fig_line_oil_rig = ggplot(dt_dpr_agg) + 
-      geom_line(aes(x = month, y = oil_prod_per_rig, col = 'oil'), size = 1.1) +
-      geom_line(aes(x = month, y = rig_count*(800/1600), col = 'rig'), size = 1.2) +
+      geom_line(aes(x = month, y = oil_prod_per_rig, col = 'oil', linetype = 'oil'), size = 1.1) +
+      geom_line(aes(x = month, y = rig_count*(800/1600), col = 'rig', linetype = 'rig'), size = 1.2) +
       labs(title = 'New-well oil production per rig versus rig count (Jan 2007-Jul 2020)',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
-           color = NULL) +
+           color = 'guide',
+           linetype = 'guide') +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '2 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, name = 'Barrels per day', breaks = seq(0,800,100),
-                         sec.axis = sec_axis( trans=~./(800/1600), name = 'Number of rigs', breaks = seq(0,1600,200), labels = scales::comma)) +
-      scale_color_manual( breaks = c('oil', 'rig'), 
-                          values = c(col_oil, col_rig), 
-                          labels = c('Average new-well oil production per rig (barrels per day)', 
-                                     'Rig count (number of rigs)')) +
-      guides(color = guide_legend(nrow = 2)) +
+      scale_y_continuous(labels = scales::comma,  breaks = seq(0,800,100), limits = c(0,1.05*max(dt_dpr_agg[, oil_prod_per_rig])),
+                         sec.axis = sec_axis( trans=~./(800/1600), breaks = seq(0,1600,200), labels = scales::comma)) +
+      scale_color_manual(breaks = c('oil', 'rig'),
+                         values = c(col_oil, col_rig), 
+                         labels = c('Average new-well oil production per rig (barrels per day)',  'Rig count (number of rigs)')) +
+      scale_linetype_manual(breaks = c('oil', 'rig'),
+                            values = c(1, 2),  
+                            labels = c('Average new-well oil production per rig (barrels per day)',  'Rig count (number of rigs)')) +
+      annotate("text", label = "Thousand cubic feet per day", x = min(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]),
+               size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.2) +
+      annotate("text", label = "Number of rigs", x = max(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]), 
+               size = 6.5, fontface = 'plain', family = 'Secca Soft') +
+      guides(color = guide_legend(nrow = 2, title = NULL),
+             linetype = guide_legend(title = NULL)) +
       theme_line +
       theme(plot.margin = unit(c(1,2,1,1), "lines"))
+    
+    fig_line_oil_rig = ggplotGrob(fig_line_oil_rig)
+    fig_line_oil_rig$layout$clip[fig_line_oil_rig$layout$name == "panel"] = "off"
     
     ggsave(fig_line_oil_rig, 
            filename = here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
