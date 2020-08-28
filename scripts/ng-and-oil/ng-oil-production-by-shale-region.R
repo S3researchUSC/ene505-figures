@@ -270,7 +270,7 @@ data.file     = 'dpr-data.xlsx'
     fig_line_ng_rig = ggplot(dt_dpr_agg) + 
       geom_line(aes(x = month, y = ng_prod_per_rig, col = 'ng', linetype = 'ng'), size = 1.2) +
       geom_line(aes(x = month, y = rig_count*(8000/1600), col = 'rig', linetype = 'rig'), size = 1.2) +
-      labs(title = 'New-well natural gas production per rig versus rig count (Jan 2007-Jul 2020)',
+      labs(title = 'Average new-well natural gas production per rig versus total rig count (Jan 2007-Jul 2020)',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
@@ -281,10 +281,10 @@ data.file     = 'dpr-data.xlsx'
                          sec.axis = sec_axis(trans=~./(8000/1600),  breaks = seq(0,1600,200), labels = scales::comma)) +
       scale_color_manual(breaks = c('ng', 'rig'),  
                          values = c(col_ng, col_rig),
-                         labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Rig count (number of rigs)')) +
+                         labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Total rig count (number of rigs)')) +
       scale_linetype_manual(breaks = c('ng', 'rig'), 
                             values = c(1, 2),  
-                            labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Rig count (number of rigs)')) +
+                            labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Total rig count (number of rigs)')) +
       annotate("text", label = "Thousand cubic feet per day", x = min(dt_dpr_agg[, month]), y = 1.11*max(dt_dpr_agg[, ng_prod_per_rig]), 
                size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.27) +
       annotate("text", label = "Number of rigs", x = max(dt_dpr_agg[, month]), y = 1.11*max(dt_dpr_agg[, ng_prod_per_rig]), 
@@ -342,7 +342,7 @@ data.file     = 'dpr-data.xlsx'
     fig_line_oil_rig = ggplot(dt_dpr_agg) + 
       geom_line(aes(x = month, y = oil_prod_per_rig, col = 'oil', linetype = 'oil'), size = 1.1) +
       geom_line(aes(x = month, y = rig_count*(800/1600), col = 'rig', linetype = 'rig'), size = 1.2) +
-      labs(title = 'New-well oil production per rig versus rig count (Jan 2007-Jul 2020)',
+      labs(title = 'Average new-well oil production per rig versus total rig count (Jan 2007-Jul 2020)',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
            y = NULL,
@@ -353,11 +353,11 @@ data.file     = 'dpr-data.xlsx'
                          sec.axis = sec_axis( trans=~./(800/1600), breaks = seq(0,1600,200), labels = scales::comma)) +
       scale_color_manual(breaks = c('oil', 'rig'),
                          values = c(col_oil, col_rig), 
-                         labels = c('Average new-well oil production per rig (barrels per day)',  'Rig count (number of rigs)')) +
+                         labels = c('Average new-well oil production per rig (barrels per day)',  'Total rig count (number of rigs)')) +
       scale_linetype_manual(breaks = c('oil', 'rig'),
                             values = c(1, 2),  
-                            labels = c('Average new-well oil production per rig (barrels per day)',  'Rig count (number of rigs)')) +
-      annotate("text", label = "Thousand cubic feet per day", x = min(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]),
+                            labels = c('Average new-well oil production per rig (barrels per day)',  'Total rig count (number of rigs)')) +
+      annotate("text", label = "Barrels per day", x = min(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]),
                size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.2) +
       annotate("text", label = "Number of rigs", x = max(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]), 
                size = 6.5, fontface = 'plain', family = 'Secca Soft') +
