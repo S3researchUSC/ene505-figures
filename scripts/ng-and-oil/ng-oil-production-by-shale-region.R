@@ -358,7 +358,7 @@ data.file     = 'dpr-data.xlsx'
                             values = c(1, 2),  
                             labels = c('Average new-well oil production per rig (barrels per day)',  'Total rig count (number of rigs)')) +
       annotate("text", label = "Barrels per day", x = min(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]),
-               size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.2) +
+               size = 6.5, fontface = 'plain', family = 'Secca Soft', hjust = 0.35) +
       annotate("text", label = "Number of rigs", x = max(dt_dpr_agg[, month]), y = 1.05*max(dt_dpr_agg[, oil_prod_per_rig]), 
                size = 6.5, fontface = 'plain', family = 'Secca Soft') +
       guides(color = guide_legend(nrow = 2, title = NULL),

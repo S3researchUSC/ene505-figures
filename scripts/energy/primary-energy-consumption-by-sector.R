@@ -121,8 +121,9 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_x_continuous(breaks = seq(1949,2019,5), limits = c(1949, 2019), expand = c(0,0)) +
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_sector) + 
+      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) +
       theme_line +
-      geom_dl(aes(label = sector), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) 
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
   
     fig_line_annual = ggplotGrob(fig_line_annual)
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
@@ -164,8 +165,9 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_color_manual(values = pal_sector) + 
       guides(fill = 'none',
              color = 'none') +
+      geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')  +
       theme_area_labeled +
-      geom_text(data = labs_area, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft') 
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
     
     fig_area_annual_abs = ggplotGrob(fig_area_annual_abs)
     fig_area_annual_abs$layout$clip[fig_area_annual_abs$layout$name == "panel"] = "off"
@@ -207,9 +209,10 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       scale_fill_manual(values = pal_sector) + 
       guides(fill = 'none',
              color = 'none') +
-      theme_area_labeled + 
       geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', sector), color = sector), 
-                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')  
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft') +
+      theme_area_labeled +
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
     
     fig_area_annual_prop = ggplotGrob(fig_area_annual_prop)
     fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
@@ -237,7 +240,6 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
     labs_line[, position := value/1000]
     labs_line[ sector == 'Transportation', position := position - 0.1 ]
     
-    
     fig_line_month = ggplot(dt_month, aes(x = month, y = value/1000, group = sector, color = sector)) + 
       geom_line(size = 0.6) +
       labs(title = 'Monthly U.S. primary energy consumption by sector (Jan 1973-Apr 2020)',
@@ -252,7 +254,7 @@ data.file     = 'Table_2.1_Energy_Consumption_by_Sector.xlsx'
       theme_line +
       geom_text(data = labs_line, aes(x = ymd('2020-04-02'), y = position, label = paste0(' ', sector), color = sector), hjust = 0,
                 size = 6.5, fontface = 'plain', family = 'Secca Soft') +
-      theme(plot.margin = unit(c(1,8,1,1), "lines"))
+      theme(plot.margin = unit(c(1,9,1,1), "lines"))
 
     fig_line_month = ggplotGrob(fig_line_month)
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
