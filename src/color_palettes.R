@@ -42,6 +42,11 @@ pal_shale     = c("Anadarko" = "#4aacae",
                   "Niobrara" = "#a0daf0",
                   "Permian" = "#f5a273")
 
+pal_wells     = c('Gas Wells' = "#fd6968", 
+                  'Oil Wells' = "#383e56", 
+                  'Shale Gas' = "#9ecffd", 
+                  'Coalbed Wells' = "#fbd55b")
+
 col_rig = '#12253d'
 col_oil = '#fdbf6f'
 col_ng  = '#c44e52'

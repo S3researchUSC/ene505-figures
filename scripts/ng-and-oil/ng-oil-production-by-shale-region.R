@@ -75,12 +75,12 @@ data.file     = 'dpr-data.xlsx'
     fig_line_ng$layout$clip[fig_line_ng$layout$name == "panel"] = "off"
     
     ggsave(fig_line_ng, 
-           filename = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_lts.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_lts.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_lts.pdf'))
   
   # area, ng (absolute) ------
     
@@ -112,12 +112,12 @@ data.file     = 'dpr-data.xlsx'
     fig_area_ng$layout$clip[fig_area_ng$layout$name == "panel"] = "off"
     
     ggsave(fig_area_ng, 
-           filename = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'))
   
   # area, ng (proportion) -------
     
@@ -149,12 +149,12 @@ data.file     = 'dpr-data.xlsx'
     fig_area_ng_prop$layout$clip[fig_area_ng_prop$layout$name == "panel"] = "off"
     
     ggsave(fig_area_ng_prop, 
-           filename = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'ng_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'))
     
   # line, oil ------
     
@@ -177,12 +177,12 @@ data.file     = 'dpr-data.xlsx'
     fig_line_oil$layout$clip[fig_line_oil$layout$name == "panel"] = "off"
     
     ggsave(fig_line_oil, 
-           filename = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_lts.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_lts.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_lts.pdf'))
     
   # area, oil (absolute) ------
     
@@ -216,12 +216,12 @@ data.file     = 'dpr-data.xlsx'
     fig_area_oil$layout$clip[fig_area_oil$layout$name == "panel"] = "off"
     
     ggsave(fig_area_oil, 
-           filename = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_absolute.pdf'))
     
   # area, oil (proportion) -------
     
@@ -253,12 +253,12 @@ data.file     = 'dpr-data.xlsx'
     fig_area_oil_prop$layout$clip[fig_area_oil_prop$layout$name == "panel"] = "off"
     
     ggsave(fig_area_oil_prop, 
-           filename = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'oil-production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'oil_production-by-shale-region_Jan2007-Jul2020_ats_proportion.pdf'))
     
     
     
@@ -286,12 +286,12 @@ data.file     = 'dpr-data.xlsx'
       theme(plot.margin = unit(c(1,2,1,1), "lines"))
 
     ggsave(fig_line_ng_rig, 
-           filename = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'))
     
   # line, ng new prod vs rig count (faceted) ------
     
@@ -318,12 +318,12 @@ data.file     = 'dpr-data.xlsx'
             legend.text = element_text(size = 22))
     
     ggsave(fig_line_ng_rig_fac, 
-           filename = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
            width = 17, 
            height = 9.7)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'ng_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
     
   # line, oil new prod vs rig count (aggregated) ------
     
@@ -347,12 +347,12 @@ data.file     = 'dpr-data.xlsx'
       theme(plot.margin = unit(c(1,2,1,1), "lines"))
     
     ggsave(fig_line_oil_rig, 
-           filename = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_aggregated.pdf'))
     
   # line, oil new prod vs rig count (faceted) ------
     
@@ -379,10 +379,10 @@ data.file     = 'dpr-data.xlsx'
             legend.text = element_text(size = 22))
     
     ggsave(fig_line_oil_rig_fac, 
-           filename = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
+           filename = here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'), 
            width = 17, 
            height = 9.7)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'oil-new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
+    embed_fonts(here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'),
+                outfile = here::here('figures', 'ng-and-oil', 'oil_new-well-production-vs-rig-count_Jan2007-Jul2020_lts_faceted.pdf'))
     
