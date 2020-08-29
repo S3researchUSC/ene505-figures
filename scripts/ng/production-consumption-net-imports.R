@@ -35,11 +35,11 @@ ng.file       = 'Table_4.1_Natural_Gas_Overview.xlsx'
   cons_annual = as.data.table(read.xlsx(here::here('data', cons.file), sheet = 'Annual Data', startRow = 11, cols = c(1,3), detectDates = T))
   cons_annual = cons_annual[2:nrow(cons_annual)]
   
-  month = as.data.table(read.xlsx(here::here('data', ng.file), sheet = 'Monthly Data', startRow = 11, cols = c(1,5,9,12), detectDates = T))
-  month = month[2:nrow(month)]
+  ng_month = as.data.table(read.xlsx(here::here('data', ng.file), sheet = 'Monthly Data', startRow = 11, cols = c(1,5,9,12), detectDates = T))
+  ng_month = ng_month[2:nrow(ng_month)]
   
-  annual = as.data.table(read.xlsx(here::here('data', ng.file), sheet = 'Annual Data', startRow = 11, cols = c(1,5,9,12), detectDates = T))
-  annual = annual[2:nrow(annual)]
+  ng_annual = as.data.table(read.xlsx(here::here('data', ng.file), sheet = 'Annual Data', startRow = 11, cols = c(1,5,9,12), detectDates = T))
+  ng_annual = ng_annual[2:nrow(ng_annual)]
   
 # rename columns ----
   
@@ -49,8 +49,8 @@ ng.file       = 'Table_4.1_Natural_Gas_Overview.xlsx'
   colnames(cons_month) = c('month', 'Consumption')
   colnames(cons_annual) = c('year','Consumption')
   
-  colnames(month) = c('month', 'Dry Production', 'Net Imports', 'Consumption')
-  colnames(annual) = c('year', 'Dry Production', 'Net Imports', 'Consumption')
+  colnames(ng_month) = c('month', 'Dry Production', 'Net Imports', 'Consumption')
+  colnames(ng_annual) = c('year', 'Dry Production', 'Net Imports', 'Consumption')
 
 # merge primary energy production and consumption data -----
   
@@ -65,18 +65,18 @@ ng.file       = 'Table_4.1_Natural_Gas_Overview.xlsx'
   pe_annual = melt(pe_annual, measure.vars = colnames(pe_annual)[2:3],
                    variable.name = 'type', value.name = 'value')
   
-  month = melt(month, measure.vars = colnames(month)[2:4],
+  ng_month = melt(ng_month, measure.vars = colnames(ng_month)[2:4],
                   variable.name = 'type', value.name = 'value')
   
-  annual = melt(annual, measure.vars = colnames(annual)[2:4],
+  ng_annual = melt(ng_annual, measure.vars = colnames(ng_annual)[2:4],
                    variable.name = 'type', value.name = 'value')
   
 # convert value column to numeric ----
   
   pe_month[, value := as.numeric(value)]
   pe_annual[, value := as.numeric(value)]
-  month[, value := as.numeric(value)]
-  annual[, value := as.numeric(value)]
+  ng_month[, value := as.numeric(value)]
+  ng_annual[, value := as.numeric(value)]
   
 #  ------------------------------------------------------- FIGURES -------------------------------------------------------
   
@@ -155,7 +155,7 @@ ng.file       = 'Table_4.1_Natural_Gas_Overview.xlsx'
     
   # line, overview, annual ------
     
-    fig_line_annual = ggplot(annual, aes(x = year, y = value, group = type, color = type)) + 
+    fig_line_annual = ggplot(ng_annual, aes(x = year, y = value, group = type, color = type)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual U.S. natural gas consumption, production, and net imports (1949-2019)',
            subtitle = 'Billion Cubic Feet',
@@ -192,7 +192,7 @@ ng.file       = 'Table_4.1_Natural_Gas_Overview.xlsx'
     
   # line, overview, monthly ------
     
-    fig_line_month = ggplot(month, aes(x = month, y = value, group = type, color = type)) + 
+    fig_line_month = ggplot(ng_month, aes(x = month, y = value, group = type, color = type)) + 
       geom_line(size = 0.5) +
       labs(title = 'Monthly U.S. natural gas consumption, production, and net imports (Jan 1973-May 2020)',
            subtitle = 'Billion Cubic Feet',
