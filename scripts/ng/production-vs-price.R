@@ -93,12 +93,12 @@ price.annual.file       = 'NG_PRI_SUM_DCU_NUS_A.xlsx'
     fig_line_dry_city_annual$layout$clip[fig_line_dry_city_annual$layout$name == "panel"] = "off"
   
     ggsave(fig_line_dry_city_annual, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'dry-production-vs-citygate-price_annual_1984-2019_lts.pdf'))
   
   # line, dry prod vs citygate price, month ------
     
@@ -136,12 +136,12 @@ price.annual.file       = 'NG_PRI_SUM_DCU_NUS_A.xlsx'
     fig_line_dry_city_month$layout$clip[fig_line_dry_city_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_dry_city_month, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'dry-production-vs-citygate-price_month_Jan1997-May2020_lts.pdf'))
     
     
     
@@ -181,14 +181,12 @@ price.annual.file       = 'NG_PRI_SUM_DCU_NUS_A.xlsx'
     fig_line_with_wellhead_annual$layout$clip[fig_line_with_wellhead_annual$layout$name == "panel"] = "off"
     
     ggsave(fig_line_with_wellhead_annual, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'))
-    
-    
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_annual_1936-2019_lts.pdf'))
     
   # line, dry gross withdrawal vs wellhead price, month ------
     
@@ -226,10 +224,10 @@ price.annual.file       = 'NG_PRI_SUM_DCU_NUS_A.xlsx'
     fig_line_with_wellhead_month$layout$clip[fig_line_with_wellhead_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_with_wellhead_month, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-vs-wellhead-price_month_Jan1980-May2020_lts.pdf'))
     

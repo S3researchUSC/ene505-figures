@@ -80,12 +80,12 @@ annnual.file      = 'NG_PROD_SUM_DC_NUS_MMCF_A.xlsx'
     theme(plot.margin = unit(c(1,5,1,1), "lines"))
     
     ggsave(fig_bar_2018, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_2018_bar.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_2018_bar.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_2018_bar.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_2018_bar.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-by-source-well_2018_bar.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_2018_bar.pdf'))
   
     
   # line, annual ------
@@ -109,12 +109,12 @@ annnual.file      = 'NG_PROD_SUM_DC_NUS_MMCF_A.xlsx'
     fig_line_annual$layout$clip[fig_line_annual$layout$name == "panel"] = "off"
     
     ggsave(fig_line_annual, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_lts.pdf'))
 
     
   # area, annual (absolute) -------
@@ -147,12 +147,12 @@ annnual.file      = 'NG_PROD_SUM_DC_NUS_MMCF_A.xlsx'
     fig_area_annual_abs$layout$clip[fig_area_annual_abs$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_abs, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_absolute.pdf'))
 
   # area, annual (proportion) -------
     
@@ -184,12 +184,12 @@ annnual.file      = 'NG_PROD_SUM_DC_NUS_MMCF_A.xlsx'
     fig_area_annual_prop$layout$clip[fig_area_annual_prop$layout$name == "panel"] = "off"
     
     ggsave(fig_area_annual_prop, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_annual_1967-2018_ats_proportion.pdf'))
 
     
   # line, monthly ------
@@ -213,9 +213,9 @@ annnual.file      = 'NG_PROD_SUM_DC_NUS_MMCF_A.xlsx'
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month, 
-           filename = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'), 
+           filename = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'),
-                outfile = here::here('figures', 'ng-and-oil', 'ng_gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'))
+    embed_fonts(here::here('figures', 'ng', 'gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'),
+                outfile = here::here('figures', 'ng', 'gross-withdrawals-by-source-well_month_Jan1993-Dec2018_lts.pdf'))
