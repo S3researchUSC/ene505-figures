@@ -473,7 +473,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value/1000, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation by energy source, electric power sector (Jan 1973-Apr 2020)',
+      labs(title = 'Monthly U.S. electricity generation by energy source, electric power sector (Jan 1973-May 2020)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -490,16 +490,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -508,7 +508,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_line_month_lab = ggplot(dt_month_agg, aes(x = month, y = value/1000, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation by energy source, electric power sector (Jan 1973-Apr 2020)',
+      labs(title = 'Monthly U.S. electricity generation by energy source, electric power sector (Jan 1973-May 2020)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -528,16 +528,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_line_month_lab$layout$clip[fig_line_month_lab$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_lab, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts_labeled.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts_labeled.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts_labeled.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts_labeled.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts_labeled.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts_labeled.pdf'))
     
     # save as png:
     # ggsave(fig_line_month, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-Apr2020_lts_labeled.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_month_Jan1973-May2020_lts_labeled.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -546,7 +546,7 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value/1000, group = MSN, color = MSN)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. electricity generation from renewable sources, electric sector (Jan 1973-Apr 2020)',
+      labs(title = 'Monthly U.S. electricity generation from renewable sources, electric sector (Jan 1973-May 2020)',
            subtitle = 'Billion Kilowatthours',
            caption = 'Data: U.S. Energy Information Administration', 
            x = NULL,
@@ -563,16 +563,16 @@ data.file = 'Table_7.2b_Electricity_Net_Generation__Electric_Power_Sector.xlsx'
     fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_re, 
-           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-Apr2020_lts.pdf'), 
+           filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-Apr2020_lts.pdf'),
-                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-Apr2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-May2020_lts.pdf'),
+                outfile = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-May2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month_re, 
-    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-Apr2020_lts.png'), 
+    #        filename = here::here('figures', 'electricity', 'net-generation-by-source_electric-sector_renewables_month_Jan1973-May2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)

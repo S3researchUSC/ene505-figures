@@ -516,7 +516,7 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
   
     fig_line_month = ggplot(dt_month_agg, aes(x = month, y = value, group = fuel2, color = fuel2)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy consumption by source (Jan 1973-Apr 2020)',
+      labs(title = 'Monthly U.S. primary energy consumption by source (Jan 1973-May 2020)',
            subtitle = 'Quadrillion BTU',
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -533,16 +533,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_line_month$layout$clip[fig_line_month$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month, 
-           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'),
-                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-May2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-May2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month, 
-    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-Apr2020_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_month_Jan1973-May2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
@@ -551,7 +551,7 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     
     fig_line_month_re = ggplot(dt_month_re, aes(x = month, y = value, group = fuel, color = fuel)) + 
       geom_line(size = 0.5) +
-      labs(title = 'Monthly U.S. primary energy consumption from renewable sources (Jan 1973-Apr 2020)',
+      labs(title = 'Monthly U.S. primary energy consumption from renewable sources (Jan 1973-May 2020)',
            subtitle = 'Quadrillion BTU', 
            caption = 'Data: U.S. Energy Information Administration',
            x = NULL,
@@ -568,16 +568,16 @@ data.file     = 'Table_1.3_Primary_Energy_Consumption_by_Source.xlsx'
     fig_line_month_re$layout$clip[fig_line_month_re$layout$name == "panel"] = "off"
     
     ggsave(fig_line_month_re, 
-           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'), 
+           filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-May2020_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'),
-                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.pdf'))
+    embed_fonts(here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-May2020_lts.pdf'),
+                outfile = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-May2020_lts.pdf'))
     
     # save as png:
     # ggsave(fig_line_month_re, 
-    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-Apr2020_lts.png'), 
+    #        filename = here::here('figures', 'energy', 'primary-energy-consumption-by-source_renewables_month_Jan1973-May2020_lts.png'), 
     #        width = 11.5, 
     #        height = 6.25, 
     #        dpi = 600)
