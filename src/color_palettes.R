@@ -47,6 +47,10 @@ pal_wells     = c('Gas Wells' = "#fd6968",
                   'Shale Gas' = "#9ecffd", 
                   'Coalbed Wells' = "#fbd55b")
 
+pal_ng        = c('Dry Production' = '#e63517', 
+                  'Consumption' = '#f9c72a', 
+                  'Net Imports' = '#8a6b5d')
+
 col_rig = '#12253d'
 col_oil = '#fdbf6f'
 col_ng  = '#c44e52'
