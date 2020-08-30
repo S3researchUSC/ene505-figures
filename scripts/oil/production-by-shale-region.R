@@ -171,7 +171,7 @@ data.file     = 'dpr-data.xlsx'
            color = 'guide',
            linetype = 'guide') +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '2 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma,  breaks = seq(0,800,100), limits = c(0,1.05*max(dt_dpr_agg[, prod_per_rig])),
+      scale_y_continuous(labels = scales::comma,  breaks = seq(0,800,100), limits = c(0,1.05*max(dt_dpr_agg[, prod_per_rig])), expand = c(0,0),
                          sec.axis = sec_axis( trans=~./(800/1600), breaks = seq(0,1600,200), labels = scales::comma)) +
       scale_color_manual(breaks = c('oil', 'rig'),
                          values = c(col_oil, col_rig), 
@@ -214,7 +214,7 @@ data.file     = 'dpr-data.xlsx'
       guides(color = 'none',
              linetype = guide_legend(nrow = 2)) +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '4 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, name = 'Barrels per day', breaks = seq(0,1800,300),
+      scale_y_continuous(labels = scales::comma, name = 'Barrels per day', breaks = seq(0,1800,300), expand = c(0,0),
                          sec.axis = sec_axis( trans=~./(1800/600), name = "Number of rigs", breaks = seq(0,600,100) )) +
       scale_color_manual(values = pal_shale) +
       scale_linetype_discrete(labels = c('New-well oil production per rig (barrels per day)', 

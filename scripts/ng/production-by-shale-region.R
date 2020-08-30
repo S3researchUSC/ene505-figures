@@ -169,8 +169,8 @@ data.file     = 'dpr-data.xlsx'
            color = 'guide',
            linetype = 'guide') +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '2 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, breaks = seq(0,8000,1000), limits = c(0,1.11*max(dt_dpr_agg[, prod_per_rig])),
-                         sec.axis = sec_axis(trans=~./(8000/1600),  breaks = seq(0,1600,200), labels = scales::comma)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0,8000,1000), limits = c(0,1.11*max(dt_dpr_agg[, prod_per_rig])), expand = c(0,0),
+                         sec.axis = sec_axis(trans=~./(8000/1600), breaks = seq(0,1600,200), labels = scales::comma)) +
       scale_color_manual(breaks = c('ng', 'rig'),  
                          values = c(col_ng, col_rig),
                          labels = c('Average new-well natural gas production per rig (thousand cubic feet per day)', 'Total rig count (number of rigs)')) +
@@ -212,7 +212,7 @@ data.file     = 'dpr-data.xlsx'
       guides(color = 'none',
              linetype = guide_legend(nrow = 2)) +
       scale_x_date(breaks = seq(as.Date('2008-01-01'), as.Date('2020-01-01'), '4 years'), date_labels = "%b %Y", expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, name = 'Thousand cubic feet per day', breaks = seq(0,25000,5000),
+      scale_y_continuous(labels = scales::comma, name = 'Thousand cubic feet per day', breaks = seq(0,25000,5000), expand = c(0,0),
                          sec.axis = sec_axis( trans=~./(25000/500), name = "Number of rigs", breaks = seq(0,500,100), labels = scales::comma)) +
       scale_color_manual(values = pal_shale) +
       scale_linetype_discrete(labels = c('New-well natural gas production per rig (thousand cubic feet per day)', 
