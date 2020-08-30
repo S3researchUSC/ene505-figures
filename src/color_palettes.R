@@ -52,7 +52,9 @@ pal_ng        = c('Dry Production' = '#7a1134',
                   'Net Imports' = '#aaaeb4')
 
 pal_oil       = c('Production' = '#7a1134', 
+                  'Field Production' = '#7a1134',
                   'Consumption' = '#47b3a8', 
+                  'Products Supplied' = '#47b3a8', 
                   'Net Imports' = '#aaaeb4')
 
 
