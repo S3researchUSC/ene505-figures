@@ -51,6 +51,11 @@ pal_ng        = c('Dry Production' = '#7a1134',
                   'Consumption' = '#47b3a8', 
                   'Net Imports' = '#aaaeb4')
 
+pal_oil       = c('Production' = '#7a1134', 
+                  'Consumption' = '#47b3a8', 
+                  'Net Imports' = '#aaaeb4')
+
+
 col_rig = '#12253d'
 col_oil = '#fdbf6f'
 col_ng  = '#c44e52'
