@@ -61,3 +61,15 @@ pal_oil       = c('Production' = '#7a1134',
 col_rig = '#12253d'
 col_oil = '#fdbf6f'
 col_ng  = '#c44e52'
+
+pal_country = c('World' = '#000000',
+                'China' = '#0C5BB0FF',
+                'United States' = '#EE0011FF',
+                'India' = '#15983DFF',
+                'Japan' = '#EC579AFF',
+                'Germany' = '#FA6B09FF',
+                'Russia' = '#149BEDFF',
+                'Indonesia' = '#A1C720FF',
+                'Brazil' = '#FEC10BFF',
+                'United Kingdom' = '#16A08CFF',
+                'France' = '#9A703EFF')
