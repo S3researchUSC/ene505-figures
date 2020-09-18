@@ -282,7 +282,7 @@
            height = 6.25)
     
     embed_fonts(here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_absolute.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-production-by-country_annual_1973-2019_ats_absolute.pdf'))
+                outfile = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_absolute.pdf'))
     
     
   # area, consumption (proportion) -----
