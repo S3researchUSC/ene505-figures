@@ -1,5 +1,16 @@
 # plots generated:
-# 
+  # coal-production-by-country_annual_1980-2018_lts.pdf
+  # coal-production-by-country_annual_1980-2018_ats_absolute.pdf
+  # coal-production-by-country_annual_1980-2018_ats_proportion.pdf
+  # coal-consumption-by-country_annual_1980-2018_lts.pdf
+  # coal-consumption-by-country_annual_1980-2018_ats_absolute.pdf
+  # coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf
+  # coal-imports-by-country_annual_1980-2018_lts.pdf
+  # coal-imports-by-country_annual_1980-2018_ats_absolute.pdf
+  # coal-imports-by-country_annual_1980-2018_ats_proportion.pdf
+  # coal-exports-by-country_annual_1980-2018_lts.pdf
+  # coal-exports-by-country_annual_1980-2018_ats_absolute.pdf
+  # coal-exports-by-country_annual_1980-2018_ats_proportion.pdf
 
 # ------------------------------------ inputs ------------------------------------
 
