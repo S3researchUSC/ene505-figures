@@ -1,0 +1,231 @@
+country,year,gdp_billion_usd,rank
+China,2019,25483.35,1
+United States,2019,19974.51,2
+India,2019,10441.92,3
+Japan,2019,5323.94,4
+Germany,2019,4147.8,5
+Russia,2019,4089.815,6
+Indonesia,2019,3482.717,7
+Brazil,2019,3243.305,8
+United Kingdom,2019,2949.263,9
+France,2019,2863.921,10
+Mexico,2019,2429.307,11
+Italy,2019,2288.728,12
+Turkey,2019,2203.045,13
+South Korea,2019,2168.18,14
+Spain,2019,1792.985,15
+Canada,2019,1775.406,16
+Saudi Arabia,2019,1771.04,17
+Iran,2019,1369.68,18
+Egypt,2019,1296.38,19
+Thailand,2019,1283.845,20
+Australia,2019,1269.231,21
+Taiwan,2019,1248.874,22
+Poland,2019,1204.834,23
+Nigeria,2019,1132.86,24
+Pakistan,2019,1105.11,25
+Malaysia,2019,1004.275,26
+Philippines,2019,965.074,27
+Vietnam,2019,933.484,28
+Netherlands,2019,933.354,29
+Argentina,2019,848.869,30
+Bangladesh,2019,779.687,31
+South Africa,2019,750.094,32
+Colombia,2019,732.038,33
+United Arab Emirates,2019,705.574,34
+Iraq,2019,641.249,35
+Algeria,2019,624.032,36
+Singapore,2019,553.535,37
+Belgium,2019,533.884,38
+Switzerland,2019,527.835,39
+Sweden,2019,524.723,40
+Romania,2019,511.309,41
+Kazakhstan,2019,502.544,42
+Chile,2019,462.023,43
+Hong Kong,2019,449.311,44
+Austria,2019,444.222,45
+Peru,2019,443.822,46
+Czech Republic,2019,388.6966,47
+Ireland,2019,387.7745,48
+Ukraine,2019,382.481,49
+Norway,2019,379.9512,50
+Qatar,2019,333.669,51
+Burma,2019,331.358,52
+Israel,2019,331.155,53
+Portugal,2019,323.3967,54
+Hungary,2019,313.4324,55
+Morocco,2019,305.177,56
+Greece,2019,301.3594,57
+Denmark,2019,297.711,58
+Kuwait,2019,286.787,59
+Sri Lanka,2019,283.513,60
+Uzbekistan,2019,281.683,61
+Finland,2019,248.4762,62
+Ethiopia,2019,225.432,63
+New Zealand,2019,194.6423,64
+Ghana,2019,191.563,65
+Venezuela,2019,190.1472,66
+Ecuador,2019,189.787,67
+Oman,2019,186.79,68
+Angola,2019,186.641,69
+Dominican Republic,2019,185.1,70
+Slovakia,2019,184.8956,71
+Belarus,2019,181.769,72
+Tanzania,2019,181.268,73
+Kenya,2019,177.816,74
+Azerbaijan,2019,175.345,75
+Sudan,2019,171.095,76
+Bulgaria,2019,159.5374,77
+Cuba,2019,149.884,78
+Côte d’Ivoire,2019,147.539,79
+Guatemala,2019,143.047,80
+Tunisia,2019,138.573,81
+Serbia,2019,121.291,82
+Uganda,2019,113.614,83
+Croatia,2019,105.0474,84
+Panama,2019,104.393,85
+Turkmenistan,2019,99.6074,86
+Lithuania,2019,96.0418,87
+Cameroon,2019,93.4912,88
+Nepal,2019,89.7707,89
+Jordan,2019,89.6273,90
+Paraguay,2019,89.2806,91
+Bolivia,2019,86.5245,92
+Costa Rica,2019,85.8115,93
+Lebanon,2019,83.154,94
+Congo-Kinshasa,2019,77.4178,95
+Uruguay,2019,77.1687,96
+Slovenia,2019,74.145,97
+Bahrain,2019,71.9769,98
+Afghanistan,2019,71.7695,99
+Cambodia,2019,71.4927,100
+Libya,2019,71.2558,101
+Zambia,2019,70.8133,102
+Macau,2019,70.6162,103
+Puerto Rico,2019,66.7899,104
+Luxembourg,2019,64.1498,105
+Senegal,2019,59.746,106
+Yemen,2019,58.8432,107
+Syria,2019,56.1194,108
+Latvia,2019,55.4269,109
+Laos,2019,54.2076,110
+El Salvador,2019,51.8039,111
+Madagascar,2019,49.2751,112
+Honduras,2019,47.8967,113
+Mali,2019,46.8084,114
+Bosnia and Herzegovina,2019,46.1897,115
+Georgia,2019,45.4906,116
+Estonia,2019,44.5208,117
+Burkina Faso,2019,44.2152,118
+Mongolia,2019,43.4945,119
+North Korea,2019,43.1394,120
+Trinidad and Tobago,2019,41.8749,121
+Botswana,2019,40.9143,122
+Mozambique,2019,38.0963,123
+Albania,2019,37.111,124
+Gabon,2019,37.0962,125
+Zimbabwe,2019,36.9907,126
+Cyprus,2019,34.4085,127
+Brunei,2019,34.1442,128
+Guinea,2019,32.7099,129
+Nicaragua,2019,32.5253,130
+North Macedonia,2019,32.3381,131
+Niger,2019,31.5729,132
+Tajikistan,2019,31.5254,133
+Armenia,2019,31.1429,134
+Papua New Guinea,2019,29.6452,135
+Mauritius,2019,29.3935,136
+Chad,2019,29.3056,137
+Congo-Brazzaville,2019,28.5529,138
+Rwanda,2019,28.1068,139
+Benin,2019,27.8819,140
+Equatorial Guinea,2019,26.5241,141
+Jamaica,2019,26.085,142
+Moldova,2019,25.1543,143
+Namibia,2019,25.0092,144
+Reunion,2019,24.5708,145
+Kyrgyzstan,2019,24.3811,146
+Mauritania,2019,24.2488,147
+Malawi,2019,23.234,148
+Malta,2019,21.507,149
+Kosovo,2019,20.6245,150
+Haiti,2019,19.4269,151
+Iceland,2019,18.6851,152
+Palestinian Territories,2019,14.025,153
+Togo,2019,13.906,154
+Sierra Leone,2019,12.3301,155
+The Bahamas,2019,11.8269,156
+Montenegro,2019,11.7459,157
+Eswatini,2019,11.5927,158
+Guadeloupe,2019,10.712,159
+Fiji,2019,9.91051,160
+Suriname,2019,8.72993,161
+Somalia,2019,8.37429,162
+Maldives,2019,7.88912,163
+Burundi,2019,7.81931,164
+Martinique,2019,7.33324,165
+Bhutan,2019,7.15963,166
+Guyana,2019,6.61832,167
+Lesotho,2019,6.15123,168
+Eritrea,2019,6.11899,169
+"Gambia, The",2019,5.96508,170
+Liberia,2019,5.85507,171
+Bermuda,2019,5.82226,172
+Djibouti,2019,5.57728,173
+Greenland,2019,5.16576,174
+Barbados,2019,5.08461,175
+Cabo Verde,2019,4.04925,176
+Central African Republic,2019,3.97437,177
+Cayman Islands,2019,3.706,178
+Guinea-Bissau,2019,3.51485,179
+Belize,2019,3.1298,180
+Seychelles,2019,2.94067,181
+Aruba,2019,2.93623,182
+Netherlands Antilles,2019,2.85137,183
+Saint Lucia,2019,2.67571,184
+Antigua and Barbuda,2019,2.5614,185
+Comoros,2019,2.32191,186
+U.S. Virgin Islands,2019,1.88853,187
+Timor-Leste,2019,1.78265,188
+Grenada,2019,1.71851,189
+Saint Kitts and Nevis,2019,1.6091,190
+British Virgin Islands,2019,1.48834,191
+Solomon Islands,2019,1.38462,192
+Saint Vincent/Grenadines,2019,1.28952,193
+Samoa,2019,1.11648,194
+Dominica,2019,0.807388,195
+Vanuatu,2019,0.796142,196
+Sao Tome and Principe,2019,0.760595,197
+Tonga,2019,0.588746,198
+Kiribati,2019,0.231843,199
+American Samoa,2019,,200
+Antarctica,2019,,201
+Cook Islands,2019,,202
+Falkland Islands,2019,,203
+Faroe Islands,2019,,204
+Former Czechoslovakia,2019,,205
+Former Serbia and Montenegro,2019,,206
+Former U.S.S.R.,2019,,207
+Former Yugoslavia,2019,,208
+French Guiana,2019,,209
+French Polynesia,2019,,210
+"Germany, East",2019,,211
+"Germany, West",2019,,212
+Gibraltar,2019,,213
+Guam,2019,,214
+Hawaiian Trade Zone,2019,,215
+Micronesia,2019,,216
+Montserrat,2019,,217
+Nauru,2019,,218
+New Caledonia,2019,,219
+Niue,2019,,220
+Northern Mariana Islands,2019,,221
+Saint Helena,2019,,222
+Saint Pierre and Miquelon,2019,,223
+South Sudan,2019,,224
+Turks and Caicos Islands,2019,,225
+Tuvalu,2019,,226
+U.S. Pacific Islands,2019,,227
+U.S. Territories,2019,,228
+Wake Island,2019,,229
+Western Sahara,2019,,230
