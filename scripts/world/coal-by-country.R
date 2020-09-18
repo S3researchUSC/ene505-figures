@@ -106,6 +106,9 @@
     pal_cons = pal_5countries
     names(pal_cons)[2:6] = top5_cons
     
+    pal_imp = pal_5countries
+    names(pal_imp)[2:6] = top5_imp
+
   # line, production -----
   
     labs_line_prod = coal_agg[type == 'production' & year == max(year)]
@@ -117,7 +120,7 @@
       geom_line(size = 0.9) +
       labs(title = 'Annual coal production by country (1980-2018)',
            subtitle = 'Million short tons', 
-           caption = 'Top 5 producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
@@ -151,7 +154,7 @@
       geom_area() +
       labs(title = 'Annual coal production by country (1980-2018)',
            subtitle = 'Million short tons', 
-           caption = 'Top 5 producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
@@ -188,7 +191,7 @@
       geom_area() +
       labs(title = 'Annual coal production by country (1980-2018)',
            subtitle = 'Share of global coal production', 
-           caption = 'Top 5 producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
@@ -223,12 +226,12 @@
       geom_line(size = 0.9) +
       labs(title = 'Annual coal consumption by country (1980-2018)',
            subtitle = 'Million short tons', 
-           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
       scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,5e3,1e3), limits = c(0,5e3)) +
       scale_color_manual(values = pal_cons) + 
       theme_line +
       # geom_dl(aes(label = label), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) +
@@ -246,9 +249,7 @@
     embed_fonts(here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_lts.pdf'),
                 outfile = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_lts.pdf'))
     
-    
 
-    
   # area, consumption (absolute) -----
     
     labs_area_cons = coal_agg[type == 'consumption' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_cons)))))]
@@ -262,7 +263,7 @@
       geom_area() +
       labs(title = 'Annual coal consumption by country (1980-2018)',
            subtitle = 'Million short tons', 
-           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
@@ -299,7 +300,7 @@
       geom_area() +
       labs(title = 'Annual coal consumption by country (1980-2018)',
            subtitle = 'Share of global coal consumption', 
-           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 coal consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
@@ -322,4 +323,5 @@
     
     embed_fonts(here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf'))
+
 
