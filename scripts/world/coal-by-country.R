@@ -4,7 +4,6 @@
 # ------------------------------------ inputs ------------------------------------
 
   coal_file       = "international-coal-by-country-1980-2018.csv"
-  gdp_file        = "gdp-by-country-ranked-2019.csv"
 
 # ------------------------------------ main script ------------------------------------
 
@@ -34,9 +33,6 @@
   # remove whitespace from country names
     coal_data[, country := trimws(country, which = 'both')]
     
-  # read in csv of 2019 gdp by country
-    gdp_2019 = fread(here::here('data', gdp_file), header = T)
-  
 # melt data from wide to long format -----
     
   coal_long = melt(coal_data, measure.vars = as.character(1980:2018),
@@ -46,16 +42,6 @@
     
   coal_long[, year := as.numeric(as.character(year))]
   coal_long[, value := as.numeric(value)]
-  
-# get countries with top 10 gdp -----
-  
-  top10_gdp = gdp_2019[rank %in% 1:10]
-  
-# label all non-top 10 countries as "Other" -----
-  
-  coal_long[, label := ifelse(country %in% c('World', top10_gdp[, country]),
-                              country,
-                              'Other')]
   
 # categorize values by type using API -----
   
@@ -75,7 +61,24 @@
   
   coal_long = coal_long[!is.na(type)]
   
+# get top 10 in each type (production, consumption, imports, exports, and reserves) ------
+  
+  coal_2018 = coal_long[year == max(year) & ! country == 'World']
+  coal_2018[, rank := frank(-value), by = 'type']
+  rank_country = unique(coal_2018[, c('country', 'type', 'rank')])
+  
+# merge with main coal data ----
+  
+  coal_ranked = merge(coal_long, rank_country, by = c('country', 'type'), all.x = T)
+  coal_ranked[country == 'World', rank := 0]
+
+# label all non-top 10 countries as "Other" -----
+  
+  coal_ranked[, label := ifelse(rank %in% 0:10,
+                                country,
+                                'All Other Countries')]
+  
 # aggregate by new country grouping -----
   
-  coal_agg = coal_long[, .(value = sum(value, na.rm = T)), by = .(year, label, type, unit)]
+  coal_agg = coal_ranked[, .(value = sum(value, na.rm = T)), by = .(year, label, type, unit)]
   setcolorder(coal_agg, c('year', 'type', 'label', 'value', 'unit'))
