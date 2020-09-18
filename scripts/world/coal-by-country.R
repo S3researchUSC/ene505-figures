@@ -448,7 +448,7 @@
       geom_dl(aes(label = label), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain'))
     
     line_exp = ggplotGrob(line_exp)
-    line_exp$layout$clip[line_imp$layout$name == "panel"] = "off"
+    line_exp$layout$clip[line_exp$layout$name == "panel"] = "off"
     
     ggsave(line_exp, 
            filename = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_lts.pdf'), 
@@ -530,6 +530,7 @@
     
     embed_fonts(here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_proportion.pdf'))
+    
     
     
     
