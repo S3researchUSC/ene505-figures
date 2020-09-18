@@ -3,8 +3,8 @@
 
 # ------------------------------------ inputs ------------------------------------
 
-coal_file       = "international-coal-by-country-1980-2018.csv"
-gdp_file        = "gdp-by-country-ranked-2019.csv"
+  coal_file       = "international-coal-by-country-1980-2018.csv"
+  gdp_file        = "gdp-by-country-ranked-2019.csv"
 
 # ------------------------------------ main script ------------------------------------
 
@@ -77,7 +77,5 @@ gdp_file        = "gdp-by-country-ranked-2019.csv"
   
 # aggregate by new country grouping -----
   
-  coal_agg = coal_long[, .(value = sum(value, na.rm = T)), by = .(year, label, unit)]
-  setcolorder(coal_agg, c('year', 'label', 'value', 'unit'))
-
-  
+  coal_agg = coal_long[, .(value = sum(value, na.rm = T)), by = .(year, label, type, unit)]
+  setcolorder(coal_agg, c('year', 'type', 'label', 'value', 'unit'))
