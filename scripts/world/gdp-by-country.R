@@ -68,4 +68,4 @@
   
 # export ranked gdp in 2019 to csv file ----
   
-  fwrite(gdp_most_recent, here::here('data', out_gdp_2019), row.names = )
+  fwrite(gdp_most_recent, here::here('data', out_gdp_2019), row.names = F)
