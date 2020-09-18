@@ -72,5 +72,11 @@ pal_country = c('World' = '#000000',
                 'Indonesia' = '#A1C720FF',
                 'Brazil' = '#FEC10BFF',
                 'United Kingdom' = '#16A08CFF',
-                'France' = '#9A703EFF',
-                'Other' = '#898989')
+                'France' = '#9A703EFF')
+
+pal_5countries = c('All Other Countries' = '#d1d1d1',
+                   'country 1' = '#ae87cf',
+                   'country 2' = '#d9c5ef',
+                   'country 3' = '#f0d96f',
+                   'country 4' = '#a9e6b5',
+                   'country 5' = '#96b574')
