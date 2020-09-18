@@ -333,9 +333,9 @@
     
     line_imp = ggplot(oil_agg[type == 'imports'], aes(x = year, y = value/1e3, color = label)) + 
       geom_line(size = 0.9) +
-      labs(title = 'Annual petroleum imports by country (1980-2016)',
+      labs(title = 'Annual crude imports by country (1980-2016)',
            subtitle = 'Million barrels per day', 
-           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 crude importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
@@ -350,12 +350,12 @@
     line_imp$layout$clip[line_imp$layout$name == "panel"] = "off"
     
     ggsave(line_imp, 
-           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'), 
+           filename = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_lts.pdf'),
+                outfile = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_lts.pdf'))
     
   # area, imports (absolute) -----
     
@@ -367,9 +367,9 @@
     area_imp = ggplot(oil_agg[type == 'imports'], 
                        aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_imp))))) + 
       geom_area() +
-      labs(title = 'Annual petroleum imports by country (1980-2016)',
+      labs(title = 'Annual crude imports by country (1980-2016)',
            subtitle = 'Million barrels per day', 
-           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 crude importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
@@ -386,12 +386,12 @@
     area_imp$layout$clip[area_imp$layout$name == "panel"] = "off"
     
     ggsave(area_imp, 
-           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'), 
+           filename = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_absolute.pdf'))
     
     
   # area, imports (proportion) -----
@@ -404,9 +404,9 @@
     area_imp_prop = ggplot(oil_agg[type == 'imports'], 
                             aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_imp))))) + 
       geom_area() +
-      labs(title = 'Annual petroleum imports by country (1980-2016)',
-           subtitle = 'Share of global petroleum imports', 
-           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+      labs(title = 'Annual crude imports by country (1980-2016)',
+           subtitle = 'Share of global crude imports', 
+           caption = 'Top 5 crude importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
@@ -423,12 +423,12 @@
     area_imp_prop$layout$clip[area_imp_prop$layout$name == "panel"] = "off"
     
     ggsave(area_imp_prop, 
-           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'), 
+           filename = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'crude-imports-by-country_annual_1980-2016_ats_proportion.pdf'))
     
   # line, exports -----
   
@@ -439,9 +439,9 @@
     
     line_exp = ggplot(oil_agg[type == 'exports'], aes(x = year, y = value/1e3, color = label)) + 
       geom_line(size = 0.9) +
-      labs(title = 'Annual petroleum exports by country (1980-2016)',
+      labs(title = 'Annual crude exports by country (1980-2016)',
            subtitle = 'Million barrels per day', 
-           caption = 'Top 5 petroleum exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 crude exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
@@ -456,12 +456,12 @@
     line_exp$layout$clip[line_exp$layout$name == "panel"] = "off"
     
     ggsave(line_exp, 
-           filename = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_lts.pdf'), 
+           filename = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_lts.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_lts.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_lts.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_lts.pdf'),
+                outfile = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_lts.pdf'))
     
   # area, exports (absolute) -----
     
@@ -473,9 +473,9 @@
     area_exp = ggplot(oil_agg[type == 'exports'], 
                       aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
       geom_area() +
-      labs(title = 'Annual petroleum exports by country (1980-2016)',
+      labs(title = 'Annual crude exports by country (1980-2016)',
            subtitle = 'Million barrels per day', 
-           caption = 'Top 5 petroleum exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           caption = 'Top 5 crude exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
@@ -492,12 +492,12 @@
     area_exp$layout$clip[area_exp$layout$name == "panel"] = "off"
     
     ggsave(area_exp, 
-           filename = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_absolute.pdf'), 
+           filename = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_absolute.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_absolute.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_absolute.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_absolute.pdf'))
     
     
   # area, exports (proportion) -----
@@ -510,9 +510,9 @@
     area_exp_prop = ggplot(oil_agg[type == 'exports'], 
                            aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
       geom_area() +
-      labs(title = 'Annual petroleum exports by country (1980-2016)',
-           subtitle = 'Share of global petroleum exports', 
-           caption = 'Top 5 petroleum exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+      labs(title = 'Annual crude exports by country (1980-2016)',
+           subtitle = 'Share of global crude exports', 
+           caption = 'Top 5 crude exporting countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
@@ -529,12 +529,12 @@
     area_exp_prop$layout$clip[area_exp_prop$layout$name == "panel"] = "off"
     
     ggsave(area_exp_prop, 
-           filename = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_proportion.pdf'), 
+           filename = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_proportion.pdf'), 
            width = 11.5, 
            height = 6.25)
     
-    embed_fonts(here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_proportion.pdf'),
-                outfile = here::here('figures', 'world', 'petroleum-exports-by-country_annual_1980-2016_ats_proportion.pdf'))
+    embed_fonts(here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'crude-exports-by-country_annual_1980-2016_ats_proportion.pdf'))
     
   # line, reserves -----
     
