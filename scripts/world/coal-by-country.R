@@ -84,6 +84,10 @@
   coal_agg = coal_ranked[, .(value = sum(value, na.rm = T)), by = .(year, label, type, unit)]
   setcolorder(coal_agg, c('year', 'type', 'label', 'value', 'unit'))
   
+# calculate proportion (or percentage) contributed by type for each year -----
+  
+  coal_agg[, prop := value/sum(value), by = c('type', 'year')]
+  
 # get top 5 for each type -----
   
   top5_prod = rank_country[type == 'production' & rank %in% 1:5][order(rank), country]
