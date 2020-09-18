@@ -61,7 +61,7 @@
   
   coal_long = coal_long[!is.na(type)]
   
-# get top 10 in each type (production, consumption, imports, exports, and reserves) ------
+# rank values in each category (production, consumption, imports, exports, and reserves) in 2018 ------
   
   coal_2018 = coal_long[year == max(year) & ! country == 'World']
   coal_2018[, rank := frank(-value), by = 'type']
@@ -72,9 +72,9 @@
   coal_ranked = merge(coal_long, rank_country, by = c('country', 'type'), all.x = T)
   coal_ranked[country == 'World', rank := 0]
 
-# label all non-top 10 countries as "Other" -----
+# label all non-top 5 countries as "Other" -----
   
-  coal_ranked[, label := ifelse(rank %in% 0:10,
+  coal_ranked[, label := ifelse(rank %in% 0:5,
                                 country,
                                 'All Other Countries')]
   
