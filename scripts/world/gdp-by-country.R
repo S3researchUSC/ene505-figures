@@ -76,7 +76,7 @@
     labs_line[1:7, position := seq(1200,7100,length.out = 7)]
     # labs_line[is.na(position), position := value/1000]
   
-    line_gdp = ggplot(gdp_long[country %in% top_10_gdp[, country]], aes(x = year, y = gdp_billion_usd, color = country)) + geom_line() +
+    line_gdp = ggplot(gdp_long[country %in% top_10_gdp[, country]], aes(x = year, y = gdp_billion_usd, color = country)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual gross domestic product (GDP) at purchasing power parities (1980-2019)',
            subtitle = 'Billion 2015$ PPP', 
