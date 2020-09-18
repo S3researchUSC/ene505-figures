@@ -1,3 +1,20 @@
+# plots generated:
+  # petroleum-production-by-country_annual_1980-2019_lts.pdf
+  # petroleum-production-by-country_annual_1980-2019_ats_absolute.pdf
+  # petroleum-production-by-country_annual_1980-2019_ats_proportion.pdf
+  # petroleum-consumption-by-country_annual_1973-2019_lts.pdf
+  # petroleum-consumption-by-country_annual_1973-2019_ats_absolute.pdf
+  # petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf
+  # crude-imports-by-country_annual_1980-2016_lts.pdf
+  # crude-imports-by-country_annual_1980-2016_ats_absolute.pdf
+  # crude-imports-by-country_annual_1980-2016_ats_proportion.pdf
+  # crude-exports-by-country_annual_1980-2016_lts.pdf
+  # crude-exports-by-country_annual_1980-2016_ats_absolute.pdf
+  # crude-exports-by-country_annual_1980-2016_ats_proportion.pdf
+  # crude-reserves-by-country_annual_1980-2020_lts.pdf
+  # crude-reserves-by-country_annual_1980-2020_ats_absolute.pdf
+  # crude-reserves-by-country_annual_1980-2020_ats_proportion.pdf
+
 # ------------------------------------ inputs ------------------------------------
 
   oil_file       = 'international-petroleum-crude-by-country-1980-2019.csv'
