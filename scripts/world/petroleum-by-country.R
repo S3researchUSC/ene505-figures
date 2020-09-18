@@ -92,3 +92,20 @@
   top5_exp = rank_country[type == 'exports' & rank %in% 1:5][order(rank), country]
   top5_res = rank_country[type == 'reserves' & rank %in% 1:5][order(rank), country]
   
+# ------------------------------------ figures ------------------------------------
+  
+  # palettes -----
+  
+  pal_prod = pal_5countries
+  names(pal_prod)[2:6] = top5_prod
+  
+  pal_cons = pal_5countries
+  names(pal_cons)[2:6] = top5_cons
+  
+  pal_imp = pal_5countries
+  names(pal_imp)[2:6] = top5_imp
+  
+  pal_exp = pal_5countries
+  names(pal_exp)[2:6] = top5_exp
+  
+  
