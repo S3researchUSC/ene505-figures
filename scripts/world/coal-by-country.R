@@ -108,7 +108,10 @@
     
     pal_imp = pal_5countries
     names(pal_imp)[2:6] = top5_imp
-
+    
+    pal_exp = pal_5countries
+    names(pal_exp)[2:6] = top5_exp
+    
   # line, production -----
   
     labs_line_prod = coal_agg[type == 'production' & year == max(year)]
@@ -328,10 +331,6 @@
     
   # line, imports -----
     
-    labs_line_imp = coal_agg[type == 'imports' & year == max(year)]
-    setorder(labs_line_imp, "value")
-    labs_line_imp[, position := value/1e3]
-
     line_imp = ggplot(coal_agg[type == 'imports'], aes(x = year, y = value/1e3, color = label)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual coal imports by country (1980-2018)',
@@ -429,5 +428,108 @@
     
     embed_fonts(here::here('figures', 'world', 'coal-imports-by-country_annual_1980-2018_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'coal-imports-by-country_annual_1980-2018_ats_proportion.pdf'))
+    
+    
+
+  # line, exports -----
+    
+    line_exp = ggplot(coal_agg[type == 'exports'], aes(x = year, y = value/1e3, color = label)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual coal exports by country (1980-2018)',
+           subtitle = 'Million short tons', 
+           caption = 'Top 5 coal exporting countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,500,100), limits = c(0,500)) +
+      scale_color_manual(values = pal_exp) + 
+      theme_line +
+      geom_dl(aes(label = label), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain'))
+    
+    line_exp = ggplotGrob(line_exp)
+    line_exp$layout$clip[line_imp$layout$name == "panel"] = "off"
+    
+    ggsave(line_exp, 
+           filename = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_lts.pdf'),
+                outfile = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_lts.pdf'))
+    
+  # area, exports (absolute) -----
+    
+    labs_area_exp = coal_agg[type == 'exports' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_exp)))))]
+    labs_area_exp[, cum_sum := cumsum(value/1e3)] 
+    labs_area_exp[, difference := diff(c(0,cum_sum))/2]
+    labs_area_exp[, position := cum_sum - difference]
+    
+    area_exp = ggplot(coal_agg[type == 'exports'], 
+                      aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
+      geom_area() +
+      labs(title = 'Annual coal exports by country (1980-2018)',
+           subtitle = 'Million short tons', 
+           caption = 'Top 5 coal exporting countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,1600,200), limits = c(0,1600)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_exp) + 
+      scale_fill_manual(values = pal_exp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_exp, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_exp = ggplotGrob(area_exp)
+    area_exp$layout$clip[area_exp$layout$name == "panel"] = "off"
+    
+    ggsave(area_exp, 
+           filename = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_absolute.pdf'))
+    
+    
+  # area, exports (proportion) -----
+    
+    labs_area_exp_prop = coal_agg[type == 'exports' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_exp)))))]
+    labs_area_exp_prop[, cum_sum := cumsum(prop)] 
+    labs_area_exp_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_exp_prop[, position := cum_sum - difference]
+    
+    area_exp_prop = ggplot(coal_agg[type == 'exports'], 
+                           aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
+      geom_area() +
+      labs(title = 'Annual coal exports by country (1980-2018)',
+           subtitle = 'Share of global coal exports', 
+           caption = 'Top 5 coal exporting countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_exp) + 
+      scale_fill_manual(values = pal_exp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_exp_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_exp_prop = ggplotGrob(area_exp_prop)
+    area_exp_prop$layout$clip[area_exp_prop$layout$name == "panel"] = "off"
+    
+    ggsave(area_exp_prop, 
+           filename = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'coal-exports-by-country_annual_1980-2018_ats_proportion.pdf'))
+    
     
     
