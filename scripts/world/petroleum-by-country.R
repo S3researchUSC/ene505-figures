@@ -214,3 +214,109 @@
     embed_fonts(here::here('figures', 'world', 'petroleum-production-by-country_annual_1980-2019_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'petroleum-production-by-country_annual_1980-2019_ats_proportion.pdf'))
   
+
+  # line, consumption -----
+    
+    labs_line_cons = oil_agg[type == 'consumption' & year == 2019]
+    labs_line_cons = labs_line_cons[order(rank(value))]
+    labs_line_cons[, position := value/1e3]
+    labs_line_cons[1:4, position := c(1.1,2.1,3.15,4.25)]
+    
+    line_cons = ggplot(oil_agg[type == 'consumption'], aes(x = year, y = value/1e3, color = label)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual petroleum consumption by country (1973-2019)',
+           subtitle = 'Million barrels per day', 
+           caption = 'Top 5 petroleum consuming countries in 2019 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1973,2019,5), limits = c(1973,2019), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,24,4), limits = c(0,24)) +
+      scale_color_manual(values = pal_cons) + 
+      theme_line +
+      geom_text(data = labs_line_cons, aes(x = Inf, y = position, label = paste0(' ', label), color = label), hjust = 0,
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    line_cons = ggplotGrob(line_cons)
+    line_cons$layout$clip[line_cons$layout$name == "panel"] = "off"
+    
+    ggsave(line_cons, 
+           filename = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_lts.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_lts.pdf'))
+    
+  # area, consumption (absolute) -----
+    
+    labs_area_cons = oil_agg[type == 'consumption' & year == 2019][order(factor(label, levels = rev(c('All Other Countries', rev(top5_cons)))))]
+    labs_area_cons[, cum_sum := cumsum(value/1e3)] 
+    labs_area_cons[, difference := diff(c(0,cum_sum))/2]
+    labs_area_cons[, position := cum_sum - difference]
+    
+    area_cons = ggplot(oil_agg[type == 'consumption'], 
+                       aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_cons))))) + 
+      geom_area() +
+      labs(title = 'Annual petroleum consumption by country (1973-2019)',
+           subtitle = 'Million barrels per day', 
+           caption = 'Top 5 petroleum consuming countries in 2019 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1973,2019,5), limits = c(1973,2019), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,55,5)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_cons) + 
+      scale_fill_manual(values = pal_cons) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_cons, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_cons = ggplotGrob(area_cons)
+    area_cons$layout$clip[area_cons$layout$name == "panel"] = "off"
+    
+    ggsave(area_cons, 
+           filename = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-production-by-country_annual_1973-2019_ats_absolute.pdf'))
+    
+    
+  # area, consumption (proportion) -----
+    
+    labs_area_cons_prop = oil_agg[type == 'consumption' & year == 2019][order(factor(label, levels = rev(c('All Other Countries', rev(top5_cons)))))]
+    labs_area_cons_prop[, cum_sum := cumsum(prop)] 
+    labs_area_cons_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_cons_prop[, position := cum_sum - difference]
+    
+    area_cons_prop = ggplot(oil_agg[type == 'consumption'], 
+                            aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_cons))))) + 
+      geom_area() +
+      labs(title = 'Annual petroleum consumption by country (1973-2019)',
+           subtitle = 'Share of global petroleum consumption', 
+           caption = 'Top 5 petroleum consuming countries in 2019 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1973,2019,5), limits = c(1973,2019), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_cons) + 
+      scale_fill_manual(values = pal_cons) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_cons_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_cons_prop = ggplotGrob(area_cons_prop)
+    area_cons_prop$layout$clip[area_cons_prop$layout$name == "panel"] = "off"
+    
+    ggsave(area_cons_prop, 
+           filename = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf'))
