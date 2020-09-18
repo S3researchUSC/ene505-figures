@@ -160,7 +160,7 @@
            x = NULL,
            y = NULL) +
       scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980,2019), expand = c(0,0)) +
-      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,70e3,10e3), limits = c(0,75e3)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(0,80e3,10e3)) +
       guides(fill = 'none',
              color = 'none') +
       scale_color_manual(values = pal_prod) + 
