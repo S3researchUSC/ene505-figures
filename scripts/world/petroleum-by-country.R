@@ -38,7 +38,7 @@
 
 # load data ------
 
-  # read in csv of coal data
+  # read in csv of petroleum data
     oil_data = fread(here::here('data', oil_file), skip = 1, header = T)
   
   # rename V2 column
