@@ -63,18 +63,19 @@
   
 # rank values in each category (production, consumption, imports, exports, and reserves) in 2018 ------
   
-  coal_2018 = coal_long[year == max(year) & ! country == 'World']
-  coal_2018[, rank := frank(-value), by = 'type']
-  rank_country = unique(coal_2018[, c('country', 'type', 'rank')])
+  coal_max_year = coal_long[!is.na(value) & ! country == 'World']
+  coal_max_year[, max_year := max(year), by = 'type']
+  coal_max_year = coal_max_year[year == max_year]
+  coal_max_year[, rank := frank(-value), by = 'type']
+  rank_country = unique(coal_max_year[, c('country', 'type', 'rank')])
   
 # merge with main coal data ----
   
-  coal_ranked = merge(coal_long, rank_country, by = c('country', 'type'), all.x = T)
-  coal_ranked[country == 'World', rank := 0]
+  coal_ranked = merge(coal_long, rank_country, by = c('country', 'type'))
 
 # label all non-top 5 countries as "Other" -----
   
-  coal_ranked[, label := ifelse(rank %in% 0:5,
+  coal_ranked[, label := ifelse(rank %in% 1:5,
                                 country,
                                 'All Other Countries')]
   
@@ -82,3 +83,12 @@
   
   coal_agg = coal_ranked[, .(value = sum(value, na.rm = T)), by = .(year, label, type, unit)]
   setcolorder(coal_agg, c('year', 'type', 'label', 'value', 'unit'))
+  
+# get top 5 for each type -----
+  
+  top5_prod = rank_country[type == 'production' & rank %in% 1:5][order(rank), country]
+  top5_cons = rank_country[type == 'consumption' & rank %in% 1:5][order(rank), country]
+  top5_imp = rank_country[type == 'imports' & rank %in% 1:5][order(rank), country]
+  top5_exp = rank_country[type == 'exports' & rank %in% 1:5][order(rank), country]
+  top5_res = rank_country[type == 'reserves' & rank %in% 1:5][order(rank), country]
+  
