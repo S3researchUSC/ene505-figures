@@ -98,17 +98,22 @@
   
 # ------------------------------------ figures ------------------------------------
   
-  # line, production -----
+  # palettes -----
   
     pal_prod = pal_5countries
     names(pal_prod)[2:6] = top5_prod
     
-    labs_line_prod = coal_agg[type == 'production' & ! (label == 'World') & year == max(year)]
+    pal_cons = pal_5countries
+    names(pal_cons)[2:6] = top5_cons
+    
+  # line, production -----
+  
+    labs_line_prod = coal_agg[type == 'production' & year == max(year)]
     labs_line_prod = labs_line_prod[order(rank(value))]
     labs_line_prod[, position := value/1e3]
     labs_line_prod[1:4, position := c(435,600,750,930)]
     
-    line_prod = ggplot(coal_agg[type == 'production' & ! (label == 'World')], aes(x = year, y = value/1e3, color = label)) + 
+    line_prod = ggplot(coal_agg[type == 'production'], aes(x = year, y = value/1e3, color = label)) + 
       geom_line(size = 0.9) +
       labs(title = 'Annual coal production by country (1980-2018)',
            subtitle = 'Million short tons', 
@@ -116,13 +121,12 @@
            x = NULL,
            y = NULL) +
       guides(color = 'none') +
-      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
       scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
       scale_color_manual(values = pal_prod) + 
       theme_line +
       geom_text(data = labs_line_prod, aes(x = Inf, y = position, label = paste0(' ', label), color = label), hjust = 0,
-                size = 5.6, fontface = 'plain', family = 'Secca Soft') +
-      theme(plot.margin = unit(c(1,10,1,1), "lines"))
+                size = 5.6, fontface = 'plain', family = 'Secca Soft')
     
     line_prod = ggplotGrob(line_prod)
     line_prod$layout$clip[line_prod$layout$name == "panel"] = "off"
@@ -150,7 +154,7 @@
            caption = 'Top 5 producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
-      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
       scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(1e3,10e3,1e3)) +
       guides(fill = 'none',
              color = 'none') +
@@ -187,7 +191,7 @@
            caption = 'Top 5 producing countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
-      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
       scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
       guides(fill = 'none',
              color = 'none') +
@@ -208,3 +212,114 @@
     embed_fonts(here::here('figures', 'world', 'coal-production-by-country_annual_1980-2018_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'coal-production-by-country_annual_1980-2018_ats_proportion.pdf'))
     
+  # line, consumption -----
+    
+    labs_line_cons = coal_agg[type == 'consumption' & year == max(year)]
+    labs_line_cons = labs_line_cons[order(rank(value))]
+    labs_line_cons[, position := value/1e3]
+    labs_line_cons[1:2, position := c(150,320)]
+    
+    line_cons = ggplot(coal_agg[type == 'consumption'], aes(x = year, y = value/1e3, color = label)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual coal consumption by country (1980-2018)',
+           subtitle = 'Million short tons', 
+           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0)) +
+      scale_color_manual(values = pal_cons) + 
+      theme_line +
+      # geom_dl(aes(label = label), method = list(dl.trans(x = x + .3), 'last.bumpup', cex = 1.5, fontfamily = 'Secca Soft', fontface = 'plain')) +
+      geom_text(data = labs_line_cons, aes(x = Inf, y = position, label = paste0(' ', label), color = label), hjust = 0,
+                size = 5.6, fontface = 'plain', family = 'Secca Soft') 
+    
+    line_cons = ggplotGrob(line_cons)
+    line_cons$layout$clip[line_cons$layout$name == "panel"] = "off"
+    
+    ggsave(line_cons, 
+           filename = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_lts.pdf'),
+                outfile = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_lts.pdf'))
+    
+    
+
+    
+  # area, consumption (absolute) -----
+    
+    labs_area_cons = coal_agg[type == 'consumption' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_cons)))))]
+    labs_area_cons[, cum_sum := cumsum(value/1e3)] 
+    labs_area_cons[, difference := diff(c(0,cum_sum))/2]
+    labs_area_cons[, position := cum_sum - difference]
+    labs_area_cons[4:5, position := c(6090,6490)]
+    
+    area_cons = ggplot(coal_agg[type == 'consumption'], 
+                       aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_cons))))) + 
+      geom_area() +
+      labs(title = 'Annual coal consumption by country (1980-2018)',
+           subtitle = 'Million short tons', 
+           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::comma, expand = c(0,0), breaks = seq(1e3,10e3,1e3), limits = c(0,9e3)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_cons) + 
+      scale_fill_manual(values = pal_cons) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_cons, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_cons = ggplotGrob(area_cons)
+    area_cons$layout$clip[area_cons$layout$name == "panel"] = "off"
+    
+    ggsave(area_cons, 
+           filename = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_absolute.pdf'))
+    
+  # area, consumption (proportion) -----
+    
+    labs_area_cons_prop = coal_agg[type == 'consumption' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_cons)))))]
+    labs_area_cons_prop[, cum_sum := cumsum(prop)] 
+    labs_area_cons_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_cons_prop[, position := cum_sum - difference]
+    labs_area_cons_prop[4:5, position := c(0.728,0.769)]
+    
+    area_cons_prop = ggplot(coal_agg[type == 'consumption'], 
+                            aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_cons))))) + 
+      geom_area() +
+      labs(title = 'Annual coal consumption by country (1980-2018)',
+           subtitle = 'Share of global coal consumption', 
+           caption = 'Top 5 consuming countries in 2018 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2018,5), limits = c(1980, 2018), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_cons) + 
+      scale_fill_manual(values = pal_cons) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_cons_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_cons_prop = ggplotGrob(area_cons_prop)
+    area_cons_prop$layout$clip[area_cons_prop$layout$name == "panel"] = "off"
+    
+    ggsave(area_cons_prop, 
+           filename = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'coal-consumption-by-country_annual_1980-2018_ats_proportion.pdf'))
+
