@@ -174,10 +174,10 @@
     
   # area, production (proportion) -----
     
-    labs_area_prop = coal_agg[type == 'production' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_prod)))))]
-    labs_area_prop[, cum_sum := cumsum(prop)] 
-    labs_area_prop[, difference := diff(c(0,cum_sum))/2]
-    labs_area_prop[, position := cum_sum - difference]
+    labs_area_prod_prop = coal_agg[type == 'production' & year == max(year)][order(factor(label, levels = rev(c('All Other Countries', rev(top5_prod)))))]
+    labs_area_prod_prop[, cum_sum := cumsum(prop)] 
+    labs_area_prod_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_prod_prop[, position := cum_sum - difference]
     
     area_prod_prop = ggplot(coal_agg[type == 'production'], 
                        aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_prod))))) + 
@@ -194,7 +194,7 @@
       scale_color_manual(values = pal_prod) + 
       scale_fill_manual(values = pal_prod) + 
       theme_area_labeled +
-      geom_text(data = labs_area_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+      geom_text(data = labs_area_prod_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
                 hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
     
     area_prod_prop = ggplotGrob(area_prod_prop)
