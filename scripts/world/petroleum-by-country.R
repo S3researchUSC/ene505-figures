@@ -111,7 +111,7 @@
   # line, production -----
   
     labs_line_prod = oil_agg[type == 'production' & year == 2019]
-    labs_line_prod = labs_line_prod[order(rank(value))]
+    setorder(labs_line_prod, 'value')
     labs_line_prod[, position := value/1e3]
     labs_line_prod[1:4, position := c(3.9,6,10.6,12.4)]
 
@@ -218,7 +218,7 @@
   # line, consumption -----
     
     labs_line_cons = oil_agg[type == 'consumption' & year == 2019]
-    labs_line_cons = labs_line_cons[order(rank(value))]
+    setorder(labs_line_cons, 'value')
     labs_line_cons[, position := value/1e3]
     labs_line_cons[1:4, position := c(1.1,2.1,3.15,4.25)]
     
@@ -320,3 +320,110 @@
     
     embed_fonts(here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'petroleum-consumption-by-country_annual_1973-2019_ats_proportion.pdf'))
+
+  # line, imports -----
+    
+    labs_line_imp = oil_agg[type == 'imports' & year == 2016]
+    setorder(labs_line_imp, 'value')
+    labs_line_imp[, position := value/1e3]
+    labs_line_imp[1:5, position := c(2.35,3.55,4.65,7.1,8.15)]
+    
+    line_imp = ggplot(oil_agg[type == 'imports'], aes(x = year, y = value/1e3, color = label)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual petroleum imports by country (1980-2016)',
+           subtitle = 'Million barrels per day', 
+           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      guides(color = 'none') +
+      scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,24,4), limits = c(0,24)) +
+      scale_color_manual(values = pal_imp) + 
+      theme_line +
+      geom_text(data = labs_line_imp, aes(x = Inf, y = position, label = paste0(' ', label), color = label), hjust = 0,
+                size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    line_imp = ggplotGrob(line_imp)
+    line_imp$layout$clip[line_imp$layout$name == "panel"] = "off"
+    
+    ggsave(line_imp, 
+           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_lts.pdf'))
+    
+  # area, imports (absolute) -----
+    
+    labs_area_imp = oil_agg[type == 'imports' & year == 2016][order(factor(label, levels = rev(c('All Other Countries', rev(top5_imp)))))]
+    labs_area_imp[, cum_sum := cumsum(value/1e3)] 
+    labs_area_imp[, difference := diff(c(0,cum_sum))/2]
+    labs_area_imp[, position := cum_sum - difference]
+    
+    area_imp = ggplot(oil_agg[type == 'imports'], 
+                       aes(x = year, y = value/1e3, fill = factor(label, levels = c('All Other Countries', rev(top5_imp))))) + 
+      geom_area() +
+      labs(title = 'Annual petroleum imports by country (1980-2016)',
+           subtitle = 'Million barrels per day', 
+           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,50,5)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_imp) + 
+      scale_fill_manual(values = pal_imp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_imp, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_imp = ggplotGrob(area_imp)
+    area_imp$layout$clip[area_imp$layout$name == "panel"] = "off"
+    
+    ggsave(area_imp, 
+           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_absolute.pdf'))
+    
+    
+  # area, imports (proportion) -----
+    
+    labs_area_imp_prop = oil_agg[type == 'imports' & year == 2016][order(factor(label, levels = rev(c('All Other Countries', rev(top5_imp)))))]
+    labs_area_imp_prop[, cum_sum := cumsum(prop)] 
+    labs_area_imp_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_imp_prop[, position := cum_sum - difference]
+    
+    area_imp_prop = ggplot(oil_agg[type == 'imports'], 
+                            aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_imp))))) + 
+      geom_area() +
+      labs(title = 'Annual petroleum imports by country (1980-2016)',
+           subtitle = 'Share of global petroleum imports', 
+           caption = 'Top 5 petroleum importing countries in 2016 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2016,5), limits = c(1980,2016), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_imp) + 
+      scale_fill_manual(values = pal_imp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_imp_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_imp_prop = ggplotGrob(area_imp_prop)
+    area_imp_prop$layout$clip[area_imp_prop$layout$name == "panel"] = "off"
+    
+    ggsave(area_imp_prop, 
+           filename = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'petroleum-imports-by-country_annual_1980-2016_ats_proportion.pdf'))
+    
