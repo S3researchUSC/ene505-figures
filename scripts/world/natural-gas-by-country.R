@@ -296,7 +296,7 @@
                             aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_cons))))) + 
       geom_area() +
       labs(title = 'Annual dry natural gas consumption by country (1980-2017)',
-           subtitle = 'Billion cubic feet', 
+           subtitle = 'Share of global dry natural gas consumption', 
            caption = 'Top 5 natural gas consuming countries in 2017 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
@@ -402,7 +402,7 @@
                            aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_imp))))) + 
       geom_area() +
       labs(title = 'Annual dry natural gas imports by country (1980-2017)',
-           subtitle = 'Billion cubic feet', 
+           subtitle = 'Share of global dry natural gas imports', 
            caption = 'Top 5 dry natural gas importing countries in 2017 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
            x = NULL,
            y = NULL) +
@@ -427,6 +427,111 @@
     embed_fonts(here::here('figures', 'world', 'natural-gas-imports-by-country_annual_1980-2017_ats_proportion.pdf'),
                 outfile = here::here('figures', 'world', 'natural-gas-imports-by-country_annual_1980-2017_ats_proportion.pdf'))
     
+  # line, exports -----
     
+    labs_line_exp = ng_agg[type == 'exports' & year == 2017]
+    setorder(labs_line_exp, 'value')
+    labs_line_exp[, position := value]
+    labs_line_exp[1:4, position := c(2400,3200,4000,4870)]
+    
+    line_exp = ggplot(ng_agg[type == 'exports'], aes(x = year, y = value, color = label)) + 
+      geom_line(size = 0.9) +
+      labs(title = 'Annual dry natural gas exports by country (1980-2017)',
+           subtitle = 'Billion cubic feet', 
+           caption = 'Top 5 dry natural gas exporting countries in 2017 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980,2017), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,20e3,2e3), labels = scales::comma) +
+      guides(color = 'none') +
+      scale_color_manual(values = pal_exp) + 
+      theme_line +
+      geom_text(data = labs_line_exp, aes(x = Inf, y = position, label = paste0(' ', label), color = label), hjust = 0,
+                size = 6.2, fontface = 'plain', family = 'Secca Soft')
+    
+    line_exp = ggplotGrob(line_exp)
+    line_exp$layout$clip[line_exp$layout$name == "panel"] = "off"
+    
+    ggsave(line_exp, 
+           filename = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_lts.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_lts.pdf'),
+                outfile = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_lts.pdf'))
+    
+  # area, exports (absolute) -----
+    
+    labs_area_exp = ng_agg[type == 'exports' & year == 2017][order(factor(label, levels = rev(c('All Other Countries', rev(top5_exp)))))]
+    labs_area_exp[, cum_sum := cumsum(value)] 
+    labs_area_exp[, difference := diff(c(0,cum_sum))/2]
+    labs_area_exp[, position := cum_sum - difference]
+    # labs_area_exp[3:6, position := seq(5.5e3, 6.3e3, length.out = 4)]
+    
+    area_exp = ggplot(ng_agg[type == 'exports'], 
+                      aes(x = year, y = value, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
+      geom_area() +
+      labs(title = 'Annual dry natural gas exports by country (1980-2017)',
+           subtitle = 'Billion cubic feet', 
+           caption = 'Top 5 dry natural gas exporting countries in 2017 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980,2017), expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0), breaks = seq(0,45e3,5e3), labels = scales::comma) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_exp) + 
+      scale_fill_manual(values = pal_exp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_exp, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.5, fontface = 'plain', family = 'Secca Soft')
+    
+    area_exp = ggplotGrob(area_exp)
+    area_exp$layout$clip[area_exp$layout$name == "panel"] = "off"
+    
+    ggsave(area_exp, 
+           filename = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_absolute.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_absolute.pdf'),
+                outfile = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_absolute.pdf'))
+    
+    
+  # area, exports (proportion) -----
+    
+    labs_area_exp_prop = ng_agg[type == 'exports' & year == 2017][order(factor(label, levels = rev(c('All Other Countries', rev(top5_exp)))))]
+    labs_area_exp_prop[, cum_sum := cumsum(prop)] 
+    labs_area_exp_prop[, difference := diff(c(0,cum_sum))/2]
+    labs_area_exp_prop[, position := cum_sum - difference]
+    
+    area_exp_prop = ggplot(ng_agg[type == 'exports'], 
+                           aes(x = year, y = prop, fill = factor(label, levels = c('All Other Countries', rev(top5_exp))))) + 
+      geom_area() +
+      labs(title = 'Annual dry natural gas exports by country (1980-2017)',
+           subtitle = 'Share of global dry natural gas exports', 
+           caption = 'Top 5 dry natural gas exporting countries in 2017 shown individually. All other countries aggregated. Data: U.S. Energy Information Administration', 
+           x = NULL,
+           y = NULL) +
+      scale_x_continuous(breaks = seq(1980,2019,5), limits = c(1980,2017), expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      guides(fill = 'none',
+             color = 'none') +
+      scale_color_manual(values = pal_exp) + 
+      scale_fill_manual(values = pal_exp) + 
+      theme_area_labeled +
+      geom_text(data = labs_area_exp_prop, aes(x = Inf, y = position, label = paste0(' ', label), color = label), 
+                hjust = 0, size = 6.0, fontface = 'plain', family = 'Secca Soft')
+    
+    area_exp_prop = ggplotGrob(area_exp_prop)
+    area_exp_prop$layout$clip[area_exp_prop$layout$name == "panel"] = "off"
+    
+    ggsave(area_exp_prop, 
+           filename = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_proportion.pdf'), 
+           width = 11.5, 
+           height = 6.25)
+    
+    embed_fonts(here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_proportion.pdf'),
+                outfile = here::here('figures', 'world', 'natural-gas-exports-by-country_annual_1980-2017_ats_proportion.pdf'))
     
     
